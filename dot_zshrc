@@ -1,0 +1,79 @@
+export PATH="/usr/local/bin${PATH:+:$PATH}"
+export PATH="$HOME/.local/bin${PATH:+:$PATH}"
+export PATH=$HOME/.bin:/Library/Apple/usr/bin${PATH:+:$PATH}
+
+# homebrew
+export PATH=/opt/homebrew/bin:/opt/homebrew/sbin${PATH:+:$PATH}
+export PATH=/opt/homebrew/opt/llvm/bin${PATH:+:$PATH}
+export PATH=/Users/shun/.cargo/bin${PATH:+:$PATH}
+export LDFLAGS=-L/opt/homebrew/opt/llvm/lib
+export CPPFLAGS=-I/opt/homebrew/opt/llvm/include
+
+# C/C++
+export CXX_INCLUDE_PATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include${CXX_INCLUDE_PATH:+:$CXX_INCLUDE_PATH}
+export HDF5_DIR=/opt/homebrew
+export OPENBLAS=/opt/homebrew/opt/openblas
+export VCPKG_ROOT="$HOME/vcpkg"
+
+# C#
+export PATH=$HOME/.dotnet/tools${PATH:+:$PATH}
+
+
+# Rust ------------------------------------------------------------------------
+export RUSTUP_HOME=$HOME/.rustup
+export CARGO_HOME=$HOME/.cargo
+
+# Python ----------------------------------------------------------------------
+alias activate="source activate.sh"
+
+# homebrew --------------------------------------------------------------------
+export LIBRARY_PATH=/opt/homebrew/lib
+
+# Node.js
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin${PATH:+:$PATH}"
+
+# bun
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin${PATH:+:$PATH}"
+
+# Added by Windsurf
+export PATH="$HOME/.codeium/windsurf/bin:$PATH"
+
+# vcpkg
+export PATH="$HOME/vcpkg:$PATH"
+export VCPKG_ROOT="$HOME/vcpkg"
+
+# LangChain
+export LANGCHAIN_ENDPOINT="https://api.smith.langchain.com"
+export LANGCHAIN_TRACING_V2="true"
+
+# bat
+alias cat='bat --color=always --style=numbers --line-range=:500'
+
+# eza
+alias ls='eza --color=always --icons=always --level 1 -h -T -F --long'
+
+# FZF
+export FZF_DEFAULT_COMMAND="fd --type f --color=always --hidden --exclude .git --exclude node_modules"
+export FZF_CTRL_T_COMMAND="fd --type f --color=always"
+export FZF_CTRL_T_OPTS="--preview 'bat {} --color=always --style=numbers --line-range=:500'"
+export FZF_ALT_C_COMMAND="fd --type d"
+export FZF_ALT_C_OPTS="--preview 'eza {} --color=always --icons=always -h -T -F --no-user --no-time --no-filesize --no-permissions --long | head -200'"
+export FZF_COMPLETION_OPTS='--border --info=inline'
+source <(fzf --zsh)
+
+# Secrets =====================================================================
+OPENAI_API_KEY = ""
+LANGCHAIN_API_KEY = ""
+GEMINI_API_KEY = ""
+NOTION_TOKEN = ""
+source $HOME/.secrets
+
+# shell =======================================================================
+# starshiep
+eval "$(starship init zsh)"
+
+# zoxide
+eval "$(zoxide init zsh)"
