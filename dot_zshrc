@@ -65,10 +65,10 @@ export FZF_COMPLETION_OPTS='--border --info=inline'
 source <(fzf --zsh)
 
 # Secrets =====================================================================
-OPENAI_API_KEY = ""
-LANGCHAIN_API_KEY = ""
-GEMINI_API_KEY = ""
-NOTION_TOKEN = ""
+OPENAI_API_KEY=""
+LANGCHAIN_API_KEY=""
+GEMINI_API_KEY=""
+NOTION_TOKEN=""
 source $HOME/.secrets
 
 # shell =======================================================================
