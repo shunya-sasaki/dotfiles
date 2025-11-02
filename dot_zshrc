@@ -1,3 +1,4 @@
+export XDG_CONFIG_HOME="$HOME/.config"
 export PATH="/usr/local/bin${PATH:+:$PATH}"
 export PATH="$HOME/.local/bin${PATH:+:$PATH}"
 export PATH=$HOME/.bin:/Library/Apple/usr/bin${PATH:+:$PATH}
@@ -69,6 +70,7 @@ OPENAI_API_KEY=""
 LANGCHAIN_API_KEY=""
 GEMINI_API_KEY=""
 NOTION_TOKEN=""
+GITHUB_TOKEN=""
 source $HOME/.secrets
 
 # shell =======================================================================
