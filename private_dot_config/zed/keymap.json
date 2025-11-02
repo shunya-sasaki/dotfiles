@@ -1,5 +1,29 @@
 [
 	{
+		"context": "Workspace",
+		"bindings": {
+			"ctrl-a l": "workspace::ActivatePaneRight",
+			"ctrl-a h": "workspace::ActivatePaneLeft",
+			"ctrl-a j": "workspace::ActivatePaneDown",
+			"ctrl-a k": "workspace::ActivatePaneUp"
+		}
+	},
+	{
+		"context": "EmptyPane",
+		"bindings": {
+			"space f f": "file_finder::Toggle",
+			"space f g": "pane::DeploySearch",
+			"space e": "project_panel::ToggleFocus",
+			"space g": "git_panel::ToggleFocus",
+			"ctrl-b": "workspace::ToggleLeftDock",
+			"ctrl-t": "terminal_panel::ToggleFocus",
+			"alt-j": "vim::ResizePaneDown",
+			"alt-k": "vim::ResizePaneUp",
+			"alt-h": "vim::ResizePaneLeft",
+			"alt-l": "vim::ResizePaneRight"
+		}
+	},
+	{
 		"context": "Editor && vim_mode == normal",
 		"bindings": {
 			"space f f": "file_finder::Toggle",
@@ -14,11 +38,7 @@
 			"alt-j": "vim::ResizePaneDown",
 			"alt-k": "vim::ResizePaneUp",
 			"alt-h": "vim::ResizePaneLeft",
-			"alt-l": "vim::ResizePaneRight",
-			"ctrl-a l": "workspace::ActivatePaneRight",
-			"ctrl-a h": "workspace::ActivatePaneLeft",
-			"ctrl-a j": "workspace::ActivatePaneDown",
-			"ctrl-a k": "workspace::ActivatePaneUp"
+			"alt-l": "vim::ResizePaneRight"
 		}
 	},
 	{
@@ -65,7 +85,7 @@
 			"a": "git::StageAll",
 			"u": "git::UnstageAll",
 			"c": "git::Commit",
-			"shift-c": "git::ExpandCommitEditor",
+			"shift-c": "git_panel::FocusEditor",
 			"p": "git::Pull",
 			"shift-p": "git::Push"
 		}
@@ -74,7 +94,8 @@
 		"context": "GitPanel && CommitEditor > Editor && vim_mode == normal",
 		"bindings": {
 			"ctrl-i": "git::GenerateCommitMessage",
-			"c": "git::Commit"
+			"c": "git::Commit",
+			"escape": "git_panel::FocusChanges"
 		}
 	},
 	{
