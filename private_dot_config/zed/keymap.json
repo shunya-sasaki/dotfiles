@@ -14,13 +14,22 @@
 			"alt-j": "vim::ResizePaneDown",
 			"alt-k": "vim::ResizePaneUp",
 			"alt-h": "vim::ResizePaneLeft",
-			"alt-l": "vim::ResizePaneRight"
+			"alt-l": "vim::ResizePaneRight",
+			"ctrl-a l": "workspace::ActivatePaneRight",
+			"ctrl-a h": "workspace::ActivatePaneLeft",
+			"ctrl-a j": "workspace::ActivatePaneDown",
+			"ctrl-a k": "workspace::ActivatePaneUp"
 		}
 	},
 	{
 		"context": "Terminal",
 		"bindings": {
-			"escape escape": "terminal_panel::Toggle"
+			"escape escape": "terminal_panel::Toggle",
+			"ctrl-a |": "pane::SplitVertical",
+			"ctrl-a l": "workspace::ActivatePaneRight",
+			"ctrl-a h": "workspace::ActivatePaneLeft",
+			"ctrl-a j": "workspace::ActivatePaneDown",
+			"ctrl-a k": "workspace::ActivatePaneUp"
 		}
 	},
 	{
