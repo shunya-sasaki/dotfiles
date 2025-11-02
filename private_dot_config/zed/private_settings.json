@@ -116,6 +116,10 @@
 			"provider": "copilot_chat",
 			"model": "gpt-5"
 		},
-		"model_parameters": []
+		"model_parameters": [],
+		"commit_message_model": {
+			"provider": "copilot_chat",
+			"model": "gpt-5"
+		}
 	}
 }
