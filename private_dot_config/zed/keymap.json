@@ -1,0 +1,56 @@
+[
+	{
+		"context": "Editor && vim_mode == normal",
+		"bindings": {
+			"space f f": "file_finder::Toggle",
+			"space f g": "pane::DeploySearch",
+			"space g": "git_panel::ToggleFocus",
+			"g r": "editor::Rename",
+			"ctrl-n": "pane::ActivateNextItem",
+			"ctrl-p": "pane::ActivatePreviousItem",
+			"ctrl-t": "terminal_panel::ToggleFocus",
+			"alt-j": "vim::ResizePaneDown",
+			"alt-k": "vim::ResizePaneUp",
+			"alt-h": "vim::ResizePaneLeft",
+			"alt-l": "vim::ResizePaneRight"
+		}
+	},
+	{
+		"context": "Terminal",
+		"bindings": {
+			"escape escape": "terminal_panel::Toggle"
+		}
+	},
+	{
+		"context": "ProjectSearchBar",
+		"bindings": {
+			"escape escape": "pane::CloseActiveItem"
+		}
+	},
+	{
+		"context": "ProjectSearchBar > Editor",
+		"bindings": {
+			"escape escape": "pane::CloseActiveItem",
+			"ctrl-n": "search::SelectNextMatch",
+			"ctrl-p": "search::SelectPreviousMatch"
+		}
+	},
+	{
+		"context": "GitPanel && ChangesList",
+		"bindings": {
+			"space": "git::ToggleStaged",
+			"a": "git::StageAll",
+			"u": "git::UnstageAll",
+			"c": "git::Commit",
+			"p": "git::Pull",
+			"shift-p": "git::Push"
+		}
+	},
+	{
+		"context": "GitPanel",
+		"bindings": {
+			"ctrl-i": "git::GenerateCommitMessage",
+			"c": "git::Commit"
+		}
+	}
+]

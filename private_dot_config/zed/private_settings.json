@@ -1,0 +1,121 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run the `open default settings` command
+// from the command palette or from `Zed` application menu.
+{
+	"vim_mode": true,
+	"ui_font_size": 14,
+	"buffer_font_size": 14,
+	"buffer_font_family": "Moralerspace Neon HW",
+	"theme": {
+		"mode": "system",
+		"light": "Tokyo Night",
+		"dark": "Tokyo Night Storm"
+	},
+	"languages": {
+		"Rust": {
+			"language_servers": ["rust-analyzer"],
+			"formatter": "language_server",
+			"format_on_save": "on"
+		},
+		"Python": {
+			"code_actions_on_format": {
+				"source.organizeImports.ruff": true,
+				"source.fixAll.ruff": true
+			},
+			"language_servers": ["basedpyright", "ty", "ruff"],
+			"format_on_save": "on"
+		},
+		"TypeScript": {
+			"language_servers": ["vtsls", "biome"],
+			"formatter": {
+				"language_server": {
+					"name": "biome"
+				}
+			},
+			"format_on_save": "on",
+			"code_actions_on_format": {
+				"source.fixAll.biome": true,
+				"source.organizeImports.biome": true
+			}
+		},
+		"TSX": {
+			"language_servers": ["vtsls", "biome"],
+			"formatter": {
+				"language_server": {
+					"name": "biome"
+				}
+			},
+			"format_on_save": "on",
+			"code_actions_on_format": {
+				"source.fixAll.biome": true,
+				"source.organizeImports.biome": true
+			}
+		},
+		"Markdown": {
+			"format_on_save": "on",
+			"formatter": "prettier"
+		},
+		"JSON": {
+			"language_servers": ["json-language-server", "biome"],
+			"format_on_save": "on",
+			"formatter": {
+				"language_server": {
+					"name": "biome"
+				}
+			},
+			"code_actions_on_format": {
+				"source.fixAll.biome": true
+			}
+		},
+		"JSONC": {
+			"language_servers": ["json-language-server", "biome"],
+			"format_on_save": "on",
+			"formatter": {
+				"language_server": {
+					"name": "biome"
+				}
+			},
+			"code_actions_on_format": {
+				"source.fixAll.biome": true
+			}
+		}
+	},
+	// LSP =======================================================================
+	"lsp": {
+		"rust-analyzer": {
+			"initialization_options": {
+				"check": {
+					"command": "clippy"
+				}
+			}
+		},
+		"vtsls": {},
+		"biome": {
+			"binary": {
+				"path": "biome",
+				"arguments": ["lsp-proxy"]
+			}
+		},
+		"basedpyright": {},
+		"ruff": {},
+		"ty": {
+			"binary": {
+				"path": "ty",
+				"arguments": ["server"]
+			}
+		}
+	},
+	// Agents ====================================================================
+	"agent": {
+		"default_model": {
+			"provider": "copilot_chat",
+			"model": "gpt-5"
+		},
+		"model_parameters": []
+	}
+}
