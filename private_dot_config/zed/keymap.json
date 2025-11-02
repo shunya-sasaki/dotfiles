@@ -4,8 +4,10 @@
 		"bindings": {
 			"space f f": "file_finder::Toggle",
 			"space f g": "pane::DeploySearch",
+			"space e": "project_panel::ToggleFocus",
 			"space g": "git_panel::ToggleFocus",
 			"g r": "editor::Rename",
+			"ctrl-b": "workspace::ToggleLeftDock",
 			"ctrl-n": "pane::ActivateNextItem",
 			"ctrl-p": "pane::ActivatePreviousItem",
 			"ctrl-t": "terminal_panel::ToggleFocus",
@@ -19,6 +21,18 @@
 		"context": "Terminal",
 		"bindings": {
 			"escape escape": "terminal_panel::Toggle"
+		}
+	},
+	{
+		"context": "ProjectPanel",
+		"bindings": {
+			"a": "project_panel::NewFile",
+			"shift-A": "project_panel::NewDirectory",
+			"d": "project_panel::Delete",
+			"m": "project_panel::Rename",
+			"y": "project_panel::Copy",
+			"p": "project_panel::Paste",
+			"x": "project_panel::Cut"
 		}
 	},
 	{
@@ -42,12 +56,20 @@
 			"a": "git::StageAll",
 			"u": "git::UnstageAll",
 			"c": "git::Commit",
+			"shift-c": "git::ExpandCommitEditor",
 			"p": "git::Pull",
 			"shift-p": "git::Push"
 		}
 	},
 	{
-		"context": "GitPanel",
+		"context": "GitPanel && CommitEditor > Editor && vim_mode == normal",
+		"bindings": {
+			"ctrl-i": "git::GenerateCommitMessage",
+			"c": "git::Commit"
+		}
+	},
+	{
+		"context": "GitCommit > Editor && vim_mode == normal",
 		"bindings": {
 			"ctrl-i": "git::GenerateCommitMessage",
 			"c": "git::Commit"
