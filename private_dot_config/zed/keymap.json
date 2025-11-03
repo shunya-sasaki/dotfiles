@@ -45,11 +45,7 @@
 		"context": "Terminal",
 		"bindings": {
 			"escape escape": "terminal_panel::Toggle",
-			"ctrl-a |": "pane::SplitVertical",
-			"ctrl-a l": "workspace::ActivatePaneRight",
-			"ctrl-a h": "workspace::ActivatePaneLeft",
-			"ctrl-a j": "workspace::ActivatePaneDown",
-			"ctrl-a k": "workspace::ActivatePaneUp"
+			"ctrl-a |": "pane::SplitVertical"
 		}
 	},
 	{
@@ -64,10 +60,19 @@
 			"x": "project_panel::Cut"
 		}
 	},
+	// Project Search
 	{
 		"context": "ProjectSearchBar",
 		"bindings": {
 			"escape escape": "pane::CloseActiveItem"
+		}
+	},
+	{
+		"context": "Editor && vim_mode == normal && multibuffer",
+		"bindings": {
+			"ctrl-n": "search::SelectNextMatch",
+			"ctrl-p": "search::SelectPreviousMatch",
+			"escape": "search::FocusSearch"
 		}
 	},
 	{
