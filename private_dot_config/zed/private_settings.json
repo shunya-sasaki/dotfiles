@@ -13,9 +13,10 @@
 	"buffer_font_family": "Moralerspace Neon HW",
 	"theme": {
 		"mode": "system",
-		"light": "Tokyo Night",
+		"light": "Tokyo Night Storm",
 		"dark": "Tokyo Night Storm"
 	},
+	"icon_theme": "Material Icon Theme",
 	"languages": {
 		"Rust": {
 			"language_servers": ["rust-analyzer"],
@@ -111,7 +112,7 @@
 		}
 	},
 	// Agents ====================================================================
-	"feature": {
+	"features": {
 		"edit_prediction_provider": "copilot"
 	},
 	"agent": {
