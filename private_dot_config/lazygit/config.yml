@@ -1,0 +1,25 @@
+gui:
+  language: en
+  nerdFontsVersion: 3
+  showFileIcons: true
+
+git:
+  pagers:
+    - pager: delta --dark --paging=never
+  log:
+    showWholeGraph: true
+
+keybinding:
+  files:
+    commitChanges: <disabled>
+
+customCommands:
+  - key: '<c-c>'
+    context: 'files'
+    command: 'ai-commit-message'
+    output: log
+  - key: 'c'
+    context: 'files'
+    command: 'quick-commit'
+    ouput: popup
+  
