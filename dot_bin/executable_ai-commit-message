@@ -46,8 +46,7 @@ $diff
 EOF
 )
 
-# message=$(copilot -p "$prompt")
-message=$(gemini -p "$prompt")
+message=$(copilot -p "$prompt")
 message=$(echo "$message" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' -e 's/^```//' -e 's/```$//')
 
 echo "$message" | pbcopy
