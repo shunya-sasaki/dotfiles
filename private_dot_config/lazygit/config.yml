@@ -14,12 +14,19 @@ keybinding:
     commitChanges: <disabled>
 
 customCommands:
-  - key: '<c-c>'
-    context: 'files'
-    command: 'ai-commit-message'
+  - key: "<c-c>"
+    context: "files"
+    command: "ai-commit-message"
+    description: "Generate commit message with AI"
+    loadingText: "Generating commit message..."
     output: log
-  - key: 'c'
-    context: 'files'
-    command: 'quick-commit'
+  - key: "c"
+    context: "files"
+    command: "quick-commit"
+    description: "Commit with clipboard message"
+    loadingText: "Committing with clipboard message..."
     output: popup
-  
+    outputTitle: "Commit"
+  - description: "Undo last commit"
+    context: "files"
+    command: "git reset --soft HEAD~1"
