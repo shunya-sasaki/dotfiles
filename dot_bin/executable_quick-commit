@@ -8,7 +8,10 @@ if [ -z "$CLIPBOARD_CONTENT" ]; then
 fi
 
 echo "Committing with message from clipboard:"
+echo ""
 echo "$CLIPBOARD_CONTENT"
+echo ""
 git commit -m "$CLIPBOARD_CONTENT"
+pbcopy < /dev/null
 echo ""
 echo "✅ Commit successful."
