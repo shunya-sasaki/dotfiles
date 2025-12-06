@@ -1,0 +1,22 @@
+[
+	{
+		"label": "start lazygit",
+		"command": "lazygit -p $ZED_WORKTREE_ROOT",
+		"use_new_terminal": false,
+		"allow_concurrent_runs": false,
+		"reveal": "always",
+		"hide": "always",
+		"reveal_target": "center"
+	},
+	{
+		"label": "generate commit message",
+		"command": "ai-commit-message",
+		"reveal": "no_focus",
+		"show_command": false,
+		"hide": "always",
+		"use_new_terminal": false,
+		"allow_concurrent_runs": false,
+		"shell": "system",
+		"reveal_target": "dock"
+	}
+]
