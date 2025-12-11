@@ -7,7 +7,7 @@ and operates through reproducible workflows built on LLMs and local tools.
 
 ## Project overview
 
-This project manages configuration files.
+This project manages dot files.
 
 ## Code style guidelines
 
@@ -26,6 +26,7 @@ This project manages configuration files.
 
 - The first line is the commit title and should be concise.
 - The length of the first line must be at most 50 characters.
+- The description should start with lower letter.
 - The third line is optional and can provide additional context or details about the change.
 - The type in the first line must be one of the following:
   - build: Changes that affect the build system or external dependencies
@@ -37,6 +38,11 @@ This project manages configuration files.
   - refactor: A code change that neither fixes a bug nor adds a feature
   - style: Changes that do not affect the meaning of the code
   - test: Adding missing tests or correcting existing tests
+- The example is as follows:
+
+  ```
+  feat(zed): add setting files for Zed
+  ```
 
 ## Testing instructions
 
