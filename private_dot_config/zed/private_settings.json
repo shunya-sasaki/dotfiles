@@ -11,6 +11,19 @@
 	"ui_font_size": 14,
 	"buffer_font_size": 12,
 	"buffer_font_family": "Moralerspace Neon HW",
+	"buffer_font_features": {
+		"calt": true,
+		"ss01": true,
+		"ss02": true,
+		"ss03": true,
+		"ss04": true,
+		"ss05": true,
+		"ss06": true,
+		"ss07": true,
+		"ss08": true,
+		"ss09": true,
+		"liga": true
+	},
 	"theme": {
 		"mode": "system",
 		"light": "Tokyo Night Storm",
@@ -26,7 +39,7 @@
 		"Python": {
 			"code_actions_on_format": {
 				"source.organizeImports.ruff": true,
-				"source.fixAll.ruff": true
+				"source.fixAll.ruff": false
 			},
 			"language_servers": ["basedpyright", "ty", "ruff"],
 			"format_on_save": "on"
@@ -117,8 +130,8 @@
 	},
 	"agent": {
 		"default_model": {
-			"provider": "copilot_chat",
-			"model": "gpt-5"
+			"provider": "google",
+			"model": "gemini-2.5-flash"
 		},
 		"model_parameters": [],
 		"commit_message_model": {
