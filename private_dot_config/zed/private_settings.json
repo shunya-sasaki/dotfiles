@@ -125,13 +125,19 @@
 		}
 	},
 	// Agents ====================================================================
+	"agent_servers": {
+		"gemini": {
+			"command": "gemini",
+			"args": ["serve", "--model", "gemini-2.5-flash"]
+		}
+	},
 	"features": {
 		"edit_prediction_provider": "copilot"
 	},
 	"agent": {
 		"default_model": {
-			"provider": "google",
-			"model": "gemini-2.5-flash"
+			"provider": "copilot_chat",
+			"model": "gpt-5"
 		},
 		"model_parameters": [],
 		"commit_message_model": {
