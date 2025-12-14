@@ -18,5 +18,22 @@
 		"allow_concurrent_runs": false,
 		"shell": "system",
 		"reveal_target": "dock"
+	},
+	{
+		"label": "file_finder",
+		"command": "zed \"$(tv files)\"",
+		"hide": "always",
+		"allow_concurrent_runs": true,
+		"use_new_terminal": true,
+		"reveal_target": "center"
+	},
+	{
+	"label": "markdown-toc",
+	"command": "markdown-toc \"$ZED_FILE\"",
+	"hide": "on_success",
+  "use_new_terminal": false,
+  "allow_concurrent_runs": true,
+  "reveal_target": "dock",
+  "shell": "system"
 	}
 ]
