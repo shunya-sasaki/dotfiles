@@ -1,0 +1,7 @@
+#!/bin/sh
+
+target_file=$1
+
+cd "$(dirname "$0")" || exit
+
+uv run ./markdown_toc.py "$target_file"
