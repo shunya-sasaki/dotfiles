@@ -8,6 +8,7 @@ config.window_background_opacity = 0.9
 config.initial_cols = 80
 config.initial_rows = 30
 config.font = wezterm.font_with_fallback({
+	"Moralerspace Neon HW",
 	"Monaspace Neon",
 	"Symbols Nerd Font Mono",
 	"Moralerspace Neon HW",
