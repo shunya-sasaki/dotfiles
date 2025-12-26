@@ -91,16 +91,16 @@ EOF
 prompt="${sys_prompt}$diff"
 
 if [ -z "${AI_COMMIT_MESSAGE_PROVIDER+x}" ]; then
-    message=$(gemini -p "$prompt")
+    message=$(gemini -p "$prompt" -m gemini-3-flash-preview)
 else
     if [ "$AI_COMMIT_MESSAGE_PROVIDER" = "GEMINI" ] || [ "$AI_COMMIT_MESSAGE_PROVIDER" = "gemini" ]; then
-        message=$(gemini -p "$prompt")
+        message=$(gemini -p "$prompt" -m gemini-3-flash-preview)
     elif [ "$AI_COMMIT_MESSAGE_PROVIDER" = "COPILOT" ] || [ "$AI_COMMIT_MESSAGE_PROVIDER" = "copilot" ]; then
         message=$(copilot -p "$prompt")
     elif [ "$AI_COMMIT_MESSAGE_PROVIDER" = "AZURE_OPEN_AI" ]; then
         message=$(azure_openai_commit_message "$sys_prompt" "$diff")
     else
-        message=$(gemini -p "$prompt")
+        message=$(gemini -p "$prompt" -m gemini-3-flash-preview)
     fi
 fi
 
