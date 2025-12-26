@@ -29,6 +29,9 @@
 		"light": "Tokyo Night Storm",
 		"dark": "Tokyo Night Storm"
 	},
+	"file_types": {
+		"Plain Text": ["LICENSE"]
+	},
 	"icon_theme": "Material Icon Theme",
 	"languages": {
 		"Rust": {
@@ -128,7 +131,7 @@
 	"agent_servers": {
 		"gemini": {
 			"command": "gemini",
-			"args": ["serve", "--model", "gemini-2.5-flash"]
+			"args": ["serve", "--model", "gemini-3-flash-preview"]
 		}
 	},
 	"features": {
