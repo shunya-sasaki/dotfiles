@@ -1,3 +1,11 @@
+local function get_nvim_agent()
+	local agent = os.getenv("NVIM_AGENT")
+	if not agent or agent == "" then
+		return "gemini"
+	end
+	return agent
+end
+
 return {
 	{
 		"akinsho/toggleterm.nvim",
@@ -25,8 +33,8 @@ return {
 				count = 2,
 			})
 
-			local gemini = Terminal:new({
-				cmd = "gemini",
+			local agent = Terminal:new({
+				cmd = get_nvim_agent(),
 				hidden = true,
 				direction = "float",
 				count = 3,
@@ -36,8 +44,8 @@ return {
 				lazygit:toggle()
 			end
 
-			function Gemini_toggle()
-				gemini:toggle()
+			function Agent_toggle()
+				agent:toggle()
 			end
 
 			vim.api.nvim_set_keymap(
@@ -47,7 +55,7 @@ return {
 				{ noremap = true, silent = true }
 			)
 
-			vim.api.nvim_set_keymap("n", "<leader>i", "<cmd>lua Gemini_toggle()<CR>", { noremap = true, silent = true })
+			vim.api.nvim_set_keymap("n", "<leader>i", "<cmd>lua Agent_toggle()<CR>", { noremap = true, silent = true })
 			vim.api.nvim_set_keymap("n", "<leader>t", ": ToggleTerm<CR>", { silent = true, noremap = true })
 			vim.api.nvim_set_keymap("n", "<C-t>", ": ToggleTerm<CR>", { silent = true, noremap = true })
 		end,
