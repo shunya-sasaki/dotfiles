@@ -2,14 +2,15 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			vim.lsp.enable("csharp_ls")
-			vim.lsp.enable("rust_analyzer")
-			vim.lsp.enable("powershell_es")
 			-- Markdown
 			vim.lsp.enable("markdown_oxide")
 			-- C/C++
 			vim.lsp.enable("clangd")
 			vim.lsp.enable("cmake")
+			-- C#
+			vim.lsp.enable("csharp_ls")
+			-- Rust
+			vim.lsp.enable("rust_analyzer")
 			-- Json
 			vim.lsp.enable("biome")
 			-- HTML/CSS
@@ -25,6 +26,12 @@ return {
 			vim.lsp.enable("taplo")
 			-- NGINX
 			vim.lsp.enable("nginx")
+			-- Lua
+			vim.lsp.enable("stylua")
+			-- Shell/Bash
+			vim.lsp.enable("bashls")
+			-- PowerShell
+			vim.lsp.enable("powershell_es")
 		end,
 	},
 	{
@@ -49,7 +56,6 @@ return {
 		opts = function(_, opts)
 			opts.automatic_installation = true
 			opts.ensure_installed = {
-				"csharp_ls",
 				"powershell_es",
 			}
 		end,
@@ -57,14 +63,7 @@ return {
 	{
 		"jay-babu/mason-null-ls.nvim",
 		opts = {
-			ensure_installed = {
-				"cpplint",
-				"clang-format",
-				"csharpier",
-				"prettier",
-				"stylua",
-				"shfmt",
-			},
+			ensure_installed = {},
 		},
 		dependencies = { "nvimtools/none-ls.nvim" },
 	},
@@ -75,14 +74,6 @@ return {
 			local null_ls = require("null-ls")
 			opts.sources = {
 				require("none-ls.diagnostics.cpplint"),
-				null_ls.builtins.formatting.shfmt.with({ filetypes = { "sh", "zsh", "ksh", "csh" } }),
-				null_ls.builtins.formatting.clang_format.with({ filetypes = { "c", "cpp", "h", "hpp" } }),
-				null_ls.builtins.formatting.csharpier.with({ filetypes = { "cs" } }),
-				null_ls.builtins.formatting.stylua.with({ filetypes = { "lua" } }),
-				null_ls.builtins.formatting.prettier.with({
-					filetypes = { "markdown", "html" },
-					extra_args = { "--ignore-path", ".prettierignore" },
-				}),
 			}
 			opts.on_init = function(new_client, _)
 				new_client.offset_encoding = "utf-16"
