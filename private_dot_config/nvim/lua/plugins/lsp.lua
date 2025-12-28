@@ -1,5 +1,33 @@
 return {
 	{
+		"neovim/nvim-lspconfig",
+		config = function()
+			vim.lsp.enable("csharp_ls")
+			vim.lsp.enable("rust_analyzer")
+			vim.lsp.enable("powershell_es")
+			-- Markdown
+			vim.lsp.enable("markdown_oxide")
+			-- C/C++
+			vim.lsp.enable("clangd")
+			vim.lsp.enable("cmake")
+			-- Json
+			vim.lsp.enable("biome")
+			-- HTML/CSS
+			vim.lsp.enable("html")
+			vim.lsp.enable("cssls")
+			-- TypeScript
+			vim.lsp.enable("vtsls")
+			vim.lsp.enable("tailwindcss")
+			-- Python
+			vim.lsp.enable("ruff")
+			vim.lsp.enable("ty")
+			-- TOML
+			vim.lsp.enable("taplo")
+			-- NGINX
+			vim.lsp.enable("nginx")
+		end,
+	},
+	{
 		"mason-org/mason-lspconfig.nvim",
 		dependencies = {
 			{
@@ -21,33 +49,9 @@ return {
 		opts = function(_, opts)
 			opts.automatic_installation = true
 			opts.ensure_installed = {
-				"clangd",
-				"cmake",
 				"csharp_ls",
-				"rust_analyzer",
-				"taplo",
-				"pyright",
-				"ruff",
-				"ty",
-				"biome",
-				"ts_ls",
-				"tailwindcss",
-				"cssls",
-				"marksman",
-				"html",
 				"powershell_es",
-				"nginx_language_server",
 			}
-			vim.lsp.enable("biome")
-			vim.lsp.enable("clangd")
-			vim.lsp.enable("csharp_ls")
-			vim.lsp.enable("rust_analyzer")
-			vim.lsp.enable("pyright")
-			vim.lsp.enable("ts_ls")
-			vim.lsp.enable("tailwindcss")
-			vim.lsp.enable("marksman")
-			vim.lsp.enable("powershell_es")
-			vim.lsp.enable("ruff")
 		end,
 	},
 	{
