@@ -55,9 +55,7 @@ return {
 		},
 		opts = function(_, opts)
 			opts.automatic_installation = true
-			opts.ensure_installed = {
-				"powershell_es",
-			}
+			opts.ensure_installed = {}
 		end,
 	},
 	{
