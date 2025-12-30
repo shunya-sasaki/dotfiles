@@ -1,11 +1,3 @@
-local function get_nvim_agent()
-	local agent = os.getenv("NVIM_AGENT")
-	if not agent or agent == "" then
-		return "gemini"
-	end
-	return agent
-end
-
 return {
 	{
 		"akinsho/toggleterm.nvim",
@@ -34,7 +26,7 @@ return {
 			})
 
 			local agent = Terminal:new({
-				cmd = get_nvim_agent(),
+				cmd = require("util").get_nvim_agent(),
 				hidden = true,
 				direction = "float",
 				count = 3,
