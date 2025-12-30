@@ -186,6 +186,9 @@ vim.g.loaded_ruby_provider = 0
 -- perl
 vim.g.loaded_perl_provider = 0
 
+local agent = require("util").get_nvim_agent()
+vim.api.nvim_set_keymap("n", "<C-A-i>", ":term " .. agent .. "<CR>i<CR>", { silent = true, noremap = true })
+
 -- user config
 local local_init = vim.fn.stdpath("config") .. "/lua/local/user_init.lua"
 if vim.loop.fs_stat(local_init) then
