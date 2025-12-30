@@ -18,6 +18,15 @@ local function get_os_name()
 	end
 end
 
+local function get_nvim_agent()
+	local agent = os.getenv("NVIM_AGENT")
+	if not agent or agent == "" then
+		return "gemini"
+	end
+	return agent
+end
+
 return {
 	get_os_name = get_os_name,
+	get_nvim_agent = get_nvim_agent,
 }
