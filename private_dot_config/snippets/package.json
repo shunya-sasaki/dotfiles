@@ -1,0 +1,36 @@
+{
+  "name": "nvim-snippets",
+  "description": "specificaton for LuaSnip",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "text",
+        "path": "plaintext.json"
+      },
+      {
+        "language": "markdown",
+        "path": "markdown.json"
+      },
+      {
+        "language": "json",
+        "path": "json.json"
+      },
+      {
+        "language": "python",
+        "path": "python.json"
+      },
+      {
+        "language": "sh",
+        "path": "shellscript.json"
+      },
+      {
+        "language": "zsh",
+        "path": "shellscript.json"
+      },
+      {
+        "language": "gitignore",
+        "path": "ignore.json"
+      }
+    ]
+  }
+}
