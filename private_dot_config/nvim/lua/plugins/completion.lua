@@ -21,7 +21,7 @@ return {
 				opts = function(_, opts)
 					local luasnip = require("luasnip")
 					local vscode_snippets_path = {
-						vim.fn.expand(vim.fn.stdpath("config") .. "/snippets"),
+						vim.fn.expand(vim.env.HOME .. "/.config/snippets"),
 					}
 					require("luasnip.loaders.from_vscode").load({
 						paths = vscode_snippets_path,
