@@ -5,7 +5,8 @@
 			"ctrl-a l": "workspace::ActivatePaneRight",
 			"ctrl-a h": "workspace::ActivatePaneLeft",
 			"ctrl-a j": "workspace::ActivatePaneDown",
-			"ctrl-a k": "workspace::ActivatePaneUp"
+			"ctrl-a k": "workspace::ActivatePaneUp",
+			"ctrl-alt-i": "agent::ToggleFocus"
 		}
 	},
 	{
@@ -14,7 +15,6 @@
 			"space f f": "file_finder::Toggle",
 			"space f g": "pane::DeploySearch",
 			"space e": "project_panel::ToggleFocus",
-			// "space g": "git_panel::ToggleFocus",
 			"space g": ["task::Spawn", { "task_name": "lazygit" }],
 			"ctrl-b": "workspace::ToggleLeftDock",
 			"ctrl-t": "terminal_panel::ToggleFocus",
@@ -27,17 +27,17 @@
 	{
 		"context": "Editor && vim_mode == normal",
 		"bindings": {
-			// "space f f": "file_finder::Toggle",
 			"space f f": ["task::Spawn", { "task_name": "file_finder" }],
 			"space f g": "pane::DeploySearch",
 			"space e": "project_panel::ToggleFocus",
-			// "space g": "git_panel::ToggleFocus",
 			"space g": ["task::Spawn", { "task_name": "lazygit" }],
+			"space t": "workspace::NewCenterTerminal",
 			"g r": "editor::Rename",
 			"ctrl-b": "workspace::ToggleLeftDock",
 			"ctrl-n": "pane::ActivateNextItem",
 			"ctrl-p": "pane::ActivatePreviousItem",
 			"ctrl-t": "terminal_panel::ToggleFocus",
+			"ctrl-i": "assistant::InlineAssist",
 			"alt-j": "vim::ResizePaneDown",
 			"alt-k": "vim::ResizePaneUp",
 			"alt-h": "vim::ResizePaneLeft",
@@ -47,8 +47,18 @@
 	{
 		"context": "Terminal",
 		"bindings": {
-			"escape escape": "terminal_panel::Toggle",
-			"ctrl-a |": "pane::SplitVertical"
+			"ctrl-t": "terminal_panel::Toggle",
+			"ctrl-a |": "pane::SplitVertical",
+			"ctrl-p": null,
+			"ctrl-n": null,
+			"ctrl-a ]": "pane::ActivateNextItem",
+			"ctrl-a [": "pane::ActivatePreviousItem"
+		}
+	},
+	{
+		"context": "AgentPanel",
+		"bindings": {
+			"escape escape": "workspace::ToggleRightDock"
 		}
 	},
 	{
