@@ -57,6 +57,11 @@ end)
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {
 	{
+		key = "i",
+		mods = "CTRL|ALT",
+		action = wezterm.action.DisableDefaultAssignment,
+	},
+	{
 		key = "|",
 		mods = "LEADER",
 		action = wezterm.action.SplitHorizontal({
