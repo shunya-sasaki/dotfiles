@@ -128,6 +128,11 @@
 		}
 	},
 	// Agents ====================================================================
+    {{- if eq .profile  "work" }}
+	"features": {
+		"edit_prediction_provider": "none"
+	},
+    {{- else }}
 	"agent_servers": {
 		"gemini": {
 			"command": "gemini",
@@ -148,4 +153,5 @@
 			"model": "gpt-5"
 		}
 	}
+    {{- end }}
 }
