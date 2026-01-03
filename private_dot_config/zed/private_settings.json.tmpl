@@ -7,7 +7,11 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-	"vim_mode": true,
+    "vim_mode": true,
+    "load_direnv": "shell_hook",
+    "terminal": {
+        "shell": "system"
+    },
 	"ui_font_size": 14,
 	"buffer_font_size": 12,
 	"buffer_font_family": "Moralerspace Neon HW",
@@ -36,7 +40,12 @@
 	"languages": {
 		"Rust": {
 			"language_servers": ["rust-analyzer"],
-			"formatter": "language_server",
+			"formatter": {
+				"external": {
+					"command": "rustfmt",
+					"arguments": ["--emit", "stdout"]
+				}
+			},
 			"format_on_save": "on"
 		},
 		"Python": {
@@ -100,7 +109,11 @@
 			"code_actions_on_format": {
 				"source.fixAll.biome": true
 			}
-		}
+		},
+        "Nix": {
+            "language_servers": ["nil", "!nixd"]
+        }
+        
 	},
 	// LSP =======================================================================
 	"lsp": {
