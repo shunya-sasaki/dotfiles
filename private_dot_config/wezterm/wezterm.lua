@@ -54,8 +54,8 @@ wezterm.on("update-right-status", function(window, pane)
 	window:set_right_status(name or "")
 end)
 
-config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
-config.keys = {
+local custom_leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
+local custom_keys = {
 	{
 		key = "i",
 		mods = "CTRL|ALT",
@@ -146,14 +146,8 @@ config.keys = {
 		}),
 	},
 }
-for i = 1, 9 do
-	table.insert(config.keys, {
-		key = tostring(i),
-		mods = "LEADER",
-		action = wezterm.action.ActivateTab(i - 1),
-	})
-end
-config.key_tables = {
+
+local custom_key_tables = {
 	resize_pane = {
 		{
 			key = "h",
@@ -177,5 +171,32 @@ config.key_tables = {
 		},
 	},
 }
+
+config.disable_default_key_bindings = true
+config.leader = custom_leader
+config.keys = custom_keys
+for i = 1, 9 do
+	table.insert(config.keys, {
+		key = tostring(i),
+		mods = "LEADER",
+		action = wezterm.action.ActivateTab(i - 1),
+	})
+end
+config.key_tables = custom_key_tables
+
+wezterm.on("user-var-changed", function(window, pane, name, value)
+	if name == "TMUX_MODE" then
+		local overrides = window:get_config_overrides() or {}
+		if value == "1" then
+			overrides.disable_default_key_bindings = false
+			overrides.keys = {}
+			overrides.key_tables = {}
+			overrides.leader = { key = "_", mods = "CTRL|ALT|SUPER" }
+		else
+			overrides = nil
+		end
+		window:set_config_overrides(overrides)
+	end
+end)
 
 return config
