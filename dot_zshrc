@@ -6,7 +6,7 @@ export PATH=$HOME/.bin:/Library/Apple/usr/bin${PATH:+:$PATH}
 # homebrew
 export PATH=/opt/homebrew/bin:/opt/homebrew/sbin${PATH:+:$PATH}
 export PATH=/opt/homebrew/opt/llvm/bin${PATH:+:$PATH}
-export PATH=/Users/shun/.cargo/bin${PATH:+:$PATH}
+export PATH=$HOME/.cargo/bin${PATH:+:$PATH}
 export LDFLAGS=-L/opt/homebrew/opt/llvm/lib
 export CPPFLAGS=-I/opt/homebrew/opt/llvm/include
 
@@ -30,9 +30,13 @@ alias activate="source activate.sh"
 # homebrew --------------------------------------------------------------------
 export LIBRARY_PATH=/opt/homebrew/lib
 
+# Rust
+export PATH=$(dirname $(rustup which cargo)):$PATH
+
 # Node.js
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin${PATH:+:$PATH}"
+export NODE_OPTIONS="--dns-result-order=ipv4first"
 
 # bun
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
@@ -65,17 +69,49 @@ export FZF_ALT_C_OPTS="--preview 'eza {} --color=always --icons=always s ext -h 
 export FZF_COMPLETION_OPTS='--border --info=inline'
 source <(fzf --zsh)
 
+# Zed
+alias zed="zeditor"
+
+# tmux/zelliji
+function set_wezterm_user_var(){
+    if [[ -n "$WEZTERM_PANE" ]]; then
+        printf "\033]1337;SetUserVar=%s=%s\007" "$1" $(echo -n "$2" | base64)
+    fi
+}
+function tmux() {
+    set_wezterm_user_var "TMUX_MODE" "1"
+    command zellij "$@"
+    set_wezterm_user_var "TMUX_MODE" "0"
+}
+
+# Antigravity
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+
+# Agents ======================================================================
+# Load variables for AI agents from .env.agents
+# Expected variables
+# - DISABLE_COPILOT: 0 | 1
+# - NVIM_AGENT: gemini | copilot
+# - AI_COMMIT_MESSAGE_PROVIDER: GEMINI | COPILOT | AZURE_OPEN_AI
+if [ -f "$HOME/.env.agents" ]; then
+    export $(grep -v '^#' "$HOME/.env.agents" | xargs)
+fi
+
 # Secrets =====================================================================
-OPENAI_API_KEY=""
-LANGCHAIN_API_KEY=""
-GEMINI_API_KEY=""
-NOTION_TOKEN=""
-GITHUB_TOKEN=""
-source $HOME/.secrets
+# Load secrets from .secrets
+# Expected variables:
+# - OPENAI_API_KEY
+# - LANGCHAIN_API_KEY
+# - GEMINI_API_KEY
+# - NOTION_TOKEN
+# - GITHUB_TOKEN
+if [ -f "$HOME/.secrets" ]; then
+    export $(grep -v '^#' "$HOME/.secrets" | xargs)
+fi
 
 # shell =======================================================================
 # starshiep
 eval "$(starship init zsh)"
-
 # zoxide
 eval "$(zoxide init zsh)"
+
