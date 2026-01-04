@@ -28,6 +28,10 @@
         "path": "shellscript.json"
       },
       {
+        "language": "nix",
+        "path": "nix.json"
+      },
+      {
         "language": "gitignore",
         "path": "ignore.json"
       }
