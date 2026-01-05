@@ -103,11 +103,8 @@ return {
 			{ "mfussenegger/nvim-dap" },
 		},
 		opts = function(_, opts)
-			opts.automatic_installation = true
-			opts.ensure_installed = {
-				"codelldb",
-				"python",
-			}
+			opts.automatic_installation = false
+			opts.ensure_installed = {}
 			opts.handlers = {}
 			vim.keymap.set("n", "<F5>", function()
 				require("dap").continue()
