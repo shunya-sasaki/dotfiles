@@ -70,9 +70,7 @@ return {
 		dependencies = { "nvimtools/none-ls-extras.nvim" },
 		opts = function(_, opts)
 			local null_ls = require("null-ls")
-			opts.sources = {
-				require("none-ls.diagnostics.cpplint"),
-			}
+			opts.sources = {}
 			opts.on_init = function(new_client, _)
 				new_client.offset_encoding = "utf-16"
 			end
