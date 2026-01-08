@@ -3,6 +3,7 @@ return {
 		"neovim/nvim-lspconfig",
 		config = function()
 			-- Markdown
+			vim.lsp.enable("dprint")
 			vim.lsp.enable("markdown_oxide")
 			-- C/C++
 			vim.lsp.enable("clangd")
