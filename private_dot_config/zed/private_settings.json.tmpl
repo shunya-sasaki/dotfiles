@@ -7,11 +7,11 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-    "vim_mode": true,
-    "load_direnv": "shell_hook",
-    "terminal": {
-        "shell": "system"
-    },
+	"vim_mode": true,
+	"load_direnv": "shell_hook",
+	"terminal": {
+		"shell": "system"
+	},
 	"ui_font_size": 14,
 	"buffer_font_size": 12,
 	"buffer_font_family": "Moralerspace Neon HW",
@@ -34,7 +34,8 @@
 		"dark": "Tokyo Night Storm"
 	},
 	"file_types": {
-		"Plain Text": ["LICENSE"]
+		"Plain Text": ["LICENSE"],
+		"JSONC": ["*.json.tmpl"]
 	},
 	"icon_theme": "Material Icon Theme",
 	"dap": {
@@ -115,10 +116,9 @@
 				"source.fixAll.biome": true
 			}
 		},
-        "Nix": {
-            "language_servers": ["nil", "!nixd"]
-        }
-
+		"Nix": {
+			"language_servers": ["nil", "!nixd"]
+		}
 	},
 	// LSP =======================================================================
 	"lsp": {
@@ -146,11 +146,11 @@
 		}
 	},
 	// Agents ====================================================================
-    {{- if eq .profile  "work" }}
+	{{- if eq .profile  "work" }}
 	"features": {
 		"edit_prediction_provider": "none"
 	},
-    {{- else }}
+	{{- else }}
 	"agent_servers": {
 		"gemini": {
 			"command": "gemini",
@@ -171,5 +171,5 @@
 			"model": "gpt-5"
 		}
 	}
-    {{- end }}
+	{{- end }}
 }
