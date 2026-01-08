@@ -63,7 +63,7 @@ local custom_keys = {
 	},
 	{
 		key = "|",
-		mods = "LEADER",
+		mods = "LEADER|SHIFT",
 		action = wezterm.action.SplitHorizontal({
 			domain = "CurrentPaneDomain",
 		}),
