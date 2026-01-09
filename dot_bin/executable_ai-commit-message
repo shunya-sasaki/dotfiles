@@ -91,13 +91,14 @@ EOF
 prompt="${sys_prompt}$diff"
 
 provider=${AI_COMMIT_MESSAGE_PROVIDER:-gemini}
+copilot_model=${AI_COMMIT_MESSAGE_COPILOT_MODEL:-"claude-sonnet-4.5"}
 
 case "$provider" in
     GEMINI|gemini)
         message=$(gemini -p "$prompt" -m gemini-3-flash-preview)
         ;;
     COPILOT|copilot)
-        message=$(copilot -p "$prompt")
+        message=$(copilot -p "$prompt" --model "$copilot_model")
         ;;
     AZURE_OPEN_AI)
         message=$(azure_openai_commit_message "$sys_prompt" "$diff")
