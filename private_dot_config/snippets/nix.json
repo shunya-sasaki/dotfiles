@@ -1,4 +1,22 @@
 {
+  "home.nix": {
+    "prefix": "home.nix",
+    "description": "home.nix template",
+    "body": [
+      "{ config, pkgs, ...}:",
+      "",
+      "{",
+      "  nixpkgs.config.allowUnfree = true;",
+      "  fonts.fontconfig.enable = true;",
+      "",
+      "  home.username = \"${1:username}\";",
+      "  home.homeDirectory = \"${2:homeDirectory}\";",
+      "  home.stateVersion = \"25.11\";",
+      "  home.packages = import ./packages.nix { inherit pkgs; };",
+      "  programs = import ./programs.nix;",
+      "}"
+    ]
+  },
   "flake-rust": {
     "prefix": "flake-rust",
     "description": "flake.nix for Rust project",
