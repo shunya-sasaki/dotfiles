@@ -83,6 +83,14 @@ generate a concise and clear git commit message following the conventional commi
   feat(zed): add setting files for Zed
   ~~~
 
+## STRICT OUTPUT RULES (CRITICAL)
+
+- **Output ONLY the raw commit message.**
+- **Do NOT** output markdown code blocks (no \`\`\`).
+- **Do NOT** include conversational fillers like "Here is the commit message" or "Based on the diff".
+- **Do NOT** include explanations or a breakdown of why you chose the message.
+- Your output will be piped directly to a file; any extra text will break the build.
+
 ## Git diff
 
 EOF
