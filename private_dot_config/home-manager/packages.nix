@@ -59,6 +59,7 @@ with pkgs; [
   lolcat
   toilet
   # AI tools
+  claude-code
   gemini-cli-bin
   github-copilot-cli
   ollama
