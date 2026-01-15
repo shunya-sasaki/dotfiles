@@ -6,6 +6,7 @@ with pkgs; [
   zed-editor
   vscode
   obsidian
+  antigravity
   # vcs
   git
   delta
