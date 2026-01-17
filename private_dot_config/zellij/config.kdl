@@ -1,7 +1,8 @@
 theme "tokyo-night";
 default_shell "zsh";
 simplified_ui false;
-default_layout "compact";
+default_layout "custom";
+
 pane_frames false;
 ui {
     pane_frames {
@@ -28,6 +29,7 @@ keybinds clear-defaults=true {
         bind "d" { Detach; }
         // Panes
         bind "Ctrl a" { Write 2; SwitchToMode "Normal"; }
+        bind "~" {ToggleFloatingPanes; SwitchToMode "Normal";}
         bind "Left" { MoveFocus "Left"; SwitchToMode "Normal"; }
         bind "Right" { MoveFocus "Right"; SwitchToMode "Normal"; }
         bind "Down" { MoveFocus "Down"; SwitchToMode "Normal"; }
