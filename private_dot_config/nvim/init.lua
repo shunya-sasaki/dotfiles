@@ -14,6 +14,7 @@ else
 	Config.os_name = require("util").get_os_name()
 end
 -- system setting
+vim.opt.fileformats = { "unix", "dos" }
 vim.opt.number = true
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = "number,line"
