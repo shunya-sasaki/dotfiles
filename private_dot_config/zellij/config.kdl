@@ -45,7 +45,7 @@ keybinds clear-defaults=true {
         bind "K" { Resize "Increase Up"; }
         bind "L" { Resize "Increase Right"; }
         // Tabs
-        bind "t" {NewTab; SwitchToMode "Normal"; }
+        bind "t" {NewTab {layout "custom"; }; SwitchToMode "Normal"; }
         bind "[" { GoToPreviousTab; SwitchToMode "Normal"; }
         bind "]" { GoToNextTab; SwitchToMode "Normal"; }
         bind "," { SwitchToMode "RenameTab"; }
