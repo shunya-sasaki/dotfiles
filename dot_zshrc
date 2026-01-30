@@ -71,6 +71,15 @@ export FZF_ALT_C_OPTS="--preview 'eza {} --color=always --icons=always s ext -h 
 export FZF_COMPLETION_OPTS='--border --info=inline'
 source <(fzf --zsh)
 
+# yazi
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+
 # Zed
 alias zed="zeditor"
 
