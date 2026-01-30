@@ -1,5 +1,4 @@
 theme "tokyo-night";
-default_shell "zsh";
 simplified_ui false;
 default_layout "custom";
 
@@ -44,6 +43,7 @@ keybinds clear-defaults=true {
         bind "J" { Resize "Increase Down"; }
         bind "K" { Resize "Increase Up"; }
         bind "L" { Resize "Increase Right"; }
+        bind "v" { EditScrollback; }
         // Tabs
         bind "t" {NewTab {layout "custom"; }; SwitchToMode "Normal"; }
         bind "[" { GoToPreviousTab; SwitchToMode "Normal"; }
