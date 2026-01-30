@@ -1,0 +1,11 @@
+# yazi config file
+"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
+[mgr]
+sort_by = "extension"
+
+[opener]
+edit = [
+	{ run = "${EDITOR:-nvim} %s", desc = "$EDITOR", for = "unix", block = true },
+	{ run = "${EDITOR:-nvim} %s", desc = "$EDITOR", for = "windows", block = true },
+]
+
