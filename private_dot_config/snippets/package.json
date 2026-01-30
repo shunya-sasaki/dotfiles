@@ -20,6 +20,10 @@
         "path": "python.json"
       },
       {
+        "language": "toml",
+        "path": "toml.json"
+      },
+      {
         "language": "sh",
         "path": "shellscript.json"
       },
