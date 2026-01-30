@@ -31,19 +31,19 @@ config.harfbuzz_features = {
 	"ss10=1",
 }
 
-config.enable_kitty_graphics = true
-config.enable_kitty_keyboard = true
-
 -- Set the default shell based on the target platform
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	config.default_prog = { "pwsh.exe" }
 	config.font_size = 12
+	config.enable_kitty_graphics = false
 elseif wezterm.target_triple == "aarch64-apple-darwin" then
 	config.default_prog = { "/bin/zsh" }
 	config.font_size = 12
+	config.enable_kitty_graphics = true
 else
 	config.default_prog = { "/bin/bash" }
 	config.font_size = 12
+	config.enable_kitty_graphics = true
 end
 
 wezterm.on("update-right-status", function(window, pane)
