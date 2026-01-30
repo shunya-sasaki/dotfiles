@@ -1,3 +1,5 @@
+export EDITOR="nvim"
+export VISUAL="nvim"
 export XDG_CONFIG_HOME="$HOME/.config"
 export PATH="/usr/local/bin${PATH:+:$PATH}"
 export PATH="$HOME/.local/bin${PATH:+:$PATH}"
