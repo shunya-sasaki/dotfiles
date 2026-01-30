@@ -23,6 +23,14 @@ vim.opt.fileencodings = "utf-8,iso-2022-jp,ucs-bom,default"
 vim.opt.expandtab = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
+
+local function paste()
+	return {
+		vim.fn.split(vim.fn.getreg(""), "\n"),
+		vim.fn.getregtype(""),
+	}
+end
+
 if Config.os_name == "wsl" then
 	vim.opt.clipboard = "unnamedplus"
 	vim.g.clipboard = {
@@ -38,8 +46,20 @@ if Config.os_name == "wsl" then
 		cache_enabled = 1,
 	}
 else
-	vim.opt.clipboard = "unnamedplus"
+	vim.opt.clipboard = "unnamed,unnamedplus"
+	vim.g.clipboard = {
+		name = "OSC 52",
+		copy = {
+			["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+			["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+		},
+		paste = {
+			["+"] = paste,
+			["*"] = paste,
+		},
+	}
 end
+
 vim.opt.smartindent = true
 vim.opt.wrap = false
 vim.opt.matchtime = 1
