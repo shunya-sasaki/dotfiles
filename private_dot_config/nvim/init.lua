@@ -46,18 +46,22 @@ if Config.os_name == "wsl" then
 		cache_enabled = 1,
 	}
 else
-	vim.opt.clipboard = "unnamed,unnamedplus"
-	vim.g.clipboard = {
-		name = "OSC 52",
-		copy = {
-			["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-			["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-		},
-		paste = {
-			["+"] = paste,
-			["*"] = paste,
-		},
-	}
+	if vim.env.SSH_CONNECT then
+		vim.opt.clipboard = "unnamed,unnamedplus"
+		vim.g.clipboard = {
+			name = "OSC 52",
+			copy = {
+				["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+				["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+			},
+			paste = {
+				["+"] = paste,
+				["*"] = paste,
+			},
+		}
+	else
+		vim.g.clipboard = nil
+	end
 end
 
 vim.opt.smartindent = true
