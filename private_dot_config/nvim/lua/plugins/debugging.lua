@@ -1,3 +1,18 @@
+function get_venv_python()
+	local cwd = vim.fn.getcwd()
+	if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
+		return cwd .. "/venv/bin/python"
+	elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
+		return cwd .. "/.venv/bin/python"
+	elseif vim.fn.executable(cwd .. "/venv/Scripts/python.exe") == 1 then
+		return cwd .. "/venv/Scripts/python.exe"
+	elseif vim.fn.executable(cwd .. "/.venv/Scripts/python.exe") == 1 then
+		return cwd .. "/.venv/Scripts/python.exe"
+	else
+		return "/usr/bin/python"
+	end
+end
+
 return {
 	{
 		"mfussenegger/nvim-dap",
@@ -64,7 +79,7 @@ return {
 				else
 					cb({
 						type = "executable",
-						command = "path/to/virtualenvs/debugpy/bin/python",
+						command = get_venv_python(),
 						args = { "-m", "debugpy.adapter" },
 						options = {
 							source_filetype = "python",
@@ -78,20 +93,7 @@ return {
 					request = "launch",
 					name = "Launch file",
 					program = "${file}",
-					pythonPath = function()
-						local cwd = vim.fn.getcwd()
-						if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
-							return cwd .. "/venv/bin/python"
-						elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
-							return cwd .. "/.venv/bin/python"
-						elseif vim.fn.executable(cwd .. "/venv/Scripts/python.exe" == 1) then
-							return cwd .. "venv/Scripts/python.exe"
-						elseif vim.fn.executable(cwd .. "/.venv/Scripts/python.exe" == 1) then
-							return cwd .. ".venv/Scripts/python.exe"
-						else
-							return "/usr/bin/python"
-						end
-					end,
+					pythonPath = get_venv_python(),
 				},
 			}
 		end,
