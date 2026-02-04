@@ -19,6 +19,12 @@ return {
 		config = function()
 			require("copilot").setup({
 				suggestion = { enabled = false },
+				filetypes = {
+					yaml = true,
+					markdown = true,
+					help = true,
+					["."] = true,
+				},
 				panel = { enabled = false },
 				copilot_model = "gpt-5.1-codex-mini",
 			})
