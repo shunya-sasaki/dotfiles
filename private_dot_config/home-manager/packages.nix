@@ -19,7 +19,7 @@ with pkgs; [
   uv
   volta
   rustup
-  dotnet-sdk_10
+  # dotnet-sdk_10
   # Debugger
   lldb
   vscode-extensions.vadimcn.vscode-lldb
@@ -38,8 +38,13 @@ with pkgs; [
   nil
   # terminal tools
   fastfetch
+  yazi
+  file
+  imagemagick
+  ueberzugpp
   chezmoi
   jq
+  poppler
   zoxide
   bat
   eza
@@ -62,11 +67,13 @@ with pkgs; [
   claude-code
   gemini-cli-bin
   github-copilot-cli
-  ollama
   chatgpt
+  codex
+  ollama
   opencode
   # GUI apps
   wezterm
+  ghostty-bin
   notion-app
   # Containers
   docker
