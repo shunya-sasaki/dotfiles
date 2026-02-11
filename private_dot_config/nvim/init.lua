@@ -60,6 +60,7 @@ else
 			},
 		}
 	else
+		vim.opt.clipboard = "unnamedplus"
 		vim.g.clipboard = nil
 	end
 end
