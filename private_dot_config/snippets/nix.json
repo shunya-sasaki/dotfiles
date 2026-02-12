@@ -13,7 +13,7 @@
       "  home.homeDirectory = \"${2:homeDirectory}\";",
       "  home.stateVersion = \"25.11\";",
       "  home.packages = import ./packages.nix { inherit pkgs; };",
-      "  programs = import ./programs.nix;",
+      "  programs = import ./programs.nix { inherit pkgs; };",
       "}"
     ]
   },
