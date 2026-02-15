@@ -29,6 +29,8 @@ return {
 			vim.lsp.enable("nginx")
 			-- Lua
 			vim.lsp.enable("stylua")
+			-- Hasskell
+			vim.lsp.enable("hls")
 			-- Shell/Bash
 			vim.lsp.enable("bashls")
 			-- PowerShell
