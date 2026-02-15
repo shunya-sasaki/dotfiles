@@ -2,11 +2,12 @@
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 [mgr]
 sort_by = "extension"
+show_hidden = true
 
 [opener]
 edit = [
 	{ run = "${EDITOR:-nvim} %s", desc = "$EDITOR", for = "unix", block = true },
-	{ run = "${EDITOR:-nvim} %s", desc = "$EDITOR", for = "windows", block = true },
+	{ run = 'nvim %*', desc = "nvim", for = "windows", block = true },
 ]
 
 [[plugin.prepend_fetchers]]
