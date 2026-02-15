@@ -35,6 +35,7 @@ with pkgs; [
   tailwindcss-language-server
   taplo
   stylua
+  haskell-language-server
   nil
   # terminal tools
   fastfetch
