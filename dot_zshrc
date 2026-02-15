@@ -60,7 +60,7 @@ export LANGCHAIN_TRACING_V2="true"
 alias cat='bat --color=always --style=numbers --line-range=:500'
 
 # eza
-alias ls='eza --color=always --icons=always --level 1 -s ext -h -T -F --long'
+alias ls='eza --color=always --icons=always --group-directories-first -L 1 -s ext -h -T -F --long'
 
 # FZF
 export FZF_DEFAULT_COMMAND="fd --type f --color=always --hidden --exclude .git --exclude node_modules"
