@@ -82,6 +82,9 @@ vim.opt.termguicolors = true
 vim.opt.updatetime = 500
 vim.opt.ttimeoutlen = 10
 vim.opt.timeoutlen = 500
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.lsp.foldexpr()"
+vim.opt.foldlevel = 99
 
 -- keymap
 vim.g.mapleader = " "
