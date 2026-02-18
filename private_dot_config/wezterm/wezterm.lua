@@ -40,7 +40,7 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	config.enable_kitty_graphics = false
 elseif wezterm.target_triple == "aarch64-apple-darwin" then
 	config.default_prog = { "/bin/zsh" }
-	config.font_size = 12
+	config.font_size = 14
 	config.enable_kitty_graphics = true
 else
 	config.default_prog = { "/bin/bash" }
@@ -146,6 +146,16 @@ local custom_keys = {
 				end
 			end),
 		}),
+	},
+	{
+		key = "q",
+		mods = "LEADER",
+		action = wezterm.action.CloseCurrentPane({ confirm = true }),
+	},
+	{
+		key = "Q",
+		mods = "LEADER|SHIFT",
+		action = wezterm.action.CloseCurrentTab({ confirm = true }),
 	},
 }
 
