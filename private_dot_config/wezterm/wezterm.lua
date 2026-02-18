@@ -4,6 +4,8 @@ local config = {}
 
 config.color_scheme = "Tokyo Night"
 config.window_background_opacity = 0.9
+config.max_fps = 120
+config.dpi = 144
 
 config.initial_cols = 80
 config.initial_rows = 30
