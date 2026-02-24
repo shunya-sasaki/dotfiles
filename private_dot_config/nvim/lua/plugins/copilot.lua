@@ -26,7 +26,6 @@ return {
 					["."] = true,
 				},
 				panel = { enabled = false },
-				copilot_model = "gpt-5.1-codex-mini",
 			})
 		end,
 	},
