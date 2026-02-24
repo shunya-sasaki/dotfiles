@@ -237,10 +237,7 @@
   "Flake8 rules": {
     "prefix": "py-flake8",
     "description": "Flake8 rules that should be written in the .flake8 file.",
-    "body": [
-      "[flake8]",
-      "extend-ignore = W503"
-    ]
+    "body": ["[flake8]", "extend-ignore = W503"]
   },
   "FastAPI main template": {
     "prefix": "py-fastapi-main",
@@ -259,6 +256,7 @@
       "from fastapi.staticfiles import StaticFiles",
       "from fastapi.templating import Jinja2Templates",
       "",
+      "from ${1:package_name}.app.routers import routers",
       "from ${1:package_name}.models import AppConfig",
       "from ${1:package_name}.utils import CustomLogger",
       "from ${1:package_name}.utils import GitVersion",
@@ -273,7 +271,7 @@
       "        app.mount(\"/js\", StaticFiles(directory=\"./js\"), name=\"\")",
       "    yield",
       "",
-      "app = FastAPI(lifespan=lifespan, version=)",
+      "app = FastAPI(lifespan=lifespan, version=GitVersion.version())",
       "app.add_middleware(",
       "    CORSMiddleware,",
       "    allow_origins=[\"*\"],",
@@ -281,7 +279,6 @@
       "    allow_methods=[\"*\"],",
       "    allow_headers=[\"*\"],",
       ")",
-      "routers: list[APIRouter] = []",
       "for router in routers:",
       "    app.include_router(router)",
       "",
@@ -314,7 +311,7 @@
       "    else:",
       "        workers = config.workers",
       "    uvicorn.run(",
-      "        f\"src.{GitVersion.package_name()}.app.main:app\",",
+      "        f\"{GitVersion.package_name()}.app.main:app\",",
       "        host=config.host,",
       "        port=config.port,",
       "        workers=workers,",
@@ -327,12 +324,12 @@
       "def dev() -> None:",
       "    \"\"\"Run the FastAPI application in development mode.\"\"\"",
       "    src_dirpath = Path(\"../src\")",
-      "    if not src_dirpath.exists():",
+      "    if src_dirpath.exists():",
       "        includes = [src_dirpath.as_posix()]",
       "    else:",
       "        includes = []",
       "    uvicorn.run(",
-      "        f\"src.{GitVersion.package_name()}.app.main:app\",",
+      "        f\"{GitVersion.package_name()}.app.main:app\",",
       "        host=config.host,",
       "        port=config.port,",
       "        reload=True,",
@@ -696,3 +693,4 @@
     ]
   }
 }
+
