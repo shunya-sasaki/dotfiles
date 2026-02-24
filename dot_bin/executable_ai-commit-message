@@ -108,6 +108,9 @@ case "$provider" in
     COPILOT|copilot)
         message=$(copilot -p "$prompt" --model "$copilot_model")
         ;;
+    CLAUDE|claude)
+        message=$(claude -p "$prompt" --model "sonnet")
+        ;;
     AZURE_OPEN_AI)
         message=$(azure_openai_commit_message "$sys_prompt" "$diff")
         ;;
