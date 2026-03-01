@@ -37,7 +37,9 @@ with pkgs; [
   stylua
   haskell-language-server
   nil
+  fortls
   # terminal tools
+  gnupg
   fastfetch
   yazi
   file
@@ -76,6 +78,7 @@ with pkgs; [
   wezterm
   ghostty-bin
   notion-app
+  drawio
   # Containers
   docker
   docker-compose
