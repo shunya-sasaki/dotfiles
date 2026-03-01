@@ -30,7 +30,7 @@ export CARGO_HOME=$HOME/.cargo
 alias activate="source activate.sh"
 
 # homebrew --------------------------------------------------------------------
-export LIBRARY_PATH=/opt/homebrew/lib
+# export LIBRARY_PATH=/opt/homebrew/lib
 
 # Rust
 export PATH=$(dirname $(rustup which cargo)):$PATH
