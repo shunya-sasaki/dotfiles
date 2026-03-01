@@ -10,6 +10,8 @@ return {
 			vim.lsp.enable("cmake")
 			-- C#
 			vim.lsp.enable("csharp_ls")
+			-- Fortran
+			vim.lsp.enable("fortls")
 			-- Rust
 			vim.lsp.enable("rust_analyzer")
 			-- Json
@@ -35,6 +37,8 @@ return {
 			vim.lsp.enable("bashls")
 			-- PowerShell
 			vim.lsp.enable("powershell_es")
+			-- Nix
+			vim.lsp.enable("nixd")
 		end,
 	},
 	{
