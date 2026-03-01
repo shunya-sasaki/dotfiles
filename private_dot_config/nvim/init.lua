@@ -153,6 +153,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		"*.jsx",
 		"*.lua",
 		"*.md",
+		"*.nix",
 		"*.py",
 		"*.rs",
 		"*.ts",
