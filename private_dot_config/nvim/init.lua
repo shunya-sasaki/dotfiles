@@ -177,8 +177,12 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 				apply = true,
 				async = false,
 			})
+			vim.defer_fn(function()
+				vim.lsp.buf.format({ async = false })
+			end, 100)
+		else
+			vim.lsp.buf.format({ async = false })
 		end
-		vim.lsp.buf.format({ async = false })
 	end,
 })
 -- tabwidth dynamic
