@@ -39,6 +39,7 @@ with pkgs; [
   nil
   fortls
   # terminal tools
+  nixd
   gnupg
   fastfetch
   yazi
