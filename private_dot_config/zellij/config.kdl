@@ -14,7 +14,8 @@ show_startup_tips false;
 show_release_notes false;
 keybinds clear-defaults=true {
     normal {
-        //...
+        bind "Ctrl p" { Write 16; }
+        bind "Ctrl n" { Write 14; }
     }
     locked {
         bind "Esc" { SwitchToMode "Normal"; }
