@@ -46,7 +46,7 @@ if Config.os_name == "wsl" then
 		cache_enabled = 1,
 	}
 else
-	if vim.env.SSH_CONNECT then
+	if vim.env.SSH_CONNECTION then
 		vim.opt.clipboard = "unnamed,unnamedplus"
 		vim.g.clipboard = {
 			name = "OSC 52",
