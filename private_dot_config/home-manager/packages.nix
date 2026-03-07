@@ -11,6 +11,7 @@ with pkgs; [
   git
   delta
   lazygit
+  gitui
   # communication tools
   slack
   # Development tools 
@@ -24,6 +25,7 @@ with pkgs; [
   lldb
   vscode-extensions.vadimcn.vscode-lldb
   # LSP/Linter/Formatter
+  nixd
   dprint
   clang-tools
   cmake-language-server
@@ -39,7 +41,6 @@ with pkgs; [
   nil
   fortls
   # terminal tools
-  nixd
   gnupg
   fastfetch
   yazi
