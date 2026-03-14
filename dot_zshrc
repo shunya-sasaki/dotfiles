@@ -121,6 +121,7 @@ if [ -f "$HOME/.secrets" ]; then
 fi
 
 # shell =======================================================================
+bindkey -e
 # starshiep
 eval "$(starship init zsh)"
 # zoxide
