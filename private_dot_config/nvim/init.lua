@@ -210,11 +210,17 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- python
-if Config.os_name == "win32" or Config.os_name == "win64" then
-	vim.g.python3_host_prog = "~/.venv/nvim/Scripts/python.exe"
+-- python: auto-detect .venv in project root
+local venv_path = vim.fn.getcwd() .. "/.venv"
+if vim.fn.isdirectory(venv_path) == 1 then
+	vim.env.VIRTUAL_ENV = venv_path
+	if Config.os_name == "win32" or Config.os_name == "win64" then
+		vim.g.python3_host_prog = venv_path .. "/Scripts/python.exe"
+	else
+		vim.g.python3_host_prog = venv_path .. "/bin/python3"
+	end
 else
-	vim.g.python3_host_prog = "~/.venv/nvim/bin/python3"
+	vim.g.python3_host_prog = "python3"
 end
 -- ruby
 vim.g.loaded_ruby_provider = 0
