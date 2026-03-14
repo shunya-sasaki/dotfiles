@@ -1,8 +1,8 @@
 { pkgs }:
 
 with pkgs; [
-  # Containers
   docker
-  docker-compose
   docker-buildx
+  docker-compose
+  lazydocker
 ]

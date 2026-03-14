@@ -1,8 +1,9 @@
 { pkgs }:
 
 with pkgs; [
-  git
+  chezmoi
   delta
-  lazygit
+  git
   gitui
+  lazygit
 ]

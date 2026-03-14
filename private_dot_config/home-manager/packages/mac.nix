@@ -1,8 +1,9 @@
 { pkgs }:
 
 with pkgs; [
-  raycast
-  notion-app
-  ghostty-bin
   colima
+  ghostty-bin
+  notion-app
+  slack
+  aerospace
 ]
