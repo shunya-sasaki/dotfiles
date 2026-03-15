@@ -48,7 +48,7 @@ return {
 			)
 
 			vim.api.nvim_set_keymap("n", "<leader>i", "<cmd>lua Agent_toggle()<CR>", { noremap = true, silent = true })
-			vim.api.nvim_set_keymap("n", "<leader>t", ": ToggleTerm<CR>", { silent = true, noremap = true })
+			-- vim.api.nvim_set_keymap("n", "<leader>t", ": ToggleTerm<CR>", { silent = true, noremap = true })
 			vim.api.nvim_set_keymap("n", "<C-t>", ": ToggleTerm<CR>", { silent = true, noremap = true })
 		end,
 	},
