@@ -1,7 +1,13 @@
 # Dotfiles
 
-![gnubash](https://img.shields.io/badge/bash-gray?logo=gnubash&labelColor=gray&logoColor=white)
-![zsh](https://img.shields.io/badge/zsh-gray?logo=zsh&labelColor=gray&logoColor=white)
+![Zsh](https://img.shields.io/badge/Zsh-f15a24?logo=zsh&labelColor=gray&logoColor=white)
+![GNU Bash](https://img.shields.io/badge/GNU%20Bash-4eaa25?logo=gnubash&labelColor=gray&logoColor=white)
+![NixOS](https://img.shields.io/badge/NixOS-5277c3?logo=NixOS&labelColor=gray&logoColor=white)
+![Neovim](https://img.shields.io/badge/Neovim-57a143?logo=Neovim&labelColor=gray&logoColor=white)
+![Zed](https://img.shields.io/badge/Zed-084ccf?logo=zedindustries&labelColor=gray&logoColor=white)
+![Starship](https://img.shields.io/badge/Starship-dd0b78?logo=Starship&labelColor=gray&logoColor=white)
+![WezTerm](https://img.shields.io/badge/WezTerm-4e49ee?logo=WezTerm&labelColor=gray&logoColor=white)
+![Ghostty](https://img.shields.io/badge/Ghostty-3551f3?logo=Ghostty&labelColor=gray&logoColor=white)
 
 My dotfiles.
 
