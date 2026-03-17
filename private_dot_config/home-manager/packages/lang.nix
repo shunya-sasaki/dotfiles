@@ -2,7 +2,7 @@
 
 with pkgs; [
   uv
-  volta
+  mise
   rustup
   dotnet-sdk_10
   lldb
