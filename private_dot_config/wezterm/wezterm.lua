@@ -5,7 +5,6 @@ local config = {}
 config.color_scheme = "Tokyo Night"
 config.window_background_opacity = 0.9
 config.max_fps = 120
-config.dpi = 144
 
 config.initial_cols = 80
 config.initial_rows = 30
@@ -184,6 +183,8 @@ local custom_key_tables = {
 	},
 }
 
+local tmux_leader = { key = "\\", mods = "CTRL", timeout_milliseconds = 1000 }
+
 config.disable_default_key_bindings = true
 config.leader = custom_leader
 config.keys = custom_keys
@@ -201,9 +202,9 @@ wezterm.on("user-var-changed", function(window, pane, name, value)
 		local overrides = window:get_config_overrides() or {}
 		if value == "1" then
 			overrides.disable_default_key_bindings = false
-			overrides.keys = {}
+			overrides.keys = custom_keys
 			overrides.key_tables = {}
-			overrides.leader = { key = "_", mods = "CTRL|ALT|SUPER" }
+			overrides.leader = tmux_leader
 		else
 			overrides = nil
 		end
