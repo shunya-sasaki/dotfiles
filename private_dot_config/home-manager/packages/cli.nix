@@ -1,18 +1,23 @@
 { pkgs }:
 
 with pkgs; [
-  neovim
   bat
   bottom
   direnv
   dust
   eza
+  fastfetch
   fd
   file
   fzf
+  gnupg
   hyperfine
   imagemagick
   jq
+  lazydocker
+  neovim
+  ollama
+  opencode
   poppler
   powershell
   procs
