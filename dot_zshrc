@@ -10,13 +10,6 @@ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
   source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
 
-# homebrew
-export PATH=/opt/homebrew/bin:/opt/homebrew/sbin${PATH:+:$PATH}
-export PATH=/opt/homebrew/opt/llvm/bin${PATH:+:$PATH}
-export PATH=$HOME/.cargo/bin${PATH:+:$PATH}
-export LDFLAGS=-L/opt/homebrew/opt/llvm/lib
-export CPPFLAGS=-I/opt/homebrew/opt/llvm/include
-
 # C/C++
 export CXX_INCLUDE_PATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include${CXX_INCLUDE_PATH:+:$CXX_INCLUDE_PATH}
 export HDF5_DIR=/opt/homebrew
@@ -28,17 +21,13 @@ export PATH=$HOME/.dotnet/tools${PATH:+:$PATH}
 
 
 # Rust ------------------------------------------------------------------------
+export PATH=$(dirname $(rustup which cargo)):$PATH
 export RUSTUP_HOME=$HOME/.rustup
 export CARGO_HOME=$HOME/.cargo
 
 # Python ----------------------------------------------------------------------
 alias activate="source activate.sh"
 
-# homebrew --------------------------------------------------------------------
-# export LIBRARY_PATH=/opt/homebrew/lib
-
-# Rust
-export PATH=$(dirname $(rustup which cargo)):$PATH
 
 # Node.js
 export VOLTA_HOME="$HOME/.volta"
