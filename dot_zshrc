@@ -5,6 +5,11 @@ export PATH="/usr/local/bin${PATH:+:$PATH}"
 export PATH="$HOME/.local/bin${PATH:+:$PATH}"
 export PATH=$HOME/.bin:/Library/Apple/usr/bin${PATH:+:$PATH}
 
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+
 # homebrew
 export PATH=/opt/homebrew/bin:/opt/homebrew/sbin${PATH:+:$PATH}
 export PATH=/opt/homebrew/opt/llvm/bin${PATH:+:$PATH}
@@ -128,4 +133,6 @@ eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 # direnv
 eval "$(direnv hook zsh)"
+# mise
+eval "$(mise activate zsh)"
 
