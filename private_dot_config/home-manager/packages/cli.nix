@@ -24,6 +24,7 @@ with pkgs; [
   ripgrep
   starship
   tldr
+  tmux
   ueberzugpp
   xh
   yazi
