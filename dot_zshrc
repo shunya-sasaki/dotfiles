@@ -97,6 +97,11 @@ alias ta="tmux a -t"
 alias tk="tmux kill-session -t"
 alias tl="tmux ls"
 alias ts="tmux new -s"
+alias za="zellij a" # attatch session
+alias zd="zellij d" # delete session
+alias zk="zellij k" # kill session
+alias zl="zellij ls" # list sessions
+alias zs="zellij -s" # start new session
 
 # Antigravity
 export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
