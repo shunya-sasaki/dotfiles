@@ -7,11 +7,12 @@ ui {
     pane_frames {
         rounded_corners true;
         hide_session_name true;
-
     }
 }
 show_startup_tips false;
 show_release_notes false;
+
+
 keybinds clear-defaults=true {
     normal {
         bind "Ctrl p" { Write 16; }
@@ -60,12 +61,12 @@ keybinds clear-defaults=true {
         bind "8" { GoToTab 8; SwitchToMode "Normal"; }
         bind "9" { GoToTab 9; SwitchToMode "Normal"; }
         // Session
-        bind "w" {
+        bind "s" {
             LaunchOrFocusPlugin "session-manager" {
                 floating true
                 move_to_focused_tab true
             };
-            SwitchToMode "Normal"
+            SwitchToMode "Normal";
         }
     }
     renametab {
@@ -75,7 +76,7 @@ keybinds clear-defaults=true {
     }
 }
 
-plugins {
+ plugins {
     tab-bar location="zellij:tab-bar"
     status-bar location="zellij:status-bar"
     strider location="zellij:strider"

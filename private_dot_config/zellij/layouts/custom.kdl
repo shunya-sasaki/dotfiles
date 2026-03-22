@@ -1,18 +1,47 @@
 layout {
-    tab hide_floating_panes=true {
-        pane focus=true
+    tab name="term" hide_floating_panes=true {
+        pane focus=true borderless=true
         pane size=1 borderless=true {
-            plugin location="compact-bar"
-        }
-        floating_panes {
-            pane {
-                name "Floating pane"
-                x "10%"
-                y "10%"
-                width "80%"
-                height "80%"
+            plugin location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" {
+
+
+                format_left   "#[fg=#aeaed2,bg=#000000]░▒▓#[fg=#000000,bg=#aeaed2]  #[fg=#aeaed2,bg=#000000]#[default] {session} {mode}"
+                format_center "{tabs}"
+                format_right  "{command_git_branch} {datetime}"
+                format_space  ""
+
+                border_enabled  "false"
+                border_char     "─"
+                border_format   "#{char}"
+                border_position "top"
+
+                hide_frame_for_single_pane "false"
+
+                mode_normal          "#[fg=#000000,bg=#82aaff] NORMAL "
+                mode_tmux          "#[fg=#000000,bg=#c3e88d] TMUX "
+
+                tab_normal   "#[fg=#ffffff,bg=#333333] {index}: {name} "
+                tab_active   "#[fg=#ffffff,bg=#555555,bold,italic] {index}: {name} "
+
+                command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
+                command_git_branch_format      "#[fg=blue] {stdout} "
+                command_git_branch_interval    "10"
+                command_git_branch_rendermode  "static"
+
+                datetime        "#[fg=#ffffff,bold,dim] {format} "
+                datetime_format " %Y-%m-%d  %H:%M:%S"
+                datetime_timezone "Asia/Tokyo"
+
             }
         }
+        // floating_panes {
+        //     pane {
+        //         name "Floating pane"
+        //         x "10%"
+        //         y "10%"
+        //         width "80%"
+        //         height "80%"
+        //     }
+        // }
     }
 }
-
