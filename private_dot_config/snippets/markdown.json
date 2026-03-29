@@ -39,6 +39,314 @@
       "![${1:badgeName}](https://img.shields.io/github/license/${2:user}/${3:repo})"
     ]
   },
+  "Shields.io Apple": {
+    "prefix": "md-shields-apple",
+    "description": ["Insert a Apple badge from Shields.io."],
+    "body": [
+      "![Apple](https://img.shields.io/badge/Apple-000000?logo=apple&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Linux": {
+    "prefix": "md-shields-linux",
+    "description": ["Insert a Linux badge from Shields.io."],
+    "body": [
+      "![Linux](https://img.shields.io/badge/Linux-FCC624?logo=linux&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Ubuntu": {
+    "prefix": "md-shields-ubuntu",
+    "description": ["Insert a Ubuntu badge from Shields.io."],
+    "body": [
+      "![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?logo=ubuntu&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Debian": {
+    "prefix": "md-shields-debian",
+    "description": ["Insert a Debian badge from Shields.io."],
+    "body": [
+      "![Debian](https://img.shields.io/badge/Debian-A81D33?logo=debian&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io NixOS": {
+    "prefix": "md-shields-nixos",
+    "description": ["Insert a NixOS badge from Shields.io."],
+    "body": [
+      "![NixOS](https://img.shields.io/badge/NixOS-5277C3?logo=nixos&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Git": {
+    "prefix": "md-shields-git",
+    "description": ["Insert a Git badge from Shields.io."],
+    "body": [
+      "![Git](https://img.shields.io/badge/Git-F05032?logo=git&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io GitHub": {
+    "prefix": "md-shields-github",
+    "description": ["Insert a GitHub badge from Shields.io."],
+    "body": [
+      "![GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io GitLab": {
+    "prefix": "md-shields-gitlab",
+    "description": ["Insert a GitLab badge from Shields.io."],
+    "body": [
+      "![GitLab](https://img.shields.io/badge/GitLab-FC6D26?logo=gitlab&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Gitea": {
+    "prefix": "md-shields-gitea",
+    "description": ["Insert a Gitea badge from Shields.io."],
+    "body": [
+      "![Gitea](https://img.shields.io/badge/Gitea-609926?logo=gitea&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Docker": {
+    "prefix": "md-shields-docker",
+    "description": ["Insert a Docker badge from Shields.io."],
+    "body": [
+      "![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io GNU Bash": {
+    "prefix": "md-shields-gnubash",
+    "description": ["Insert a GNU Bash badge from Shields.io."],
+    "body": [
+      "![GNU Bash](https://img.shields.io/badge/GNU%20Bash-4EAA25?logo=gnubash&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Zsh": {
+    "prefix": "md-shields-zsh",
+    "description": ["Insert a Zsh badge from Shields.io."],
+    "body": [
+      "![Zsh](https://img.shields.io/badge/Zsh-F15A24?logo=zsh&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io C": {
+    "prefix": "md-shields-c",
+    "description": ["Insert a C badge from Shields.io."],
+    "body": [
+      "![C](https://img.shields.io/badge/C-A8B9CC?logo=c&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io C++": {
+    "prefix": "md-shields-c++",
+    "description": ["Insert a C++ badge from Shields.io."],
+    "body": [
+      "![C++](https://img.shields.io/badge/C++-00599C?logo=cplusplus&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Rust": {
+    "prefix": "md-shields-rust",
+    "description": ["Insert a Rust badge from Shields.io."],
+    "body": [
+      "![Rust](https://img.shields.io/badge/Rust-000000?logo=rust&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Fortran": {
+    "prefix": "md-shields-fortran",
+    "description": ["Insert a Fortran badge from Shields.io."],
+    "body": [
+      "![Fortran](https://img.shields.io/badge/Fortran-734F96?logo=fortran&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Python": {
+    "prefix": "md-shields-python",
+    "description": ["Insert a Python badge from Shields.io."],
+    "body": [
+      "![Python](https://img.shields.io/badge/Python-3776AB?logo=python&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io TypeScript": {
+    "prefix": "md-shields-typescript",
+    "description": ["Insert a TypeScript badge from Shields.io."],
+    "body": [
+      "![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Markdown": {
+    "prefix": "md-shields-markdown",
+    "description": ["Insert a Markdown badge from Shields.io."],
+    "body": [
+      "![Markdown](https://img.shields.io/badge/Markdown-000000?logo=markdown&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io TOML": {
+    "prefix": "md-shields-toml",
+    "description": ["Insert a TOML badge from Shields.io."],
+    "body": [
+      "![TOML](https://img.shields.io/badge/TOML-9C4121?logo=toml&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io SQLite": {
+    "prefix": "md-shields-sqlite",
+    "description": ["Insert a SQLite badge from Shields.io."],
+    "body": [
+      "![SQLite](https://img.shields.io/badge/SQLite-003B57?logo=sqlite&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io PostgreSQL": {
+    "prefix": "md-shields-postgresql",
+    "description": ["Insert a PostgreSQL badge from Shields.io."],
+    "body": [
+      "![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io MySQL": {
+    "prefix": "md-shields-mysql",
+    "description": ["Insert a MySQL badge from Shields.io."],
+    "body": [
+      "![MySQL](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io MongoDB": {
+    "prefix": "md-shields-mongodb",
+    "description": ["Insert a MongoDB badge from Shields.io."],
+    "body": [
+      "![MongoDB](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Redis": {
+    "prefix": "md-shields-redis",
+    "description": ["Insert a Redis badge from Shields.io."],
+    "body": [
+      "![Redis](https://img.shields.io/badge/Redis-FF4438?logo=redis&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Node.js": {
+    "prefix": "md-shields-nodedotjs",
+    "description": ["Insert a Node.js badge from Shields.io."],
+    "body": [
+      "![Node.js](https://img.shields.io/badge/Node.js-5FA04E?logo=nodedotjs&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io React": {
+    "prefix": "md-shields-react",
+    "description": ["Insert a React badge from Shields.io."],
+    "body": [
+      "![React](https://img.shields.io/badge/React-61DAFB?logo=react&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Next.js": {
+    "prefix": "md-shields-nextdotjs",
+    "description": ["Insert a Next.js badge from Shields.io."],
+    "body": [
+      "![Next.js](https://img.shields.io/badge/Next.js-000000?logo=nextdotjs&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Mermaid": {
+    "prefix": "md-shields-mermaid",
+    "description": ["Insert a Mermaid badge from Shields.io."],
+    "body": [
+      "![Mermaid](https://img.shields.io/badge/Mermaid-FF3670?logo=mermaid&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io TailWind CSS": {
+    "prefix": "md-shields-tailwindcss",
+    "description": ["Insert a TailWind CSS badge from Shields.io."],
+    "body": [
+      "![TailWind CSS](https://img.shields.io/badge/TailWind%20CSS-06B6D4?logo=tailwindcss&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io npm": {
+    "prefix": "md-shields-npm",
+    "description": ["Insert a npm badge from Shields.io."],
+    "body": [
+      "![npm](https://img.shields.io/badge/npm-CB3837?logo=npm&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io pnpm": {
+    "prefix": "md-shields-pnpm",
+    "description": ["Insert a pnpm badge from Shields.io."],
+    "body": [
+      "![pnpm](https://img.shields.io/badge/pnpm-F69220?logo=pnpm&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Vite": {
+    "prefix": "md-shields-vite",
+    "description": ["Insert a Vite badge from Shields.io."],
+    "body": [
+      "![Vite](https://img.shields.io/badge/Vite-9135FF?logo=vite&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Biome": {
+    "prefix": "md-shields-biome",
+    "description": ["Insert a Biome badge from Shields.io."],
+    "body": [
+      "![Biome](https://img.shields.io/badge/Biome-60A5FA?logo=biome&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io uv": {
+    "prefix": "md-shields-uv",
+    "description": ["Insert a uv badge from Shields.io."],
+    "body": [
+      "![uv](https://img.shields.io/badge/uv-DE5FE9?logo=uv&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io FastAPI": {
+    "prefix": "md-shields-fastapi",
+    "description": ["Insert a FastAPI badge from Shields.io."],
+    "body": [
+      "![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Vim": {
+    "prefix": "md-shields-vim",
+    "description": ["Insert a Vim badge from Shields.io."],
+    "body": [
+      "![Vim](https://img.shields.io/badge/Vim-019733?logo=vim&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Neovim": {
+    "prefix": "md-shields-neovim",
+    "description": ["Insert a Neovim badge from Shields.io."],
+    "body": [
+      "![Neovim](https://img.shields.io/badge/Neovim-57A143?logo=neovim&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io mdBook": {
+    "prefix": "md-shields-mdbook",
+    "description": ["Insert a mdBook badge from Shields.io."],
+    "body": [
+      "![mdBook](https://img.shields.io/badge/mdBook-000000?logo=mdbook&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io NGINX": {
+    "prefix": "md-shields-nginx",
+    "description": ["Insert a NGINX badge from Shields.io."],
+    "body": [
+      "![NGINX](https://img.shields.io/badge/NGINX-009639?logo=nginx&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io GitHub Copilot": {
+    "prefix": "md-shields-githubcopilot",
+    "description": ["Insert a GitHub Copilot badge from Shields.io."],
+    "body": [
+      "![GitHub Copilot](https://img.shields.io/badge/GitHub%20Copilot-000000?logo=githubcopilot&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Ollama": {
+    "prefix": "md-shields-ollama",
+    "description": ["Insert a Ollama badge from Shields.io."],
+    "body": [
+      "![Ollama](https://img.shields.io/badge/Ollama-000000?logo=ollama&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Calude": {
+    "prefix": "md-shields-claude",
+    "description": ["Insert a Calude badge from Shields.io."],
+    "body": [
+      "![Calude](https://img.shields.io/badge/Calude-D97757?logo=claude&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Google Gemini": {
+    "prefix": "md-shields-googlegemini",
+    "description": ["Insert a Google Gemini badge from Shields.io."],
+    "body": [
+      "![Google Gemini](https://img.shields.io/badge/Google%20Gemini-8E75B2?logo=googlegemini&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
   "README": {
     "prefix": "md-readme",
     "description": "Template of README.md",
