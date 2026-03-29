@@ -382,6 +382,20 @@
       "![NGINX](https://img.shields.io/badge/NGINX-009639?logo=nginx&labelColor=${1:gray}&logoColor=${2:white})"
     ]
   },
+  "Shields.io WezTerm": {
+    "prefix": "md-shields-wezterm",
+    "description": ["Insert a WezTerm badge from Shields.io."],
+    "body": [
+      "![WezTerm](https://img.shields.io/badge/WezTerm-4E49EE?logo=wezterm&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Ghostty": {
+    "prefix": "md-shields-ghostty",
+    "description": ["Insert a Ghostty badge from Shields.io."],
+    "body": [
+      "![Ghostty](https://img.shields.io/badge/Ghostty-3551F3?logo=ghostty&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
   "Shields.io GitHub Copilot": {
     "prefix": "md-shields-githubcopilot",
     "description": ["Insert a GitHub Copilot badge from Shields.io."],
@@ -408,6 +422,20 @@
     "description": ["Insert a Google Gemini badge from Shields.io."],
     "body": [
       "![Google Gemini](https://img.shields.io/badge/Google%20Gemini-8E75B2?logo=googlegemini&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Badgegen Windows": {
+    "prefix": "md-badgegen-windows",
+    "description": ["Insert a Windows badge from Badgegen."],
+    "body": [
+      "![Windows](https://badgegen.net/badge/icon/Windows?icon=windows&label&color=0078d4"
+    ]
+  },
+  "Badgegen Azure": {
+    "prefix": "md-badgegen-azure",
+    "description": ["Insert an Azure badge from Badgegen."],
+    "body": [
+      "![Azure](https://badgegen.net/badge/icon/Azure?icon=azure&label&color=0078d4"
     ]
   },
   "README": {
