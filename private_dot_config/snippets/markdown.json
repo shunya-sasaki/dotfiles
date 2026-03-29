@@ -270,6 +270,20 @@
       "![Vite](https://img.shields.io/badge/Vite-9135FF?logo=vite&labelColor=${1:gray}&logoColor=${2:white})"
     ]
   },
+  "Shields.io Vitest": {
+    "prefix": "md-shields-vitest",
+    "description": ["Insert a Vitest badge from Shields.io."],
+    "body": [
+      "![Vitest](https://img.shields.io/badge/Vitest-00FF74?logo=vitest&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Axios": {
+    "prefix": "md-shields-axios",
+    "description": ["Insert a Axios badge from Shields.io."],
+    "body": [
+      "![Axios](https://img.shields.io/badge/Axios-5A29E4?logo=axios&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
   "Shields.io Biome": {
     "prefix": "md-shields-biome",
     "description": ["Insert a Biome badge from Shields.io."],
@@ -284,11 +298,46 @@
       "![uv](https://img.shields.io/badge/uv-DE5FE9?logo=uv&labelColor=${1:gray}&logoColor=${2:white})"
     ]
   },
+  "Shields.io ruff": {
+    "prefix": "md-shields-ruff",
+    "description": ["Insert a Ruff badge from Shields.io."],
+    "body": [
+      "![Ruff](https://img.shields.io/badge/Ruff-D7FF64?logo=ruff&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Pytest": {
+    "prefix": "md-shields-pytest",
+    "description": ["Insert a Pytest badge from Shields.io."],
+    "body": [
+      "![Pytest](https://img.shields.io/badge/Pytest-0A9EDC?logo=pytest&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
   "Shields.io FastAPI": {
     "prefix": "md-shields-fastapi",
     "description": ["Insert a FastAPI badge from Shields.io."],
     "body": [
       "![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Pydantic": {
+    "prefix": "md-shields-pydantic",
+    "description": ["Insert a Pydantic badge from Shields.io."],
+    "body": [
+      "![Pydantic](https://img.shields.io/badge/Pydantic-E92063?logo=pydantic&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io LangChain": {
+    "prefix": "md-shields-langchain",
+    "description": ["Insert a LangChain badge from Shields.io."],
+    "body": [
+      "![LangChain](https://img.shields.io/badge/LangChain-7FC8FF?logo=langchain&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Tmux": {
+    "prefix": "md-shields-tmux",
+    "description": ["Insert a tmux badge from Shields.io."],
+    "body": [
+      "![tmux](https://img.shields.io/badge/tmux-1BB91F?logo=tmux&labelColor=${1:gray}&logoColor=${2:white})"
     ]
   },
   "Shields.io Vim": {
@@ -305,11 +354,25 @@
       "![Neovim](https://img.shields.io/badge/Neovim-57A143?logo=neovim&labelColor=${1:gray}&logoColor=${2:white})"
     ]
   },
+  "Shields.io Zed Industries": {
+    "prefix": "md-shields-zedindustries",
+    "description": ["Insert a Zed Industries badge from Shields.io."],
+    "body": [
+      "![Zed Industires](https://img.shields.io/badge/Zed%20Industries-084CCF?logo=zedindustries&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
   "Shields.io mdBook": {
     "prefix": "md-shields-mdbook",
     "description": ["Insert a mdBook badge from Shields.io."],
     "body": [
       "![mdBook](https://img.shields.io/badge/mdBook-000000?logo=mdbook&labelColor=${1:gray}&logoColor=${2:white})"
+    ]
+  },
+  "Shields.io Notion": {
+    "prefix": "md-shields-notion",
+    "description": ["Insert a Notion badge from Shields.io."],
+    "body": [
+      "![Notion](https://img.shields.io/badge/Notion-000000?logo=notion&labelColor=${1:gray}&logoColor=${2:white})"
     ]
   },
   "Shields.io NGINX": {
