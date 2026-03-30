@@ -139,3 +139,6 @@ eval "$(direnv hook zsh)"
 # mise
 eval "$(mise activate zsh)"
 
+
+# Vite+ bin (https://viteplus.dev)
+. "$HOME/.vite-plus/env"
