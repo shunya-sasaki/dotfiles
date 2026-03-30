@@ -1,5 +1,24 @@
 return {
 	{
+		"nvim-mini/mini.nvim",
+		version = "*",
+		keys = {
+			{ "ga", mode = { "n", "v" }, desc = "Align" },
+			{ "gA", mode = { "n", "v" }, desc = "Align with preview" },
+		},
+		opts = {
+			align = {
+				mappings = {
+					start = "ga",
+					start_with_preview = "gA",
+				},
+			},
+		},
+		config = function(_, opts)
+			require("mini.align").setup(opts.align)
+		end,
+	},
+	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
 		dependencies = {
