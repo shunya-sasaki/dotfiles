@@ -425,14 +425,14 @@
     ]
   },
   "Badgegen Windows": {
-    "prefix": "md-badgegen-windows",
+    "prefix": "md-badgen-windows",
     "description": ["Insert a Windows badge from Badgegen."],
     "body": [
       "![Windows](https://badgegen.net/badge/icon/Windows?icon=windows&label&color=0078d4"
     ]
   },
   "Badgegen Azure": {
-    "prefix": "md-badgegen-azure",
+    "prefix": "md-badgen-azure",
     "description": ["Insert an Azure badge from Badgegen."],
     "body": [
       "![Azure](https://badgegen.net/badge/icon/Azure?icon=azure&label&color=0078d4"
