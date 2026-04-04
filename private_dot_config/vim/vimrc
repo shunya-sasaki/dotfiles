@@ -1,0 +1,51 @@
+" key map -------------------------------------------------------------------
+let mapleader = "\<Space>"
+nnoremap <silent> <C-n> :bn<CR>
+nnoremap <silent> <C-p> :bp<CR>
+nnoremap <silent> <ESC><ESC> :nohlsearch<CR>
+nnoremap <silent> <C-t> :term ++curwin ++noclose<CR>
+autocmd FileType text setlocal textwidth=0
+set mouse=a
+" window visual -------------------------------------------------------------
+set number
+set nowrap
+set cursorline
+set belloff=all
+hi clear CursorLine
+let &t_SI .= "\e[6 q"
+let &t_EI .= "\e[2 q"
+set t_Co=256
+set background=dark
+syntax on
+" tab and indent ------------------------------------------------------------
+set expandtab
+set tw=0
+set formatoptions=q
+set tabstop=4
+set shiftwidth=4
+set showmatch
+set matchtime=1
+set pumheight=10
+set laststatus=2
+set splitbelow
+set completeopt=menuone,noinsert
+set backspace=indent,eol,start
+" clipboard -----------------------------------------------------------------
+set clipboard=unnamed
+" backup --------------------------------------------------------------------
+set noswapfile
+set nobackup
+set nowritebackup
+set noundofile
+" encode --------------------------------------------------------------------
+set encoding=utf-8
+set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
+" search --------------------------------------------------------------------
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
+" lazygit (external program) -------------------------------------------------
+nnoremap <silent> <Leader>g :term ++curwin ++noclose lazygit<CR>
+
