@@ -124,6 +124,7 @@ fi
 # - GEMINI_API_KEY
 # - NOTION_TOKEN
 # - GITHUB_TOKEN
+# - GH_TOKEN
 if [ -f "$HOME/.secrets" ]; then
     export $(grep -v '^#' "$HOME/.secrets" | xargs)
 fi
