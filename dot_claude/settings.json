@@ -1,34 +1,43 @@
 {
-	"$schema": "https://json.schemastore.org/claude-code-settings.json",
-	"model": "opus",
-	"permissions": {
-		"allow": [
-			"Bash(npm run lint)",
-			"Bash(npm run test *)",
-			"Bash(biome format *)",
-			"Bash(biome lint *)",
-			"Bash(dprint fmt *)",
-			"Bash(dprint check *)",
-			"Bash(uv run ruff *)",
-			"Bash(uv run ty *)",
-			"Bash(uv run pytest)",
-			"Bash(uv sync)",
-			"Bash(git diff *)",
-			"Bash(git log *)",
-			"Read(**/*.md)",
-			"Read(**/*.py)",
-			"Read(**/*.ts)",
-			"Read(**/*.tsx)",
-			"Read(**/*.json)",
-			"Read(~/.zshrc)"
-		],
-		"ask": [
-			"Bash(curl *)",
-			"WebFetch(https://*)",
-			"Bash(git commit *)",
-			"Bash(git tag *)",
-			"Bash(git push *)"
-		],
-		"deny": ["Read(./.env)", "Read(./.env.*)", "Read(./secrets/**)"]
-	}
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "model": "opus",
+  "permissions": {
+    "allow": [
+      "Bash(npm run lint)",
+      "Bash(npm run test *)",
+      "Bash(biome format *)",
+      "Bash(biome lint *)",
+      "Bash(dprint fmt *)",
+      "Bash(dprint check *)",
+      "Bash(uv run ruff *)",
+      "Bash(uv run ty *)",
+      "Bash(uv run pytest)",
+      "Bash(uv sync)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Read(**/*.md)",
+      "Read(**/*.py)",
+      "Read(**/*.ts)",
+      "Read(**/*.tsx)",
+      "Read(**/*.json)",
+      "Read(~/.zshrc)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:anthropic.com)",
+      "Glob(src/**)"
+    ],
+    "ask": [
+      "Bash(curl *)",
+      "WebFetch(http://*)",
+      "WebFetch(https://*)",
+      "Bash(git commit *)",
+      "Bash(git tag *)",
+      "Bash(git push *)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Glob(secrets/**)"
+    ]
+  }
 }
