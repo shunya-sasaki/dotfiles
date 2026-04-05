@@ -20,6 +20,15 @@ in
         };
       })
       (vimPlug {
+        name = "vim-surround";
+        src = pkgs.fetchFromGitHub {
+          owner = "tpope";
+          repo = "vim-surround";
+          rev = "v2.2";
+          sha256 = "sha256-zhaNsu0U+6RhalE1rDzHH8wntJM815REIzdsWmppC6w=";
+        };
+      })
+      (vimPlug {
         name = "vim-easymotion";
         src = pkgs.fetchFromGitHub {
           owner = "easymotion";
@@ -29,6 +38,15 @@ in
         };
       })
       # Interface -------------------------------------------------------------
+      (vimPlug {
+        name = "vim-floaterm";
+        src = pkgs.fetchFromGitHub {
+        owner = "voldikss";
+        repo = "vim-floaterm";
+          rev = "master";
+          sha256 = "sha256-A4SpMFB1thUhF4N5I7N+HnycE/OXQQbJVMr4wo0gKUc=";
+        };
+      })
       (vimPlug {
         name = "vim-airline";
         src = pkgs.fetchFromGitHub {
@@ -56,9 +74,6 @@ in
           sha256 = "sha256-9g3UdBcc34MR/BrKYqOki2Ge29k/QaRMsnyY+Pq9UE8=";
         };
       })
-
-
-
       (vimPlug {
         name = "tokyonight-vim";
         src = pkgs.fetchFromGitHub {
@@ -68,6 +83,7 @@ in
           sha256 = "sha256-ui/6xv8PH6KuQ4hG1FNMf6EUdF2wfWPNgG/GMXYvn/8=";
         };
       })
+      # Commands --------------------------------------------------------------
       (vimPlug {
         name = "fzf";
         src = pkgs.fetchFromGitHub {
@@ -86,6 +102,7 @@ in
           sha256 = "sha256-n0jPX5keDf9qUuqyMKosLoI42DRerky9N5moFuuPccY=";
         };
       })
+      # Language --------------------------------------------------------------
       (vimPlug {
         name = "lsp";
         src = pkgs.fetchFromGitHub {
@@ -102,15 +119,6 @@ in
         repo = "vim-polyglot";
           rev = "v4.17.1";
           sha256 = "sha256-UkCKWLHh2KCK//DI62ZCyJjwMAnXRwzfzKZjFPBWQro=";
-        };
-      })
-      (vimPlug {
-        name = "vim-floaterm";
-        src = pkgs.fetchFromGitHub {
-        owner = "voldikss";
-        repo = "vim-floaterm";
-          rev = "master";
-          sha256 = "sha256-A4SpMFB1thUhF4N5I7N+HnycE/OXQQbJVMr4wo0gKUc=";
         };
       })
     ];
