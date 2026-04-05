@@ -9,11 +9,10 @@ export PATH=$HOME/.bin:/Library/Apple/usr/bin${PATH:+:$PATH}
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
   source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
+export PATH="$HOME/.nix-profile/bin:$PATH"
 
 # C/C++
 export CXX_INCLUDE_PATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include${CXX_INCLUDE_PATH:+:$CXX_INCLUDE_PATH}
-export HDF5_DIR=/opt/homebrew
-export OPENBLAS=/opt/homebrew/opt/openblas
 export VCPKG_ROOT="$HOME/vcpkg"
 
 # C#
@@ -26,7 +25,6 @@ export CARGO_HOME=$HOME/.cargo
 
 # Python ----------------------------------------------------------------------
 alias activate="source activate.sh"
-
 
 # Node.js
 export VOLTA_HOME="$HOME/.volta"
@@ -56,6 +54,7 @@ alias cat='bat --color=always --style=numbers --line-range=:500'
 alias ls='eza --color=always --icons=always --group-directories-first -L 1 -s ext -h -T -F --long'
 
 # FZF
+export FZF_DEFAULT_OPTS="--ansi"
 export FZF_DEFAULT_COMMAND="fd --type f --color=always --hidden --exclude .git --exclude node_modules"
 export FZF_CTRL_T_COMMAND="fd --type f --color=always"
 export FZF_CTRL_T_OPTS="--preview 'bat {} --color=always --style=numbers --line-range=:500'"
