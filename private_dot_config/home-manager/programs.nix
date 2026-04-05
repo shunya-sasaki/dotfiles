@@ -83,6 +83,43 @@ in
           sha256 = "sha256-ui/6xv8PH6KuQ4hG1FNMf6EUdF2wfWPNgG/GMXYvn/8=";
         };
       })
+      (vimPlug {
+        name = "molokai";
+        src = pkgs.fetchFromGitHub {
+          owner = "tomasr";
+          repo = "molokai";
+          rev = "master";
+          sha256 = "sha256-OgzU7vm046T9gmxmqO3sRKCH0E9QAheYGoT7WbL8Ot4=";
+        };
+      })
+      # Completion -------------------------------------------------------------
+      (vimPlug {
+        name = "vim-vsnip";
+        src = pkgs.fetchFromGitHub {
+        owner = "hrsh7th";
+          repo = "vim-vsnip";
+          rev = "master";
+          sha256 = "sha256-hLKtAYNenLgcVPfs0iLEzOOz1OL0oQ3WPJm1VStx9QM=";
+        };
+      })
+      (vimPlug {
+        name = "vim-vsnip-integ";
+        src = pkgs.fetchFromGitHub {
+        owner = "hrsh7th";
+          repo = "vim-vsnip-integ";
+          rev = "master";
+          sha256 = "sha256-Ro64wc71m/SkFSPu+91tLFHuWaFfCTWH7zFPHbOg7C4=";
+        };
+      })
+      (vimPlug {
+        name = "vimcomplete";
+        src = pkgs.fetchFromGitHub {
+        owner = "girishji";
+          repo = "vimcomplete";
+          rev = "main";
+          sha256 = "sha256-3Ux7McofptT4/oK1Nu/iPrJ/Bcl4cVx2j7790APvcUI=";
+        };
+      })
       # Commands --------------------------------------------------------------
       (vimPlug {
         name = "fzf";
