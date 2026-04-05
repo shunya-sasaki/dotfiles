@@ -1,5 +1,5 @@
 " key map -------------------------------------------------------------------
-let mapleader = "\<Space>"
+let mapleader = " "
 nnoremap <silent> <C-n> :bn<CR>
 nnoremap <silent> <C-p> :bp<CR>
 nnoremap <silent> <ESC><ESC> :nohlsearch<CR>
@@ -9,7 +9,7 @@ set mouse=a
 " window visual -------------------------------------------------------------
 set number
 set nowrap
-set cursorline
+" set cursorline
 set belloff=all
 hi clear CursorLine
 let &t_SI .= "\e[6 q"
@@ -30,8 +30,6 @@ set laststatus=2
 set splitbelow
 set completeopt=menuone,noinsert
 set backspace=indent,eol,start
-" clipboard -----------------------------------------------------------------
-set clipboard=unnamed
 " backup --------------------------------------------------------------------
 set noswapfile
 set nobackup
@@ -46,6 +44,47 @@ set smartcase
 set incsearch
 set hlsearch
 
-" lazygit (external program) -------------------------------------------------
-nnoremap <silent> <Leader>g :term ++curwin ++noclose lazygit<CR>
+" clipboard -----------------------------------------------------------------
+set clipboard=
+
+function! YankToOSC52(text)
+  let l:b64 = system('base64 | tr -d "\n"', a:text)
+  if $TMUX != ''
+    let l:osc = "\x1bPtmux;\x1b\x1b]52;c;" . l:b64 . "\x07\x1b\\"
+  else
+    let l:osc = "\x1b]52;c;" . l:b64 . "\x07"
+  endif
+  call system("printf '%s' " . shellescape(l:osc) . " > /dev/tty")
+endfunction
+augroup OSCYankAuto
+  autocmd!
+  autocmd TextYankPost * if v:event.operator ==# 'y' | call YankToOSC52(join(v:event.regcontents, "\n")) | endif
+augroup END
+
+" colorscheme
+let g:tokyonight_transparent_background = 1
+colorscheme tokyonight
+" vim-airline (external plugin) ------------------------------------------------
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1  
+let g:airline#extensions#tabline#formatter = 'default'
+let g:airline#extensions#virtualenv#enabled = 1
+
+" vim-floaterm (external program) -----------------------------------------------
+" lazygit
+nnoremap <silent> <Leader>g :FloatermNew --autoclose=2 --height=0.95 --width=0.95 lazygit<CR>
+" yazi
+nnoremap <silent> <leader>e :FloatermNew --autoclose=2 --opener=edit --height=0.95 --width=0.95 yazi<CR>
+
+" easy motion (external plugin)-----------------------------------------------
+map <Leader>f <Plug>(easymotion-f)
+map <Leader>F <Plug>(easymotion-F)
+map <Leader>w <Plug>(easymotion-w)
+map <Leader>b <Plug>(easymotion-b)
+map <Leader>s <Plug>(easymotion-s2)
+map <Leader>/ <Plug>(easymotion-sn)
+
+"" fzf (external plugin) ------------------------------------------------------
+nnoremap <silent> <Leader>ff :Files<CR>
+nnoremap <silent> <Leader>fg :Rg<CR>
 
