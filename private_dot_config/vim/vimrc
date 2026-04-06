@@ -30,6 +30,7 @@ set laststatus=2
 set splitbelow
 set completeopt=menuone,noinsert
 set backspace=indent,eol,start
+set wildoptions+=pum,fuzzy
 " backup --------------------------------------------------------------------
 set noswapfile
 set nobackup
@@ -80,6 +81,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1  
 let g:airline#extensions#tabline#formatter = 'default'
 let g:airline#extensions#virtualenv#enabled = 1
+let g:airline_theme = 'tokyonight'
 
 " vim-floaterm (external program) -----------------------------------------------
 " lazygit
