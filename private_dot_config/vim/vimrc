@@ -16,6 +16,7 @@ let &t_SI .= "\e[6 q"
 let &t_EI .= "\e[2 q"
 set t_Co=256
 set background=dark
+set termguicolors
 syntax on
 " tab and indent ------------------------------------------------------------
 set expandtab
@@ -74,8 +75,9 @@ augroup TransparentBG
     autocmd ColorScheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
     autocmd ColorScheme * highlight SignColumn ctermbg=NONE guibg=NONE
 augroup END
+colorscheme 'tokyonight'
 let g:tokyonight_transparent_background = 1
-colorscheme tokyonight
+
 " vim-airline (external plugin) ------------------------------------------------
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'tokyonight'
@@ -110,8 +112,6 @@ let g:airline_symbols.colnr = ''
 let g:airline_symbols.notexists = ''
 let g:airline_symbols.maxlinenr = ''
 let g:airline_symbols.dirty = ''
-
-
 
 " vim-floaterm (external program) -----------------------------------------------
 " lazygit
