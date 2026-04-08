@@ -101,6 +101,15 @@ in
           sha256 = "sha256-qxblRazEDaVUPJI7xmqLE7ovTMbFVn57/XCy7WaW+Vs=";
         };
       })
+      (vimPlug {
+        name = "sonokai";
+        src = pkgs.fetchFromGitHub {
+          owner = "sainnhe";
+          repo = "sonokai";
+          rev = "v0.3.3";
+          sha256 = "sha256-QZQzflOC6cbFt7cwqnZ+y1kKWRWq05ty0x3aj6xuBTY=";
+        };
+      })
       # Completion -------------------------------------------------------------
       (vimPlug {
         name = "vim-vsnip";
