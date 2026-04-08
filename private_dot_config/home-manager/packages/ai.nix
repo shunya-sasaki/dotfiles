@@ -3,6 +3,7 @@
 with pkgs; [
   antigravity
   chatgpt
+  claude-code
   codex
   gemini-cli-bin
   gh
