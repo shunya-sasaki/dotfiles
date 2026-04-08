@@ -30,10 +30,6 @@ return {
 		end,
 	},
 	{
-		"zbirenbaum/copilot-cmp",
-		enabled = is_copilot_enable(),
-		config = function()
-			require("copilot_cmp").setup()
-		end,
+		"giuxtaposition/blink-cmp-copilot",
 	},
 }
