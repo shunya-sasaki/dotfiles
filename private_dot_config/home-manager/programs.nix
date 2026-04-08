@@ -92,6 +92,15 @@ in
           sha256 = "sha256-OgzU7vm046T9gmxmqO3sRKCH0E9QAheYGoT7WbL8Ot4=";
         };
       })
+      (vimPlug {
+        name = "gruvbox-material";
+        src = pkgs.fetchFromGitHub {
+          owner = "sainnhe";
+          repo = "gruvbox-material";
+          rev = "v1.2.5";
+          sha256 = "sha256-qxblRazEDaVUPJI7xmqLE7ovTMbFVn57/XCy7WaW+Vs=";
+        };
+      })
       # Completion -------------------------------------------------------------
       (vimPlug {
         name = "vim-vsnip";
