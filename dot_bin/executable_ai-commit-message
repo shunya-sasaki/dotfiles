@@ -5,14 +5,14 @@ azure_openai_commit_message() {
   local sys_prompt="$1"
   local diff="$2"
 
-  for var in AZURE_OPEN_AI_ENDPOINT AZURE_OPEN_AI_DEPLOYMENT_ID AZURE_OPEN_AI_API_VERSION AZURE_OPEN_AI_API_KEY; do
+  for var in AZURE_OPENAI_ENDPOINT AZURE_OPENAI_DEPLOYMENT_ID AZURE_OPENAI_API_VERSION AZURE_OPENAI_API_KEY; do
     if [ -z "${!var}" ]; then
       echo "Error: $var is not set." >&2
       return 1
     fi
   done
 
-  local url="${AZURE_OPEN_AI_ENDPOINT}openai/deployments/${AZURE_OPEN_AI_DEPLOYMENT_ID}/chat/completions?api-version=${AZURE_OPEN_AI_API_VERSION}"
+  local url="${AZURE_OPENAI_ENDPOINT}openai/deployments/${AZURE_OPENAI_DEPLOYMENT_ID}/chat/completions?api-version=${AZURE_OPENAI_API_VERSION}"
 
   local body
     body=$(jq -n \
@@ -31,7 +31,7 @@ azure_openai_commit_message() {
   resp="$(curl -sS -f -X POST "$url" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -H "Api-Key: $AZURE_OPEN_AI_API_KEY" \
+    -H "Api-Key: $AZURE_OPENAI_API_KEY" \
     -d "$body")" || {
       echo "Error: request to Azure OpenAI failed." >&2
       return 1
@@ -111,7 +111,7 @@ case "$provider" in
     CLAUDE|claude)
         message=$(claude -p "$prompt" --model "sonnet")
         ;;
-    AZURE_OPEN_AI)
+    AZURE_OPENAI)
         message=$(azure_openai_commit_message "$sys_prompt" "$diff")
         ;;
     *)
