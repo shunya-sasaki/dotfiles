@@ -27,8 +27,6 @@
     ],
     "ask": [
       "Bash(curl *)",
-      "WebFetch(http://*)",
-      "WebFetch(https://*)",
       "Bash(git commit *)",
       "Bash(git tag *)",
       "Bash(git push *)"
