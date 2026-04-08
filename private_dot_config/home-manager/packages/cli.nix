@@ -25,6 +25,7 @@ with pkgs; [
   starship
   tldr
   tmux
+  tree-sitter
   ueberzugpp
   xh
   yazi
