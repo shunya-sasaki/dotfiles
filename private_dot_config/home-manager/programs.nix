@@ -110,6 +110,15 @@ in
           sha256 = "sha256-QZQzflOC6cbFt7cwqnZ+y1kKWRWq05ty0x3aj6xuBTY=";
         };
       })
+      (vimPlug {
+        name = "onedark.vim";
+        src = pkgs.fetchFromGitHub {
+          owner = "joshdick";
+          repo = "onedark.vim";
+          rev = "main";
+          sha256 = "sha256-vb2wGkul/NAjeV4zcpI3e9ozd9YI1LbwK85tq+hTcLA=";
+        };
+      })
       # Completion -------------------------------------------------------------
       (vimPlug {
         name = "vim-vsnip";
