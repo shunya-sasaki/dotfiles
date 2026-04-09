@@ -53,10 +53,6 @@ return {
 		end,
 	},
 	{
-		"giuxtaposition/blink-cmp-copilot",
-		enabled = is_copilot_enable(),
-	},
-	{
 		"L3MON4D3/LuaSnip",
 		version = "2.*",
 		build = "make install_jsregexp",
@@ -83,7 +79,10 @@ return {
 	{
 		"saghen/blink.cmp",
 		dependencies = {
-			"giuxtaposition/blink-cmp-copilot",
+			{
+				"giuxtaposition/blink-cmp-copilot",
+				enabled = is_copilot_enable(),
+			},
 		},
 		version = "1.*",
 		---@module 'blink.cmp'
