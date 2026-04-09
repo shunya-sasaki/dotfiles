@@ -45,6 +45,16 @@ set ignorecase
 set smartcase
 set incsearch
 set hlsearch
+" syntax ---------------------------------------------------------------------
+let g:markdown_fenced_languages = [
+            \ 'html', 'css', 'js=javascript', 'ts=typescript',
+            \ 'jsx=favascriptreact', 'tsx=typescriptreact',
+            \ 'json', 'jsonc', 'yaml', 'toml',
+            \ 'python', 'py=python', 'rust', 'c', 'cpp', 'c++=cpp',
+            \ 'lua', 'vim', 'sh', 'bash=sh', 'zsh', 'ps1=ps', 'powershell=ps1',
+            \ 'sql', 'dockerfile', 'make', 'cmake', 'tex', 'markdown', 'md=markdown',
+            \ 'diff', 'gitcommit'
+            \ ]
 " completion ----------------------------------------------------------------
 " set autocomplete
 " set autocompletedelay=50
