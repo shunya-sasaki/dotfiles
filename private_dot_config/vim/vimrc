@@ -38,6 +38,8 @@ set nobackup
 set nowritebackup
 set noundofile
 " encode --------------------------------------------------------------------
+set fileformat=unix
+set fileformats=unix,dos
 set encoding=utf-8
 set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
 " search --------------------------------------------------------------------
