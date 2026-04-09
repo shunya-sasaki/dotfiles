@@ -38,6 +38,10 @@
       {
         "language": "gitignore",
         "path": "ignore.json"
+      },
+      {
+        "language": "gitattributes",
+        "path": "gitattributes.json"
       }
     ]
   }

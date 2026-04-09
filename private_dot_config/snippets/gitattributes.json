@@ -1,0 +1,9 @@
+{
+	".gitattributes": {
+		"prefix": ".gitattributes",
+		"description": "Template for .gitattributes",
+		"body": [
+          "* text=auto eol=lf"
+		]
+	}
+}
