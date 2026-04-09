@@ -125,6 +125,9 @@ vim.keymap.set("n", "gr", vim.lsp.buf.rename, { noremap = true, silent = true })
 vim.keymap.set("n", "gh", vim.lsp.buf.hover, { noremap = true, silent = true })
 -- filetype
 vim.filetype.add({
+	filename = {
+		[".gitattributes"] = "gitattributes",
+	},
 	pattern = {
 		[".*/.flake8"] = "ini",
 	},
