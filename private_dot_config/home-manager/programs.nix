@@ -138,6 +138,15 @@ in
           sha256 = "sha256-3Ux7McofptT4/oK1Nu/iPrJ/Bcl4cVx2j7790APvcUI=";
         };
       })
+      (vimPlug {
+        name = "vim-table-mode";
+        src = pkgs.fetchFromGitHub {
+        owner = "dhruvasagar";
+          repo = "vim-table-mode";
+          rev = "v4.8.1";
+          sha256 = "sha256-2p92xLlYYl9HQjFha/qRUwiJCB2MUwbt3ADz0uWyGcw=";
+        };
+      })
       # Commands --------------------------------------------------------------
       (vimPlug {
         name = "fzf";
