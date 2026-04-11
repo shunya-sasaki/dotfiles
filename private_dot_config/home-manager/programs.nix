@@ -203,6 +203,16 @@ in
           sha256 = "sha256-UkCKWLHh2KCK//DI62ZCyJjwMAnXRwzfzKZjFPBWQro=";
         };
       })
+      # Markdown
+      (vimPlug {
+        name = "vim-markdown-toc";
+        src = pkgs.fetchFromGitHub {
+          owner = "mzlogin";
+        repo = "vim-markdown-toc";
+          rev = "master";
+          sha256 = "sha256-OqbBNR2AER4KMYOfF3w8OmBC07U3RVMUFaPUE7HBO3U=";
+        };
+      })
     ];
   };
   direnv = {
