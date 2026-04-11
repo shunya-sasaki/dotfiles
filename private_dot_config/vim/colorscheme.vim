@@ -9,4 +9,7 @@ augroup TransparentBG
     autocmd ColorScheme * highlight SignColumn ctermbg=NONE guibg=NONE
 augroup END
 colorscheme tokyonight
+set fillchars+=eob:\ 
+let g:rehash256 = 1
 let g:tokyonight_transparent_background = 1
+let g:molokai_original = 1
