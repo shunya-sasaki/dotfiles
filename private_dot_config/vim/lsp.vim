@@ -57,3 +57,59 @@ autocmd User LspSetup call LspOptionsSet(#{
         \   condensedCompletionMenu: v:false,
         \   documentationFormat: ['markdown', 'plaintext'],
 	\ })
+
+
+let lspServers = [ 
+    \ #{
+	\    name: 'bash-language-server',
+	\    filetype: ['sh'],
+	\    path: 'bash-language-server',
+	\    args: ['start']
+	\  },
+    \ #{
+	\    name: 'clangd',
+	\    filetype: ['c', 'cpp'],
+	\    path: 'clangd',
+	\    args: ['--background-index']
+	\  },
+    \ #{
+	\    name: 'ruff',
+	\    filetype: ['python'],
+	\    path: 'ruff',
+	\    args: ['server']
+    \ },
+    \ #{
+	\    name: 'ty',
+	\    filetype: ['python'],
+	\    path: 'ty',
+	\    args: ['server']
+    \ },
+    \ #{
+	\    name: 'vtsls',
+	\    filetype: ['typescript', 'javascript', 'typescriptreact', 'javascriptreact'],
+	\    path: 'vtsls',
+	\    args: ['--stdio']
+    \ },
+    \ #{
+	\    name: 'biome',
+	\    filetype: ['typescript', 'javascript',
+    \               'typescriptreact', 'javascriptreact',
+    \               'json', 'jsonc'],
+	\    path: 'biome',
+	\    args: ['lsp-proxy']
+    \ },
+    \ #{
+	\    name: 'vscode-css-language-server',
+	\    filetype: ['css', 'scss', 'less'],
+	\    path: 'vscode-css-language-server',
+	\    args: ['--stdio']
+    \ },
+    \ #{
+	\    name: 'vscode-html-language-server',
+	\    filetype: ['html', 'css', 'javascript'],
+	\    path: 'vscode-html-language-server',
+	\    args: ['--stdio']
+    \ }
+    \ ]
+
+autocmd User LspSetup call LspAddServer(lspServers) 
