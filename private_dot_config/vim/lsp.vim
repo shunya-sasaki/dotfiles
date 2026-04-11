@@ -83,16 +83,25 @@ let lspServers = [
 	\    path: 'pyright-langserver',
 	\    args: ['--stdio'],
     \    workspaceConfig: #{
+    \      pyright: #{
+    \        disableOrganizeImports: v:true,
+    \      },
     \      python: #{
     \        venvPath: '',
-    \        venv: '.venv'
+    \        venv: '.venv',
+    \        analysis: #{
+    \          ignore: ['*']
+    \        }
     \   }}
     \ },
     \ #{
 	\    name: 'ruff',
 	\    filetype: ['python'],
 	\    path: 'ruff',
-	\    args: ['server']
+	\    args: ['server'],
+    \    features: #{
+    \      hover: v:false
+    \    }
     \ },
     \ #{
 	\    name: 'ty',
