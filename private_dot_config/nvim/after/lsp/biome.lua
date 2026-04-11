@@ -6,7 +6,6 @@ return {
     "json",
     "jsonc",
     "typescript",
-    "typescript.tsx",
     "typescriptreact",
   },
 }
