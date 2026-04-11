@@ -85,11 +85,6 @@ let lspServers = [
     \    features: #{
     \      hover: v:false
     \    },
-    \    initializationOptions: #{
-    \      settings: #{
-    \        organizeImports: v:true
-    \      }
-    \    }
     \ },
     \ #{
 	\    name: 'ty',
