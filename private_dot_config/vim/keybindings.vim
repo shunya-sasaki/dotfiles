@@ -25,3 +25,11 @@ smap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
 " fzf (external plugin) --------------------------------------------------------
 nnoremap <silent> <Leader>ff :Files<CR>
 nnoremap <silent> <Leader>fg :Rg<CR>
+
+" lsp (external plugin)---------------------------------------------------------
+nnoremap <silent> gh :LspHover<CR>
+nnoremap <silent> gd :LspGotoDefinition<CR>
+nnoremap <silent> gr :LspRename<CR>
+nnoremap <silent> <leader>x :LspDiagCurrent<CR>
+nnoremap <silent> <leader><S-x> :LspDiagShow<CR>
+

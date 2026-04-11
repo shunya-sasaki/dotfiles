@@ -64,7 +64,12 @@ let lspServers = [
 	\    name: 'bash-language-server',
 	\    filetype: ['sh'],
 	\    path: 'bash-language-server',
-	\    args: ['start']
+	\    args: ['start'],
+    \    workspaceConfig: #{
+    \      bashIde: #{
+    \        globPattern: "*@(.sh|.inc|.bash|.command)"
+    \      }
+    \    }
 	\  },
     \ #{
 	\    name: 'clangd',
@@ -72,6 +77,17 @@ let lspServers = [
 	\    path: 'clangd',
 	\    args: ['--background-index']
 	\  },
+    \ #{
+	\    name: 'pyright',
+	\    filetype: ['python'],
+	\    path: 'pyright-langserver',
+	\    args: ['--stdio'],
+    \    workspaceConfig: #{
+    \      python: #{
+    \        venvPath: '',
+    \        venv: '.venv'
+    \   }}
+    \ },
     \ #{
 	\    name: 'ruff',
 	\    filetype: ['python'],
@@ -82,7 +98,10 @@ let lspServers = [
 	\    name: 'ty',
 	\    filetype: ['python'],
 	\    path: 'ty',
-	\    args: ['server']
+	\    args: ['server'],
+    \    workspaceConfig: #{
+    \      ty: #{ }
+    \    }
     \ },
     \ #{
 	\    name: 'vtsls',
