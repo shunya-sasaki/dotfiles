@@ -78,6 +78,29 @@ let lspServers = [
 	\    args: ['--background-index']
 	\  },
     \ #{
+	\    name: 'ruff',
+	\    filetype: ['python'],
+	\    path: 'ruff',
+	\    args: ['server'],
+    \    features: #{
+    \      hover: v:false
+    \    },
+    \    initializationOptions: #{
+    \      settings: #{
+    \        organizeImports: v:true
+    \      }
+    \    }
+    \ },
+    \ #{
+	\    name: 'ty',
+	\    filetype: ['python'],
+	\    path: 'ty',
+	\    args: ['server'],
+    \    workspaceConfig: #{
+    \      ty: #{ }
+    \    }
+    \ },
+    \ #{
 	\    name: 'pyright',
 	\    filetype: ['python'],
 	\    path: 'pyright-langserver',
@@ -93,24 +116,6 @@ let lspServers = [
     \          ignore: ['*']
     \        }
     \   }}
-    \ },
-    \ #{
-	\    name: 'ruff',
-	\    filetype: ['python'],
-	\    path: 'ruff',
-	\    args: ['server'],
-    \    features: #{
-    \      hover: v:false
-    \    }
-    \ },
-    \ #{
-	\    name: 'ty',
-	\    filetype: ['python'],
-	\    path: 'ty',
-	\    args: ['server'],
-    \    workspaceConfig: #{
-    \      ty: #{ }
-    \    }
     \ },
     \ #{
 	\    name: 'vtsls',
@@ -140,4 +145,7 @@ let lspServers = [
     \ }
     \ ]
 
-autocmd User LspSetup call LspAddServer(lspServers) 
+autocmd User LspSetup call LspAddServer(lspServers)
+
+autocmd BufWritePre * silent! LspFormat
+
