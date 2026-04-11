@@ -147,5 +147,5 @@ let lspServers = [
 
 autocmd User LspSetup call LspAddServer(lspServers)
 
-autocmd BufWritePre * silent! LspFormat
+autocmd BufWritePre * silent! LspFixAll
 
