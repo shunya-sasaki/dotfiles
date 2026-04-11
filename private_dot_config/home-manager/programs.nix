@@ -93,6 +93,15 @@ in
         };
       })
       (vimPlug {
+        name = "vim-monokai";
+        src = pkgs.fetchFromGitHub {
+          owner = "crusoexia";
+          repo = "vim-monokai";
+          rev = "master";
+          sha256 = "sha256-PJxHKsyinieRigMNtSa/jhCQQ5WQK8wzA9lryV7CuqQ=";
+        };
+      })
+      (vimPlug {
         name = "gruvbox-material";
         src = pkgs.fetchFromGitHub {
           owner = "sainnhe";

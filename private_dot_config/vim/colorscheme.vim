@@ -8,7 +8,7 @@ augroup TransparentBG
     autocmd ColorScheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
     autocmd ColorScheme * highlight SignColumn ctermbg=NONE guibg=NONE
 augroup END
-colorscheme tokyonight
+colorscheme monokai
 set fillchars+=eob:\ 
 let g:rehash256 = 1
 let g:tokyonight_transparent_background = 1
