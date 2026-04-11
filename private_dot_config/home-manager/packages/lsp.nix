@@ -11,6 +11,7 @@ with pkgs; [
   markdown-oxide
   nil
   nixd
+  pyright
   stylua
   tailwindcss-language-server
   taplo
