@@ -113,18 +113,18 @@ let lspServers = [
     \   }}
     \ },
     \ #{
-	\    name: 'vtsls',
-	\    filetype: ['typescript', 'javascript', 'typescriptreact', 'javascriptreact'],
-	\    path: 'vtsls',
-	\    args: ['--stdio']
-    \ },
-    \ #{
 	\    name: 'biome',
 	\    filetype: ['typescript', 'javascript',
     \               'typescriptreact', 'javascriptreact',
     \               'json', 'jsonc'],
 	\    path: 'biome',
 	\    args: ['lsp-proxy']
+    \ },
+    \ #{
+	\    name: 'vtsls',
+	\    filetype: ['typescript', 'javascript', 'typescriptreact', 'javascriptreact'],
+	\    path: 'vtsls',
+	\    args: ['--stdio']
     \ },
     \ #{
 	\    name: 'vscode-css-language-server',
