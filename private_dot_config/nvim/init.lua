@@ -138,45 +138,54 @@ vim.filetype.add({
   },
 })
 -- auto fixAll
-vim.api.nvim_create_autocmd("BufWritePre", {
+vim.api.nvim_create_autocmd("FileType", {
   pattern = {
-    "*.py",
-    "*.js",
-    "*.jsx",
-    "*.ts",
-    "*.tsx",
-    "*.json",
-    "*.jsonc",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "jsonc",
+    "python",
+    "typescript",
+    "typescriptreact",
   },
-  callback = function()
-    vim.lsp.buf.code_action({
-      context = {
-        only = { "source.fixAll" },
-      },
-      apply = true,
-      async = false,
+  callback = function(args)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = args.buf,
+      callback = function()
+        vim.lsp.buf.code_action({
+          context = {
+            only = { "source.fixAll" },
+          },
+          apply = true,
+          async = false,
+        })
+      end,
     })
   end,
 })
 -- auto format
-vim.api.nvim_create_autocmd("BufWritePre", {
+vim.api.nvim_create_autocmd("FileType", {
   pattern = {
-    "*.c",
-    "*.cc",
-    "*.cpp",
-    "*.cs",
-    "*.css",
-    "*.h",
-    "*.hpp",
-    "*.hs",
-    "*.html",
-    "*.lua",
-    "*.md",
-    "*.nix",
-    "*.rs",
+    "c",
+    "cpp",
+    "cs",
+    "css",
+    "h",
+    "haskell",
+    "hpp",
+    "html",
+    "lua",
+    "markdown",
+    "nix",
+    "rust",
   },
-  callback = function()
-    vim.lsp.buf.format({ async = false })
+  callback = function(args)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = args.buf,
+      callback = function()
+        vim.lsp.buf.format({ async = false })
+      end,
+    })
   end,
 })
 -- tabwidth dynamic
@@ -184,18 +193,18 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = {
     "c",
     "cpp",
+    "css",
     "h",
     "hpp",
-    "lua",
-    "javascript",
-    "typescript",
-    "typescriptreact",
     "html",
-    "css",
+    "javascript",
     "json",
     "jsonc",
+    "lua",
     "markdown",
     "mdx",
+    "typescript",
+    "typescriptreact",
   },
   callback = function()
     vim.bo.tabstop = 2
