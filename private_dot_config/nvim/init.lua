@@ -1,17 +1,17 @@
 -- luacheck: globals vim
 -- user config
 Config = {
-	with_nf = true,
+  with_nf = true,
 }
 -- check os
 if vim.fn.has("win32") == 1 then
-	Config.os_name = "win32"
+  Config.os_name = "win32"
 elseif vim.fn.has("win64") == 1 then
-	Config.os_name = "win64"
+  Config.os_name = "win64"
 else
-	local script_path = debug.getinfo(1).source:match("@?(.*/)")
-	package.path = package.path .. ";" .. script_path .. "?.lua"
-	Config.os_name = require("util").get_os_name()
+  local script_path = debug.getinfo(1).source:match("@?(.*/)")
+  package.path = package.path .. ";" .. script_path .. "?.lua"
+  Config.os_name = require("util").get_os_name()
 end
 -- system setting
 vim.opt.fileformat = "unix"
@@ -26,44 +26,44 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 
 local function paste()
-	return {
-		vim.fn.split(vim.fn.getreg(""), "\n"),
-		vim.fn.getregtype(""),
-	}
+  return {
+    vim.fn.split(vim.fn.getreg(""), "\n"),
+    vim.fn.getregtype(""),
+  }
 end
 
 if Config.os_name == "wsl" then
-	vim.opt.clipboard = "unnamedplus"
-	vim.g.clipboard = {
-		name = "myClipboard",
-		copy = {
-			["+"] = "win32yank.exe -i",
-			["*"] = "win32yank.exe -i",
-		},
-		paste = {
-			["+"] = "win32yank.exe -o",
-			["*"] = "win32yank.exe -o",
-		},
-		cache_enabled = 1,
-	}
+  vim.opt.clipboard = "unnamedplus"
+  vim.g.clipboard = {
+    name = "myClipboard",
+    copy = {
+      ["+"] = "win32yank.exe -i",
+      ["*"] = "win32yank.exe -i",
+    },
+    paste = {
+      ["+"] = "win32yank.exe -o",
+      ["*"] = "win32yank.exe -o",
+    },
+    cache_enabled = 1,
+  }
 else
-	if vim.env.SSH_CONNECTION then
-		vim.opt.clipboard = "unnamed,unnamedplus"
-		vim.g.clipboard = {
-			name = "OSC 52",
-			copy = {
-				["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-				["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-			},
-			paste = {
-				["+"] = paste,
-				["*"] = paste,
-			},
-		}
-	else
-		vim.opt.clipboard = "unnamedplus"
-		vim.g.clipboard = nil
-	end
+  if vim.env.SSH_CONNECTION then
+    vim.opt.clipboard = "unnamed,unnamedplus"
+    vim.g.clipboard = {
+      name = "OSC 52",
+      copy = {
+        ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+        ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+      },
+      paste = {
+        ["+"] = paste,
+        ["*"] = paste,
+      },
+    }
+  else
+    vim.opt.clipboard = "unnamedplus"
+    vim.g.clipboard = nil
+  end
 end
 
 vim.opt.smartindent = true
@@ -94,27 +94,27 @@ vim.keymap.set("n", "<Esc><Esc>", ":nohlsearch<CR>", { silent = true })
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-N>", { noremap = true, silent = true })
 -- custom commands
 vim.api.nvim_create_user_command("CloseAllNotify", function()
-	require("notify").dismiss({ silent = true, pending = true })
+  require("notify").dismiss({ silent = true, pending = true })
 end, { desc = "Close all notifications" })
 vim.cmd([[cab can CloseAllNotify]])
 vim.api.nvim_create_user_command("ConfigUserInit", ":e " .. vim.fn.stdpath("config") .. "/lua/local/user_init.lua", {})
 vim.api.nvim_create_user_command(
-	"ConfigUserPlugins",
-	":e " .. vim.fn.stdpath("config") .. "/lua/local/plugins/user_plugins.lua",
-	{}
+  "ConfigUserPlugins",
+  ":e " .. vim.fn.stdpath("config") .. "/lua/local/plugins/user_plugins.lua",
+  {}
 )
 vim.keymap.set("n", "<Leader>x", function()
-	vim.diagnostic.open_float({
-		focusable = false,
-		close_events = {
-			"CursorMoved",
-			"CursorMovedI",
-			"InsertEnter",
-			"BufHidden",
-			"InsertCharPre",
-			"WinLeave",
-		},
-	})
+  vim.diagnostic.open_float({
+    focusable = false,
+    close_events = {
+      "CursorMoved",
+      "CursorMovedI",
+      "InsertEnter",
+      "BufHidden",
+      "InsertCharPre",
+      "WinLeave",
+    },
+  })
 end, { noremap = true, silent = true })
 
 -- goto definition
@@ -125,104 +125,96 @@ vim.keymap.set("n", "gr", vim.lsp.buf.rename, { noremap = true, silent = true })
 vim.keymap.set("n", "gh", vim.lsp.buf.hover, { noremap = true, silent = true })
 -- filetype
 vim.filetype.add({
-	filename = {
-		[".gitattributes"] = "gitattributes",
-	},
-	pattern = {
-		[".*/.flake8"] = "ini",
-	},
-	extension = {
-		["code-snippets"] = "json",
-		mdx = "markdown",
-		razor = "razor",
-	},
+  filename = {
+    [".gitattributes"] = "gitattributes",
+  },
+  pattern = {
+    [".*/.flake8"] = "ini",
+  },
+  extension = {
+    ["code-snippets"] = "json",
+    mdx = "markdown",
+    razor = "razor",
+  },
 })
--- auto format on save
+-- auto fixAll
 vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = {
-		"*.c",
-		"*.cc",
-		"*.cpp",
-		"*.cs",
-		"*.css",
-		"*.h",
-		"*.hpp",
-		"*.hs",
-		"*.html",
-		"*.js",
-		"*.json",
-		"*.jsonc",
-		"*.jsx",
-		"*.lua",
-		"*.md",
-		"*.nix",
-		"*.py",
-		"*.rs",
-		"*.ts",
-		"*.tsx",
-	},
-	callback = function()
-		local organize_kinds = {
-			python = "source.organizeImports",
-			-- javascript = "source.organizeImports",
-			-- javascriptreact = "source.organizeImports",
-			-- typescript = "source.organizeImports",
-			-- typescriptreact = "source.organizeImports",
-		}
-		local ft = vim.bo.filetype
-		local kinds = organize_kinds[ft]
-		if kinds then
-			vim.lsp.buf.code_action({
-				context = {
-					only = { kinds },
-				},
-				apply = true,
-				async = false,
-			})
-			vim.defer_fn(function()
-				vim.lsp.buf.format({ async = false })
-			end, 100)
-		else
-			vim.lsp.buf.format({ async = false })
-		end
-	end,
+  pattern = {
+    "*.py",
+    "*.js",
+    "*.jsx",
+    "*.ts",
+    "*.tsx",
+    "*.json",
+    "*.jsonc",
+  },
+  callback = function()
+    vim.lsp.buf.code_action({
+      context = {
+        only = { "source.fixAll" },
+      },
+      apply = true,
+      async = false,
+    })
+  end,
+})
+-- auto format
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = {
+    "*.c",
+    "*.cc",
+    "*.cpp",
+    "*.cs",
+    "*.css",
+    "*.h",
+    "*.hpp",
+    "*.hs",
+    "*.html",
+    "*.lua",
+    "*.md",
+    "*.nix",
+    "*.rs",
+  },
+  callback = function()
+    vim.lsp.buf.format({ async = false })
+  end,
 })
 -- tabwidth dynamic
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = {
-		"c",
-		"cpp",
-		"h",
-		"hpp",
-		"lua",
-		"javascript",
-		"typescript",
-		"typescriptreact",
-		"html",
-		"css",
-		"json",
-		"jsonc",
-		"markdown",
-		"mdx",
-	},
-	callback = function()
-		vim.bo.tabstop = 2
-		vim.bo.shiftwidth = 2
-		vim.bo.expandtab = true
-	end,
+  pattern = {
+    "c",
+    "cpp",
+    "h",
+    "hpp",
+    "lua",
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "css",
+    "json",
+    "jsonc",
+    "markdown",
+    "mdx",
+  },
+  callback = function()
+    vim.bo.tabstop = 2
+    vim.bo.shiftwidth = 2
+    vim.bo.expandtab = true
+  end,
 })
 
 -- python: auto-detect .venv in project root
 local venv_path = vim.fn.getcwd() .. "/.venv"
 if vim.fn.isdirectory(venv_path) == 1 then
-	vim.env.VIRTUAL_ENV = venv_path
-	if Config.os_name == "win32" or Config.os_name == "win64" then
-		vim.g.python3_host_prog = venv_path .. "/Scripts/python.exe"
-	else
-		vim.g.python3_host_prog = venv_path .. "/bin/python3"
-	end
+  vim.env.VIRTUAL_ENV = venv_path
+  if Config.os_name == "win32" or Config.os_name == "win64" then
+    vim.g.python3_host_prog = venv_path .. "/Scripts/python.exe"
+  else
+    vim.g.python3_host_prog = venv_path .. "/bin/python3"
+  end
 else
-	vim.g.python3_host_prog = "python3"
+  vim.g.python3_host_prog = "python3"
 end
 -- ruby
 vim.g.loaded_ruby_provider = 0
@@ -235,6 +227,6 @@ vim.api.nvim_set_keymap("n", "<C-A-i>", ":term " .. agent .. "<CR>i<CR>", { sile
 -- user config
 local local_init = vim.fn.stdpath("config") .. "/lua/local/user_init.lua"
 if vim.loop.fs_stat(local_init) then
-	require("local.user_init")
+  require("local.user_init")
 end
 require("config.lazy")
