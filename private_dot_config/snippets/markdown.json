@@ -862,5 +862,30 @@
     "prefix": "mmd-sequence-parllel",
     "description": "Hightlight flows by providing colored background rect",
     "body": ["rect ${1: color}", "", "end"]
-  }
+  },
+  "Mermaid Architecture Diagram": {
+    "prefix": "mmd-architecture",
+    "description": "Mermaid architecture diagram",
+    "body": ["```mermaid", "architecture-beta", "```"]
+  },
+  "Mermaid architecture group": {
+    "prefix": "mmd-architecture-group",
+    "description": "Group in Mermaid architecture diagram",
+    "body": ["group ${1:val}(${2:iconClass}:${3:iconName})[${4:label}]"]
+  },
+  "Mermaid architecture service": {
+    "prefix": "mmd-architecture-service",
+    "description": "Service in Mermaid architecture diagram",
+    "body": ["service ${1:val}(${2:iconClass}:${3:iconName})[${4:label}]"]
+  },
+  "Mermaid architecture service in group": {
+    "prefix": "mmd-architecture-service-in-group",
+    "description": "Inner group service in Mermaid architecture diagram",
+    "body": ["service ${1:val}(${2:iconClass}:${3:iconName})[${4:label}] in ${5:group}"]
+  },
+  "Mermaid architecture junction": {
+    "prefix": "mmd-architecture-junction",
+    "description": "Junction in Mermaid architecture diagram",
+    "body": "junction ${1:val}"
+  },
 }
