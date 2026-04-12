@@ -75,9 +75,9 @@ let lspServers = [
     \    name: 'dprint',
     \    filetype: ['markdown'],
     \    path: 'dprint',
-    \    args: ['lsp']
+    \    args: ['lsp'],
     \    workspaceConfig: #{
-    \      useTabs: v:false
+    \      useTabs: v:false,
     \      markdown: #{
     \        newLineKind: "lf",
     \        textWrap: "maintain"
@@ -155,6 +155,7 @@ let lspServers = [
 
 autocmd User LspSetup call LspAddServer(lspServers)
 
+autocmd BufWritePre *.md silent! LspFormat
 autocmd BufWritePre *.py silent! LspFixAll
 autocmd BufWritePre *.json silent! LspFormat
 autocmd BufWritePre *.ts silent! LspFixAll
