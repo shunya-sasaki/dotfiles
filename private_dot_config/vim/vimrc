@@ -12,11 +12,8 @@ set background=dark
 set termguicolors
 syntax on
 " tab and indent ------------------------------------------------------------
-set expandtab
 set tw=0
 set formatoptions=q
-set tabstop=4
-set shiftwidth=4
 set showmatch
 set matchtime=1
 set pumheight=10
@@ -25,8 +22,11 @@ set splitbelow
 set completeopt=menuone,noinsert
 set backspace=indent,eol,start
 set wildoptions+=pum,fuzzy
+set tabstop=4
+set shiftwidth=4
 set list
 set listchars=tab:^\ \ ,extends:»,precedes:«,leadmultispace:\|\ \ \ \ 
+set expandtab
 " backup --------------------------------------------------------------------
 set noswapfile
 set nobackup
