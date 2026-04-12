@@ -150,6 +150,11 @@ let lspServers = [
     \    filetype: ['html', 'css', 'javascript'],
     \    path: 'vscode-html-language-server',
     \    args: ['--stdio']
+    \ },
+    \ #{
+    \    name: 'nginx-language-server',
+    \    filetype: ['nginx'],
+    \    path: 'nginx-language-server',
     \ }
     \ ]
 
@@ -158,6 +163,7 @@ autocmd User LspSetup call LspAddServer(lspServers)
 autocmd BufWritePre *.md silent! LspFormat
 autocmd BufWritePre *.py silent! LspFixAll
 autocmd BufWritePre *.json silent! LspFormat
+autocmd BufWritePre *.jsonc silent! LspFormat
 autocmd BufWritePre *.ts silent! LspFixAll
 autocmd BufWritePre *.tsx silent! LspFixAll
 
