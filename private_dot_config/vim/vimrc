@@ -2,7 +2,7 @@ set mouse=a
 " window visual -------------------------------------------------------------
 set number
 set nowrap
-" set cursorline
+set cursorline
 set belloff=all
 hi clear CursorLine
 let &t_SI .= "\e[6 q"
@@ -25,6 +25,8 @@ set splitbelow
 set completeopt=menuone,noinsert
 set backspace=indent,eol,start
 set wildoptions+=pum,fuzzy
+set list
+set listchars=tab:^\ \ ,extends:»,precedes:«,leadmultispace:\|\ \ \ \ 
 " backup --------------------------------------------------------------------
 set noswapfile
 set nobackup
@@ -58,5 +60,4 @@ source ~/.config/vim/airline.vim
 source ~/.config/vim/completion.vim
 source ~/.config/vim/lsp.vim
 source ~/.config/vim/keybindings.vim
-
 

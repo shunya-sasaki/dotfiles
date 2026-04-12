@@ -7,6 +7,7 @@ augroup TransparentBG
     autocmd ColorScheme * highlight Folded ctermbg=NONE guibg=NONE
     autocmd ColorScheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
     autocmd ColorScheme * highlight SignColumn ctermbg=NONE guibg=NONE
+    autocmd ColorScheme * highlight! link SpecialKey Comment
 augroup END
 colorscheme monokai
 set fillchars+=eob:\ 
