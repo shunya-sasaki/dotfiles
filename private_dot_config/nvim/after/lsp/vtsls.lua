@@ -1,4 +1,4 @@
 return {
-	cmd = { "vtsls", "--stdio" },
-	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact"},
+  cmd = { "vtsls", "--stdio" },
+  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 }

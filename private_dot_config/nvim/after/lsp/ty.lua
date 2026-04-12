@@ -1,13 +1,13 @@
 return {
-	cmd = { "ty", "server" },
-	filetypes = { "python" },
-	settings = {
-		ty = {
-			configuration = {
-				completions = {
-					autoImport = true,
-				},
-			},
-		},
-	},
+  cmd = { "ty", "server" },
+  filetypes = { "python" },
+  settings = {
+    ty = {
+      configuration = {
+        completions = {
+          autoImport = true,
+        },
+      },
+    },
+  },
 }
