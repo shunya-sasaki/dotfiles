@@ -8,7 +8,11 @@ in
   zsh.enable = false;
   vim = {
     enable = true;
-    extraConfig = "source ~/.config/vim/vimrc";
+    extraConfig = ''
+      source ~/.config/vim/vimrc
+      set runtimepath+=~/.config/vim
+      set runtimepath+=~/.config/vim/after
+      '';
     plugins = [
       (vimPlug {
         name = "vim-commentary";
