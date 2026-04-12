@@ -5,6 +5,7 @@ with pkgs; [
   biome
   clang-tools
   cmake-language-server
+  docker-language-server
   dprint
   fortls
   haskell-language-server
