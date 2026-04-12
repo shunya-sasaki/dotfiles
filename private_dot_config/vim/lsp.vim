@@ -72,6 +72,11 @@ let lspServers = [
     \    }
     \  },
     \ #{
+    \    name: 'rust-analyzer',
+    \    filetype: ['rust'],
+    \    path: 'rust-analyzer',
+    \  },
+    \ #{
     \    name: 'dprint',
     \    filetype: ['markdown'],
     \    path: 'dprint',
@@ -152,9 +157,21 @@ let lspServers = [
     \    args: ['--stdio']
     \ },
     \ #{
+    \    name: 'taplo',
+    \    filetype: ['toml'],
+    \    path: 'taplo',
+    \    args: ['lsp', 'stdio'],
+    \ },
+    \ #{
     \    name: 'nginx-language-server',
     \    filetype: ['nginx'],
     \    path: 'nginx-language-server',
+    \ },
+    \ #{
+    \    name: 'docker-language-server',
+    \    filetype: ['dockerfile', 'yaml.docker-compose'],
+    \    path: 'docker-language-server',
+    \    args: ['start', '--stdio'],
     \ }
     \ ]
 
