@@ -56,50 +56,63 @@ autocmd User LspSetup call LspOptionsSet(#{
         \   filterCompletionDuplicates: v:false,
         \   condensedCompletionMenu: v:false,
         \   documentationFormat: ['markdown', 'plaintext'],
-	\ })
+    \ })
 
 
 let lspServers = [ 
     \ #{
-	\    name: 'bash-language-server',
-	\    filetype: ['sh'],
-	\    path: 'bash-language-server',
-	\    args: ['start'],
+    \    name: 'bash-language-server',
+    \    filetype: ['sh'],
+    \    path: 'bash-language-server',
+    \    args: ['start'],
     \    workspaceConfig: #{
     \      bashIde: #{
     \        globPattern: "*@(.sh|.inc|.bash|.command)"
     \      }
     \    }
-	\  },
+    \  },
     \ #{
-	\    name: 'clangd',
-	\    filetype: ['c', 'cpp'],
-	\    path: 'clangd',
-	\    args: ['--background-index']
-	\  },
+    \    name: 'dprint',
+    \    filetype: ['markdown'],
+    \    path: 'dprint',
+    \    args: ['lsp']
+    \    workspaceConfig: #{
+    \      useTabs: v:false
+    \      markdown: #{
+    \        newLineKind: "lf",
+    \        textWrap: "maintain"
+    \      }
+    \    }
+    \  },
     \ #{
-	\    name: 'ruff',
-	\    filetype: ['python'],
-	\    path: 'ruff',
-	\    args: ['server'],
+    \    name: 'clangd',
+    \    filetype: ['c', 'cpp'],
+    \    path: 'clangd',
+    \    args: ['--background-index']
+    \  },
+    \ #{
+    \    name: 'ruff',
+    \    filetype: ['python'],
+    \    path: 'ruff',
+    \    args: ['server'],
     \    features: #{
     \      hover: v:false
     \    },
     \ },
     \ #{
-	\    name: 'ty',
-	\    filetype: ['python'],
-	\    path: 'ty',
-	\    args: ['server'],
+    \    name: 'ty',
+    \    filetype: ['python'],
+    \    path: 'ty',
+    \    args: ['server'],
     \    workspaceConfig: #{
     \      ty: #{ }
     \    }
     \ },
     \ #{
-	\    name: 'pyright',
-	\    filetype: ['python'],
-	\    path: 'pyright-langserver',
-	\    args: ['--stdio'],
+    \    name: 'pyright',
+    \    filetype: ['python'],
+    \    path: 'pyright-langserver',
+    \    args: ['--stdio'],
     \    workspaceConfig: #{
     \      pyright: #{
     \        disableOrganizeImports: v:true,
@@ -113,34 +126,37 @@ let lspServers = [
     \   }}
     \ },
     \ #{
-	\    name: 'biome',
-	\    filetype: ['typescript', 'javascript',
+    \    name: 'biome',
+    \    filetype: ['typescript', 'javascript',
     \               'typescriptreact', 'javascriptreact',
     \               'json', 'jsonc'],
-	\    path: 'biome',
-	\    args: ['lsp-proxy']
+    \    path: 'biome',
+    \    args: ['lsp-proxy']
     \ },
     \ #{
-	\    name: 'vtsls',
-	\    filetype: ['typescript', 'javascript', 'typescriptreact', 'javascriptreact'],
-	\    path: 'vtsls',
-	\    args: ['--stdio']
+    \    name: 'vtsls',
+    \    filetype: ['typescript', 'javascript', 'typescriptreact', 'javascriptreact'],
+    \    path: 'vtsls',
+    \    args: ['--stdio']
     \ },
     \ #{
-	\    name: 'vscode-css-language-server',
-	\    filetype: ['css', 'scss', 'less'],
-	\    path: 'vscode-css-language-server',
-	\    args: ['--stdio']
+    \    name: 'vscode-css-language-server',
+    \    filetype: ['css', 'scss', 'less'],
+    \    path: 'vscode-css-language-server',
+    \    args: ['--stdio']
     \ },
     \ #{
-	\    name: 'vscode-html-language-server',
-	\    filetype: ['html', 'css', 'javascript'],
-	\    path: 'vscode-html-language-server',
-	\    args: ['--stdio']
+    \    name: 'vscode-html-language-server',
+    \    filetype: ['html', 'css', 'javascript'],
+    \    path: 'vscode-html-language-server',
+    \    args: ['--stdio']
     \ }
     \ ]
 
 autocmd User LspSetup call LspAddServer(lspServers)
 
-autocmd BufWritePre * silent! LspFixAll
+autocmd BufWritePre *.py silent! LspFixAll
+autocmd BufWritePre *.json silent! LspFormat
+autocmd BufWritePre *.ts silent! LspFixAll
+autocmd BufWritePre *.tsx silent! LspFixAll
 
