@@ -10,12 +10,15 @@ with pkgs; [
   fortls
   haskell-language-server
   markdown-oxide
+  nginx-language-server
   nil
   nixd
   pyright
+  ruff
   stylua
   tailwindcss-language-server
   taplo
+  ty
   vscode-langservers-extracted
   vtsls
 ]
