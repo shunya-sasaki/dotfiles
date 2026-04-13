@@ -887,5 +887,5 @@
     "prefix": "mmd-architecture-junction",
     "description": "Junction in Mermaid architecture diagram",
     "body": "junction ${1:val}"
-  },
+  }
 }
