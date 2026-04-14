@@ -137,16 +137,78 @@ vim.filetype.add({
     razor = "razor",
   },
 })
--- auto fixAll
+
 vim.api.nvim_create_autocmd("FileType", {
   pattern = {
     "javascript",
     "javascriptreact",
     "json",
     "jsonc",
-    "python",
     "typescript",
     "typescriptreact",
+  },
+  callback = function(args)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = args.buf,
+      callback = function()
+        local clients = vim.lsp.get_clients({ bufnr = args.buf, name = "biome" })
+        if #clients == 0 then
+          return
+        end
+
+        local params = vim.lsp.util.make_range_params(0, clients[1].offset_encoding)
+        params.context = {
+          only = { "source.organizeImports" },
+          diagnostics = {},
+        }
+
+        local timeout_ms = 3000
+        local response = clients[1]:request_sync("textDocument/codeAction", params, timeout_ms, args.buf)
+
+        if response and response.result and response.result[1] then
+          local action = response.result[1]
+          if action.edit then
+            vim.lsp.util.apply_workspace_edit(action.edit, clients[1].offset_encoding)
+          end
+        end
+
+        vim.lsp.buf.format({
+          async = false,
+          filter = function(client)
+            return client.name == "biome"
+          end,
+        })
+      end,
+    })
+  end,
+})
+
+vim.api.nvim_create_user_command("LSPFormatOrganizeImportsBiome", function()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local clients = vim.lsp.get_clients({ bufnr = bufnr, name = "biome" })
+  if #clients == 0 then
+    return
+  end
+  local params = vim.lsp.util.make_range_params(0, clients[1].offset_encoding)
+  params.context = {
+    only = { "source.organizeImports" },
+    diagnostics = {},
+  }
+  local timeout_ms = 3000
+  local response = clients[1]:request_sync("textDocument/codeAction", params, timeout_ms, bufnr)
+
+  if response and response.result and response.result[1] then
+    local action = response.result[1]
+    if action.edit then
+      vim.lsp.util.apply_workspace_edit(action.edit, clients[1].offset_encoding)
+    end
+  end
+end, { desc = "Organize imports with Biome" })
+
+-- auto fixAll
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
+    "python",
   },
   callback = function(args)
     vim.api.nvim_create_autocmd("BufWritePre", {
