@@ -25,3 +25,11 @@ vim.keymap.set("n", "gd", "<C-]>", { noremap = true, silent = true })
 vim.keymap.set("n", "gr", vim.lsp.buf.rename, { noremap = true, silent = true })
 -- hover & scroll
 vim.keymap.set("n", "gh", vim.lsp.buf.hover, { noremap = true, silent = true })
+
+local luasnip = require("luasnip")
+vim.keymap.set({ "i", "s" }, "<C-J>", function()
+  luasnip.jump(1)
+end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-K>", function()
+  luasnip.jump(-1)
+end, { silent = true })

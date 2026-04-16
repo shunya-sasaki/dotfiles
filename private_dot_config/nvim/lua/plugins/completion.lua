@@ -61,19 +61,12 @@ return {
       delete_check_events = "TextChanged", -- tidy up removed snippet text  [oai_citation:2‡github.com](https://github.com/L3MON4D3/LuaSnip?utm_source=chatgpt.com)
     },
     opts = function(_, opts)
-      local luasnip = require("luasnip")
       local vscode_snippets_path = {
         vim.fn.expand(vim.env.HOME .. "/.config/snippets"),
       }
       require("luasnip.loaders.from_vscode").load({
         paths = vscode_snippets_path,
       })
-      vim.keymap.set({ "i", "s" }, "<C-J>", function()
-        luasnip.jump(1)
-      end, { silent = true })
-      vim.keymap.set({ "i", "s" }, "<C-K>", function()
-        luasnip.jump(-1)
-      end, { silent = true })
     end,
   },
   {
