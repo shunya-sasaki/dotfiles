@@ -151,27 +151,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = args.buf,
       callback = function()
-        local clients = vim.lsp.get_clients({ bufnr = args.buf, name = "biome" })
-        if #clients == 0 then
-          return
-        end
-
-        local params = vim.lsp.util.make_range_params(0, clients[1].offset_encoding)
-        params.context = {
-          only = { "source.organizeImports" },
-          diagnostics = {},
-        }
-
-        local timeout_ms = 3000
-        local response = clients[1]:request_sync("textDocument/codeAction", params, timeout_ms, args.buf)
-
-        if response and response.result and response.result[1] then
-          local action = response.result[1]
-          if action.edit then
-            vim.lsp.util.apply_workspace_edit(action.edit, clients[1].offset_encoding)
-          end
-        end
-
+        call_organaize_imports_biome()
         vim.lsp.buf.format({
           async = false,
           filter = function(client)
@@ -183,7 +163,22 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.api.nvim_create_user_command("LSPFormatOrganizeImportsBiome", function()
+vim.api.nvim_create_user_command(
+  "LSPFormatOrganizeImportsBiome",
+  call_organaize_imports_biome(),
+  { desc = "Organize imports with Biome" }
+)
+
+function full_text_range(bufnr)
+  local last_line = vim.api.nvim_buf_line_count(bufnr) - 1
+  local last_text = (vim.api.nvim_buf_get_lines(bufnr, last_line, last_line + 1, true)[1] or "")
+  return {
+    start = { line = 0, character = 0 },
+    ["end"] = { line = last_line, character = #last_text },
+  }
+end
+
+function call_organaize_imports_biome()
   local bufnr = vim.api.nvim_get_current_buf()
   local clients = vim.lsp.get_clients({ bufnr = bufnr, name = "biome" })
   if #clients == 0 then
@@ -191,19 +186,39 @@ vim.api.nvim_create_user_command("LSPFormatOrganizeImportsBiome", function()
   end
   local params = vim.lsp.util.make_range_params(0, clients[1].offset_encoding)
   params.context = {
-    only = { "source.organizeImports" },
+    only = { "source.organizeImports.biome" },
     diagnostics = {},
   }
+  params.range = full_text_range(bufnr)
   local timeout_ms = 3000
   local response = clients[1]:request_sync("textDocument/codeAction", params, timeout_ms, bufnr)
 
-  if response and response.result and response.result[1] then
-    local action = response.result[1]
-    if action.edit then
-      vim.lsp.util.apply_workspace_edit(action.edit, clients[1].offset_encoding)
+  if not response or not response.result then
+    vim.notify("No response from Biome for organizing imports", vim.log.levels.WARN)
+    return
+  end
+  vim.notify(vim.inspect(response), vim.log.levels.INFO)
+
+  local action = nil
+  for _, res in pairs(response or {}) do
+    if res.isPreferred then
+      action = res
+      break
     end
   end
-end, { desc = "Organize imports with Biome" })
+  local resolved = clients[1]:request_sync("codeAction/resolve", action, timeout_ms, bufnr)
+  for _, res in pairs(resolved or {}) do
+    if res.result and res.result.edit then
+      action = res.result
+      break
+    end
+  end
+  if action.edit then
+    vim.lsp.util.apply_workspace_edit(action.edit, clients[1].offset_encoding)
+  elseif action.command then
+    clients[1]:execute_command(action.command)
+  end
+end
 
 -- auto fixAll
 vim.api.nvim_create_autocmd("FileType", {
