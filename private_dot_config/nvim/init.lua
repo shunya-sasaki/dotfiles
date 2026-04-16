@@ -151,13 +151,9 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = args.buf,
       callback = function()
+        call_code_action_synchronously("biome", "source.fixAll.biome")
         call_code_action_synchronously("biome", "source.organizeImports.biome")
-        vim.lsp.buf.format({
-          async = false,
-          filter = function(client)
-            return client.name == "biome"
-          end,
-        })
+        call_format("biome")
       end,
     })
   end,
@@ -170,6 +166,15 @@ function full_document_range(bufnr)
     start = { line = 0, character = 0 },
     ["end"] = { line = last_line, character = #last_text },
   }
+end
+
+function call_format_synchronously(lsp_name)
+  vim.lsp.buf.format({
+    async = false,
+    filter = function(client)
+      return client.name == lsp_name
+    end,
+  })
 end
 
 function call_code_action_synchronously(lsp_name, code_action)
@@ -227,13 +232,9 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = args.buf,
       callback = function()
-        vim.lsp.buf.code_action({
-          context = {
-            only = { "source.fixAll" },
-          },
-          apply = true,
-          async = false,
-        })
+        call_code_action_synchronously("ruff", "source.fixAll.ruff")
+        call_code_action_synchronously("ruff", "source.organizeImports.ruff")
+        call_format_synchronously("ruff")
       end,
     })
   end,
