@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  basedpyright
   bash-language-server
   biome
   clang-tools
