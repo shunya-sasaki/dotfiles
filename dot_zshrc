@@ -102,6 +102,11 @@ alias zk="zellij k" # kill session
 alias zl="zellij ls" # list sessions
 alias zs="zellij -s" # start new session
 
+# Docker
+function docker-login-github-cr() {
+    echo $CR_PAT | docker login ghcr.io -u ${GITHUB_USERNAME} --password-stdin
+}
+
 # Antigravity
 export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 
