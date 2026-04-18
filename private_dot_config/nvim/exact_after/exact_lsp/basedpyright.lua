@@ -9,6 +9,7 @@ return {
     analysis = {
       autoSearchPaths = true,
       diagnosticMode = "openFilesOnly",
+      typeCheckingMode = "off",
     },
     python = {
       venvPath = ".",
