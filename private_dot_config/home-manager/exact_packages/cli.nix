@@ -15,6 +15,8 @@ with pkgs; [
   imagemagick
   jq
   lazydocker
+  mdbook
+  mdbook-mermaid
   neovim
   ollama
   opencode
