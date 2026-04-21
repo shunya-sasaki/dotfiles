@@ -34,6 +34,7 @@ vim.keymap.set({ "i", "s" }, "<C-K>", function()
   luasnip.jump(-1)
 end, { silent = true })
 
+-- dap ------------------------------------------------------------------------
 vim.keymap.set("n", "<F5>", function()
   require("dap").continue()
 end)
@@ -75,3 +76,6 @@ vim.keymap.set("n", "<Leader>ds", function()
   local widgets = require("dap.ui.widgets")
   widgets.centered_float(widgets.scopes)
 end)
+
+-- render-markdown ------------------------------------------------------------
+vim.api.nvim_set_keymap("n", "<Leader>v", ":RenderMarkdown buf_toggle<CR>", { noremap = true, silent = true })
