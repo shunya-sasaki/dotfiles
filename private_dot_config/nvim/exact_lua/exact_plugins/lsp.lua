@@ -26,7 +26,6 @@ return {
       -- Python
       vim.lsp.enable("ruff")
       vim.lsp.enable("ty")
-      vim.lsp.enable("basedpyright")
       -- TOML
       vim.lsp.enable("taplo")
       -- NGINX
