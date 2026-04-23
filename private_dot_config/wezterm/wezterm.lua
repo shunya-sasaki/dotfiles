@@ -8,15 +8,7 @@ config.max_fps = 120
 
 config.initial_cols = 80
 config.initial_rows = 30
-config.font = wezterm.font_with_fallback({
-  "Moralerspace Neon HW",
-  "Monaspace Neon",
-  "Symbols Nerd Font Mono",
-  "Moralerspace Neon HW",
-  "FiraCode Nerd Font",
-  "IBM Plex Sans JP",
-  "Apple Color Emoji",
-})
+config.allow_square_glyphs_to_overflow_width = "Always"
 config.harfbuzz_features = {
   "calt=1",
   "liga=1",
@@ -36,18 +28,33 @@ config.harfbuzz_features = {
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   config.default_prog = { "pwsh.exe" }
   config.font_size = 12
-  config.enable_kitty_keyboard = true
+  config.enable_kitty_keyboard = false
   config.enable_kitty_graphics = true
+  config.font = wezterm.font_with_fallback({
+    { family = "Moralerspace Neon HW" },
+    { family = "Segoe UI Emoji", assume_emoji_presentation = true },
+    { family = "Symbols Nerd Font Mono" },
+  })
 elseif wezterm.target_triple == "aarch64-apple-darwin" then
   config.default_prog = { "/bin/zsh" }
   config.font_size = 14
   config.enable_kitty_keyboard = true
   config.enable_kitty_graphics = true
+  config.font = wezterm.font_with_fallback({
+    { family = "Moralerspace Neon HW" },
+    { family = "Apple Color Emoji", assume_emoji_presentation = true },
+    { family = "Symbols Nerd Font Mono" },
+  })
 else
   config.default_prog = { "/bin/bash" }
   config.font_size = 12
   config.enable_kitty_keyboard = true
   config.enable_kitty_graphics = true
+  config.font = wezterm.font_with_fallback({
+    { family = "Moralerspace Neon HW" },
+    { family = "Noto Color Emoji", assume_emoji_presentation = true },
+    { family = "Symbols Nerd Font Mono" },
+  })
 end
 
 wezterm.on("update-right-status", function(window, pane)
