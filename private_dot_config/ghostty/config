@@ -2,6 +2,8 @@
 # See https://ghostty.org/docs/config for all options
 theme = "TokyoNight"
 background-opacity = 0.9
+font-family = "Noto Color Emoji"
+font-family = "JetBrains Mono"
 
 # Split pane
 #keybind = ctrl+a>shift+|=new_split:right
