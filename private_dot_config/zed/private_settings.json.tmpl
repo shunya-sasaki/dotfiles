@@ -1,7 +1,7 @@
 {{- $profile := .profile | default "home" -}}
 {{- $core := .zed.settings.core -}}
 {{- $agent := dict -}}
-{{- if eq .profile "work" -}}
+{{- if eq $profile "work" -}}
 {{-   $agent = .zed.settings.work -}}
 {{- else }}
 {{-   $agent = .zed.settings.home -}}
