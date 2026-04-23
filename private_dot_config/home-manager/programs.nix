@@ -169,6 +169,15 @@ in
           sha256 = "sha256-2p92xLlYYl9HQjFha/qRUwiJCB2MUwbt3ADz0uWyGcw=";
         };
       })
+      (vimPlug {
+        name = "copilot.vim";
+        src = pkgs.fetchFromGitHub {
+        owner = "github";
+          repo = "copilot.vim";
+          rev = "release";
+          sha256 = "sha256-McrihGscbvt2lqHil3NxHUfgx/IAFDf7tdbBkv4vTK4=";
+        };
+      })
       # Commands --------------------------------------------------------------
       (vimPlug {
         name = "fzf";
