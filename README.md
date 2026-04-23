@@ -25,10 +25,10 @@ sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)
 
 ### Clone this repository
 
-```sh
-nix-shell -p git chezmoi --run "chezmoi init  https://github.com/shunya-sasaki/dotfiles.git"
+````sh
+nix-shell -p git chezmoi --run "chezmoi init  https://github.com/shunya-sasaki/dotfiles.git --apply"
 ```
-
+`
 ### Install home manager
 
 Create `~/.config/home-manager/home.nix` file containing something like:
