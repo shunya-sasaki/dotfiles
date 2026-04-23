@@ -7,4 +7,6 @@ with pkgs; [
   obsidian
   wezterm
   moralerspace-hw
+  noto-fonts-color-emoji
+  nerd-fonts.symbols-only
 ]
