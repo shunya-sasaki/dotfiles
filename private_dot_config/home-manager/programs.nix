@@ -15,7 +15,8 @@ in
       '';
     plugins = [
       (vimPlug {
-        name = "vim-commentary";
+        pname = "vim-commentary";
+        version = "1.3";
         src = pkgs.fetchFromGitHub {
           owner = "tpope";
           repo = "vim-commentary";
@@ -24,7 +25,8 @@ in
         };
       })
       (vimPlug {
-        name = "vim-surround";
+        pname = "vim-surround";
+        version = "2.2";
         src = pkgs.fetchFromGitHub {
           owner = "tpope";
           repo = "vim-surround";
@@ -33,7 +35,8 @@ in
         };
       })
       (vimPlug {
-        name = "vim-easymotion";
+        pname = "vim-easymotion";
+        version = "3.0.1";
         src = pkgs.fetchFromGitHub {
           owner = "easymotion";
           repo = "vim-easymotion";
@@ -43,7 +46,8 @@ in
       })
       # Interface -------------------------------------------------------------
       (vimPlug {
-        name = "vim-floaterm";
+        pname = "vim-floaterm";
+        version = "unstable";
         src = pkgs.fetchFromGitHub {
         owner = "voldikss";
         repo = "vim-floaterm";
@@ -52,7 +56,8 @@ in
         };
       })
       (vimPlug {
-        name = "vim-airline";
+        pname = "vim-airline";
+        version = "0.11";
         src = pkgs.fetchFromGitHub {
           owner = "vim-airline";
           repo = "vim-airline";
@@ -61,7 +66,8 @@ in
         };
       })
       (vimPlug {
-        name = "vim-airline-themes";
+        pname = "vim-airline-themes";
+        version = "unstable";
         src = pkgs.fetchFromGitHub {
           owner = "vim-airline";
           repo = "vim-airline-themes";
@@ -70,7 +76,8 @@ in
         };
       })
       (vimPlug {
-        name = "vim-devicons";
+        pname = "vim-devicons";
+        version = "unstable";
         src = pkgs.fetchFromGitHub {
           owner = "ryanoasis";
           repo = "vim-devicons";
@@ -79,7 +86,8 @@ in
         };
       })
       (vimPlug {
-        name = "tokyonight-vim";
+        pname = "tokyonight-vim";
+        version = "unstable";
         src = pkgs.fetchFromGitHub {
           owner = "ghifarit53";
           repo = "tokyonight-vim";
@@ -88,7 +96,8 @@ in
         };
       })
       (vimPlug {
-        name = "molokai";
+        pname = "molokai";
+        version = "unstable";
         src = pkgs.fetchFromGitHub {
           owner = "tomasr";
           repo = "molokai";
@@ -97,7 +106,8 @@ in
         };
       })
       (vimPlug {
-        name = "vim-monokai";
+        pname = "vim-monokai";
+        version = "unstable";
         src = pkgs.fetchFromGitHub {
           owner = "crusoexia";
           repo = "vim-monokai";
@@ -106,7 +116,8 @@ in
         };
       })
       (vimPlug {
-        name = "gruvbox-material";
+        pname = "gruvbox-material";
+        version = "1.2.5";
         src = pkgs.fetchFromGitHub {
           owner = "sainnhe";
           repo = "gruvbox-material";
@@ -115,7 +126,8 @@ in
         };
       })
       (vimPlug {
-        name = "sonokai";
+        pname = "sonokai";
+        version = "0.3.3";
         src = pkgs.fetchFromGitHub {
           owner = "sainnhe";
           repo = "sonokai";
@@ -124,7 +136,8 @@ in
         };
       })
       (vimPlug {
-        name = "onedark.vim";
+        pname = "onedark-vim";
+        version = "unstable";
         src = pkgs.fetchFromGitHub {
           owner = "joshdick";
           repo = "onedark.vim";
@@ -134,7 +147,8 @@ in
       })
       # Completion -------------------------------------------------------------
       (vimPlug {
-        name = "vim-vsnip";
+        pname = "vim-vsnip";
+        version = "unstable";
         src = pkgs.fetchFromGitHub {
         owner = "hrsh7th";
           repo = "vim-vsnip";
@@ -143,7 +157,8 @@ in
         };
       })
       (vimPlug {
-        name = "vim-vsnip-integ";
+        pname = "vim-vsnip-integ";
+        version = "unstable";
         src = pkgs.fetchFromGitHub {
         owner = "hrsh7th";
           repo = "vim-vsnip-integ";
@@ -152,7 +167,8 @@ in
         };
       })
       (vimPlug {
-        name = "vimcomplete";
+        pname = "vimcomplete";
+        version = "unstable";
         src = pkgs.fetchFromGitHub {
         owner = "girishji";
           repo = "vimcomplete";
@@ -161,7 +177,8 @@ in
         };
       })
       (vimPlug {
-        name = "vim-table-mode";
+        pname = "vim-table-mode";
+        version = "4.8.1";
         src = pkgs.fetchFromGitHub {
         owner = "dhruvasagar";
           repo = "vim-table-mode";
@@ -170,7 +187,8 @@ in
         };
       })
       (vimPlug {
-        name = "copilot.vim";
+        pname = "copilot-vim";
+        version = "unstable";
         src = pkgs.fetchFromGitHub {
         owner = "github";
           repo = "copilot.vim";
@@ -180,7 +198,8 @@ in
       })
       # Commands --------------------------------------------------------------
       (vimPlug {
-        name = "fzf";
+        pname = "fzf";
+        version = "unstable";
         src = pkgs.fetchFromGitHub {
           owner = "junegunn";
           repo = "fzf";
@@ -189,7 +208,8 @@ in
         };
       })
       (vimPlug {
-        name = "fzf.vim";
+        pname = "fzf-vim";
+        version = "unstable";
         src = pkgs.fetchFromGitHub {
           owner = "junegunn";
           repo = "fzf.vim";
@@ -199,7 +219,8 @@ in
       })
       # Language --------------------------------------------------------------
       (vimPlug {
-        name = "lsp";
+        pname = "lsp";
+        version = "unstable";
         src = pkgs.fetchFromGitHub {
           owner = "yegappan";
           repo = "lsp";
@@ -217,7 +238,8 @@ in
           '';
       })
       (vimPlug {
-        name = "vim-polyglot";
+        pname = "vim-polyglot";
+        version = "4.17.1";
         src = pkgs.fetchFromGitHub {
           owner = "sheerun";
         repo = "vim-polyglot";
@@ -227,7 +249,8 @@ in
       })
       # Markdown
       (vimPlug {
-        name = "vim-markdown-toc";
+        pname = "vim-markdown-toc";
+        version = "unstable";
         src = pkgs.fetchFromGitHub {
           owner = "mzlogin";
         repo = "vim-markdown-toc";
