@@ -178,11 +178,6 @@ let lspServers = [
 autocmd User LspSetup call LspAddServer(lspServers)
 
 autocmd FileType markdown autocmd BufWritePre <buffer> silent! LspFormat
-autocmd FileType python autocmd BufWritePre <buffer> silent! LspFixAll
-autocmd FileType typescript autocmd BufWritePre <buffer> silent! LspFixAll
-autocmd FileType typescriptreact autocmd BufWritePre <buffer> silent! LspFixAll
-autocmd FileType javascript autocmd BufWritePre <buffer> silent! LspFixAll
-autocmd FileType javascriptreact autocmd BufWritePre <buffer> silent! LspFixAll
 autocmd FileType json autocmd BufWritePre <buffer> silent! LspFormat
 autocmd FileType jsonc autocmd BufWritePre <buffer> silent! LspFormat
 autocmd FileType nginx autocmd BufWritePre <buffer> silent! LspFormat
