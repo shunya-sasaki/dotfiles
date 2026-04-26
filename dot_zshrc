@@ -110,6 +110,15 @@ function docker-login-github-cr() {
 # Antigravity
 export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 
+# Nix Home Manager
+function hm() {
+    current_dir=`pwd`
+    cd ${HOME}/.config/home-manager
+    nix flake update
+    home-manager switch -j 0
+    cd $current_dir
+}
+
 # Agents ======================================================================
 # Load variables for AI agents from .env.agents
 # Expected variables
@@ -135,14 +144,22 @@ fi
 
 # shell =======================================================================
 bindkey -e
-# starshiep
-eval "$(starship init zsh)"
+# starship
+if command -v starship &> /dev/null; then
+    eval "$(starship init zsh)"
+fi
 # zoxide
-eval "$(zoxide init zsh)"
+if command -v zoxide &> /dev/null; then
+    eval "$(zoxide init zsh)"
+fi
 # direnv
-eval "$(direnv hook zsh)"
+if command -v direnv &> /dev/null; then
+    eval "$(direnv hook zsh)"
+fi
 # mise
-eval "$(mise activate zsh)"
+if command -v mise &> /dev/null; then
+    eval "$(mise activate zsh)"
+fi
 
 
 # Vite+ bin (https://viteplus.dev)
