@@ -82,6 +82,7 @@ vim.filetype.add({
   },
   pattern = {
     [".*/.flake8"] = "ini",
+    ["dot_zshrc"] = "zsh",
   },
   extension = {
     ["code-snippets"] = "json",
