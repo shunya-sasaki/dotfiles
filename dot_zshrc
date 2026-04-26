@@ -24,7 +24,6 @@ export RUSTUP_HOME=$HOME/.rustup
 export CARGO_HOME=$HOME/.cargo
 
 # Python ----------------------------------------------------------------------
-alias activate="source activate.sh"
 
 # Node.js
 export VOLTA_HOME="$HOME/.volta"
@@ -47,12 +46,6 @@ export VCPKG_ROOT="$HOME/vcpkg"
 export LANGCHAIN_ENDPOINT="https://api.smith.langchain.com"
 export LANGCHAIN_TRACING_V2="true"
 
-# bat
-alias cat='bat --color=always --style=numbers --line-range=:500'
-
-# eza
-alias ls='eza --color=always --icons=always --group-directories-first -L 1 -s ext -h -T -F --long'
-
 # FZF
 export FZF_DEFAULT_OPTS="--ansi"
 export FZF_DEFAULT_COMMAND="fd --type f --color=always --hidden --exclude .git --exclude node_modules"
@@ -61,7 +54,9 @@ export FZF_CTRL_T_OPTS="--preview 'bat {} --color=always --style=numbers --line-
 export FZF_ALT_C_COMMAND="fd --type d"
 export FZF_ALT_C_OPTS="--preview 'eza {} --color=always --icons=always s ext -h -T -F --no-user --no-time --no-filesize --no-permissions --long | head -200'"
 export FZF_COMPLETION_OPTS='--border --info=inline'
-source <(fzf --zsh)
+if command -v fzf &> /dev/null; then
+    source <(fzf --zsh)
+fi
 
 # yazi
 function y() {
@@ -71,9 +66,6 @@ function y() {
 	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
 }
-
-# Zed
-alias zed="zeditor"
 
 # tmux/zelliji
 function set_wezterm_user_var(){
@@ -92,15 +84,6 @@ function tmux() {
     command tmux "$@"
     set_wezterm_user_var "TMUX_MODE" "0"
 }
-alias ta="tmux a -t"
-alias tk="tmux kill-session -t"
-alias tl="tmux ls"
-alias ts="tmux new -d -s"
-alias za="zellij a" # attatch session
-alias zd="zellij d" # delete session
-alias zk="zellij k" # kill session
-alias zl="zellij ls" # list sessions
-alias zs="zellij -s" # start new session
 
 # Docker
 function docker-login-github-cr() {
@@ -142,6 +125,31 @@ if [ -f "$HOME/.secrets" ]; then
     export $(grep -v '^#' "$HOME/.secrets" | xargs)
 fi
 
+# alias =======================================================================
+alias activate="source activate.sh"
+if command -v bat &> /dev/null; then
+    alias cat='bat --color=always --style=numbers --line-range=:500'
+fi
+if command -v eza &> /dev/null; then
+    alias ls='eza --color=always --icons=always --group-directories-first -L 1 -s ext -h -T -F --long'
+fi
+if command -v zeditor &> /dev/null; then
+    alias zed="zeditor"
+fi
+if command -v tmux &> /dev/null; then
+    alias ta="tmux a -t"
+    alias tk="tmux kill-session -t"
+    alias tl="tmux ls"
+    alias ts="tmux new -d -s"
+fi
+if command -v zellij &> /dev/null; then
+    alias za="zellij a" # attatch session
+    alias zd="zellij d" # delete session
+    alias zk="zellij k" # kill session
+    alias zl="zellij ls" # list sessions
+    alias zs="zellij -s" # start new session
+fi
+
 # shell =======================================================================
 bindkey -e
 # starship
@@ -160,7 +168,6 @@ fi
 if command -v mise &> /dev/null; then
     eval "$(mise activate zsh)"
 fi
-
 
 # Vite+ bin (https://viteplus.dev)
 . "$HOME/.vite-plus/env"
