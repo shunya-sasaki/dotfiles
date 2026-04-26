@@ -3,7 +3,6 @@
 with pkgs; [
   bat
   bottom
-  direnv
   dust
   eza
   fastfetch
