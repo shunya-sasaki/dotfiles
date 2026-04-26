@@ -98,7 +98,7 @@ function hm() {
     current_dir=`pwd`
     cd ${HOME}/.config/home-manager
     nix flake update
-    home-manager switch -j 0
+    home-manager switch
     cd $current_dir
 }
 
