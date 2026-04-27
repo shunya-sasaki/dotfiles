@@ -1,4 +1,4 @@
-require("mime-ext"):setup({
+require("mime-ext.local"):setup({
   -- Expand the existing filename database (lowercase), for example:
   with_files = {
     makefile = "text/makefile",
