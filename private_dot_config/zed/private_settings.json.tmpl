@@ -1,4 +1,4 @@
-{{- $profile := .profile | default "home" -}}
+{{- $profile := dig "profile" "home" . -}}
 {{- $core := .zed.settings.core -}}
 {{- $agent := dict -}}
 {{- if eq $profile "work" -}}
