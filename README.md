@@ -23,6 +23,14 @@ My dotfiles.
 sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)
 ```
 
+To enable flakes feature, create `~/.config/nix/nix.conf` as follows:
+
+_~/.config/nix/nix.conf_
+
+```conf
+extra-experimental-features = nix-command flakes
+```
+
 ### Clone this repository
 
 ```sh
@@ -43,9 +51,25 @@ Create `~/.config/home-manager/home.nix` file containing something like:
   home.username = "YOUR_NAME";
   home.homeDirectory = "YOUR_HOME_DIRECTORY";
   home.stateVersion = "25.11";
-  home.packages = import ./packages.nix { inherit pkgs; };
-  programs = import ./programs.nix;
+
+  home.packages =
+    (import ./packages/cli.nix { inherit pkgs; })
+    ++ import ./packages/vcs.nix { inherit pkgs; }
+    ++ import ./packages/lang.nix { inherit pkgs; }
+    ++ import ./packages/lsp.nix { inherit pkgs; }
+    ++ import ./packages/ai.nix { inherit pkgs; }
+    ++ import ./packages/container.nix { inherit pkgs; }
+    ++ import ./packages/gui.nix { inherit pkgs; }
+    ++ import ./packages/fun.nix { inherit pkgs; }
+    ++ import ./packages/mac.nix { inherit pkgs; };
+  programs = import ./programs.nix { inherit pkgs; };
 }
+```
+
+Run following command to apply home manager configuration:
+
+```sh
+nix run home-manager/master -- init --switch
 ```
 
 ### Settings for AI tools (Optional)
