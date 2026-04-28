@@ -214,7 +214,7 @@ in
           owner = "junegunn";
           repo = "fzf.vim";
           rev = "master";
-          sha256 = "sha256-n0jPX5keDf9qUuqyMKosLoI42DRerky9N5moFuuPccY=";
+          sha256 = "sha256-VPxTYXdJaVbr2U7d6VuO4CpIyTC62uo3TAuf1MYiAXI=";
         };
       })
       # Language --------------------------------------------------------------
