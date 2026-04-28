@@ -225,7 +225,7 @@ in
           owner = "yegappan";
           repo = "lsp";
           rev = "main";
-          sha256 = "sha256-K9m2BF41mb7JMcPf8OApFbg418mzBMazIn9pVV4rHb0=";
+          sha256 = "sha256-CV0bvBVUmZnp0W5L0xpjeA5r54cCieSHKHgoYE9P8Ss=";
         };
         postPatch = ''
           substituteInPlace autoload/lsp/lspserver.vim \
