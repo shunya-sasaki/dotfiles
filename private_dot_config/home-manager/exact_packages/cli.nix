@@ -9,6 +9,7 @@ with pkgs; [
   fd
   file
   fzf
+  gcc
   gnupg
   hyperfine
   imagemagick
