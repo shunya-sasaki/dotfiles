@@ -1,0 +1,31 @@
+{ pkgs, ...}:
+
+let
+  profile = "{{ env "CHEZMOI_PROFILE" | default "home"}}";
+in
+{
+  nixpkgs.config.allowUnfree = true;
+  fonts.fontconfig.enable = true;
+
+  home.username = "{{ .chezmoi.username }}";
+  home.homeDirectory = "{{ .chezmoi.homeDir }}";
+  home.stateVersion = "25.11";
+  home.packages =
+  if profile == "home" then
+    (import ./packages/cli.nix { inherit pkgs; })
+    ++ import ./packages/vcs.nix { inherit pkgs; }
+    ++ import ./packages/lang.nix { inherit pkgs; }
+    ++ import ./packages/lsp.nix { inherit pkgs; }
+    ++ import ./packages/ai.nix { inherit pkgs; }
+    ++ import ./packages/container.nix { inherit pkgs; }
+    ++ import ./packages/gui.nix { inherit pkgs; }
+    ++ import ./packages/fun.nix { inherit pkgs; }
+    ++ import ./packages/mac.nix { inherit pkgs; }
+  else
+    (import ./packages/cli.nix { inherit pkgs; })
+    ++ import ./packages/vcs.nix { inherit pkgs; }
+    ++ import ./packages/lang.nix { inherit pkgs; }
+    ++ import ./packages/lsp.nix { inherit pkgs; }
+    ++ import ./packages/fun.nix { inherit pkgs; };
+  programs = import ./programs.nix { inherit pkgs; };
+}

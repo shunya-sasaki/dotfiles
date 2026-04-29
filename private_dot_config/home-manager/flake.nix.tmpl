@@ -1,0 +1,49 @@
+{
+  description = "Home Manager configuration";
+
+  inputs = {
+    # Specify the source of Home Manager and Nixpkgs.
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
+  outputs =
+    { nixpkgs, home-manager, ... }:
+    let
+      username = "{{ .chezmoi.username }}";
+      os = "{{ .chezmoi.os }}";
+      arch = "{{ .chezmoi.arch }}";
+      archMap = {
+          "arm64" = "aarch64";
+          "amd64" = "amd64";
+        };
+      archName = archMap.${arch} or arch;
+      system = "${archName}-${os}";
+      # pkgs = nixpkgs.legacyPackages.${system};
+      # HACK: Since direnv's tests fail on darwin, we need to disable them in the overlay.
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [
+          (final: prev: {
+            direnv = prev.direnv.overrideAttrs (old: {
+              doCheck = false;
+              doInstallCheck = false;
+            });
+          })
+        ];
+      };
+    in
+    {
+      homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+
+        # Specify your home configuration modules here, for example,
+        # the path to your home.nix.
+        modules = [ ./home.nix ];
+
+      };
+    };
+}
