@@ -33,38 +33,13 @@ extra-experimental-features = nix-command flakes
 
 ### Clone this repository
 
+Run following command to clone this repository and apply configuration:
+
 ```sh
 nix-shell -p git chezmoi --run "chezmoi init  https://github.com/shunya-sasaki/dotfiles.git --apply"
 ```
 
 ### Install home manager
-
-Create `~/.config/home-manager/home.nix` file containing something like:
-
-```nix
-{ config, pkgs, ...}:
-
-{
-  nixpkgs.config.allowUnfree = true;
-  fonts.fontconfig.enable = true;
-
-  home.username = "YOUR_NAME";
-  home.homeDirectory = "YOUR_HOME_DIRECTORY";
-  home.stateVersion = "25.11";
-
-  home.packages =
-    (import ./packages/cli.nix { inherit pkgs; })
-    ++ import ./packages/vcs.nix { inherit pkgs; }
-    ++ import ./packages/lang.nix { inherit pkgs; }
-    ++ import ./packages/lsp.nix { inherit pkgs; }
-    ++ import ./packages/ai.nix { inherit pkgs; }
-    ++ import ./packages/container.nix { inherit pkgs; }
-    ++ import ./packages/gui.nix { inherit pkgs; }
-    ++ import ./packages/fun.nix { inherit pkgs; }
-    ++ import ./packages/mac.nix { inherit pkgs; };
-  programs = import ./programs.nix { inherit pkgs; };
-}
-```
 
 Run following command to apply home manager configuration:
 
