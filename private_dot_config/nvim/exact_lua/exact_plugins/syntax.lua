@@ -21,6 +21,7 @@ return {
         "git_config",
         "gitcommit",
         "gitignore",
+        "gotmpl",
         "haskell",
         "html",
         "htmldjango",

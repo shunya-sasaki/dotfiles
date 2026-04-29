@@ -83,6 +83,7 @@ vim.filetype.add({
   pattern = {
     [".*/.flake8"] = "ini",
     ["dot_zshrc"] = "zsh",
+    [".*%.nix%.tmpl"] = "nix",
   },
   extension = {
     ["code-snippets"] = "json",
