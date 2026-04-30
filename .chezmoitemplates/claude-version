@@ -1,0 +1,1 @@
+{{- output "curl" "-fsSL" "https://downloads.claude.ai/claude-code-releases/latest" -}}

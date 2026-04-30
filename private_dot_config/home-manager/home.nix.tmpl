@@ -1,7 +1,8 @@
 { pkgs, ...}:
 
 let
-  profile = "{{ env "CHEZMOI_PROFILE" | default "home"}}";
+  # profile {{- $profile := env "CHEZMOI_PROFILE" | default "home" }}
+  profile = "{{ $profile }}";
 in
 {
   nixpkgs.config.allowUnfree = true;

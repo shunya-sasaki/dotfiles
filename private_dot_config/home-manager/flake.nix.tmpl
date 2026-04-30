@@ -1,6 +1,11 @@
 {
   description = "Home Manager configuration";
 
+  nixConfig = {
+    extra-substituters = [ "https://nix-community.cachix.org" ];
+    extra-trusted-public-keys = ["nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="];
+  };
+
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
@@ -32,6 +37,27 @@
               doCheck = false;
               doInstallCheck = false;
             });
+          })
+          (final: prev: {
+            claude-code = prev.stdenv.mkDerivation rec {
+              pname = "claude";
+
+              version = "{{ includeTemplate "claude-version" . }}";
+              src = prev.fetchurl {
+                url = "https://downloads.claude.ai/claude-code-releases/${version}/${os}-${arch}/claude";
+                hash = "{{ includeTemplate "claude-hash" . }}";
+              };
+              dontUnpack = true;
+              nativeBuildInputs = [ prev.makeWrapper ];
+              installPhase = ''
+                install -Dm755 $src $out/bin/claude
+              '';
+              postFixup = ''
+                wrapProgram $out/bin/claude \
+                  --set DISABLE_AUTOUPDATER 1 \
+                  --set DISABLE_INSTALLATION_CHECKS 1 \
+              '';
+            };
           })
         ];
       };
