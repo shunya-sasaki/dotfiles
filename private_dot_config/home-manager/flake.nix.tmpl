@@ -42,10 +42,10 @@
             claude-code = prev.stdenv.mkDerivation rec {
               pname = "claude";
 
-              version = "{{ includeTemplate "claude-version" . }}";
+              version = "{{ includeTemplate `claude-version` . }}";
               src = prev.fetchurl {
                 url = "https://downloads.claude.ai/claude-code-releases/${version}/${os}-${arch}/claude";
-                hash = "{{ includeTemplate "claude-hash" . }}";
+                hash = "{{ includeTemplate `claude-hash` . }}";
               };
               dontUnpack = true;
               nativeBuildInputs = [ prev.makeWrapper ];

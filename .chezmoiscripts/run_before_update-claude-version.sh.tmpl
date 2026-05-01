@@ -1,25 +1,24 @@
 {{- if (or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin")) -}}
-  {{- $profile := env "CHEZMOI_PROFILE" | default "home" -}}
-  {{- $chezmoiClaudeVersion := index . "claudeVersion" | default "" -}}
-  {{- $chezmoiClaudeHash := index . "claudeHash" | default "" -}}
-  #!/bin/sh
-  version=$(curl -fsSL "https://downloads.claude.ai/claude-code-releases/latest" | tr -d '[:space:]')
-  chezmoi_claude_version={{ $chezmoiClaudeVersion }}
-  
-  if [ "$version" == "$chezmoi_claude_version" ]; then
-      hash={{$chezmoiClaudeHash}}
-  else
-      url=$(printf "https://downloads.claude.ai/claude-code-releases/%s/%s-%s/claude" $version {{.chezmoi.os}} {{.chezmoi.arch}})
-      hash=$(nix hash convert --to sri --hash-algo sha256 $(nix-prefetch-url "$url" 2>/dev/null) | tr -d '[:space:]')
-  fi
-  
-  cat <<EOF > ~/.config/chezmoi/chezmoi.toml
-  [edit]
-  command = "nvim"
-  [data]
-  profile = "{{$profile}}"
-  claudeVersion = "$version"
-  claudeHash = "$hash"
-  EOF
-  
+{{- $profile := env "CHEZMOI_PROFILE" | default "home" -}}
+{{- $chezmoiClaudeVersion := index . "claudeVersion" | default "" -}}
+{{- $chezmoiClaudeHash := index . "claudeHash" | default "" -}}
+#!/bin/sh
+version=$(curl -fsSL "https://downloads.claude.ai/claude-code-releases/latest" | tr -d '[:space:]')
+chezmoi_claude_version="{{ $chezmoiClaudeVersion }}"
+
+if [ "$version" = "$chezmoi_claude_version" ]; then
+    hash="{{ $chezmoiClaudeHash }}"
+else
+    url=$(printf "https://downloads.claude.ai/claude-code-releases/%s/%s-%s/claude" "$version" "{{ .chezmoi.os }}" "{{ .chezmoi.arch }}")
+    hash=$(nix hash convert --to sri --hash-algo sha256 $(nix-prefetch-url "$url" 2>/dev/null) | tr -d '[:space:]')
+fi
+
+cat <<EOF > ~/.config/chezmoi/chezmoi.toml
+[edit]
+command = "nvim"
+[data]
+profile = "{{ $profile }}"
+claudeVersion = "$version"
+claudeHash = "$hash"
+EOF
 {{- end -}}
