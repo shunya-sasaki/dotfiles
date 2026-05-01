@@ -1,0 +1,11 @@
+{{- $cachedVersion := index . "copilotVersion" | default "" -}}
+{{- $cachedHash := index . "copilotHash" | default "" -}}
+{{- $latestVersion := includeTemplate "copilot-version" . | trim -}}
+{{- $hash := "" -}}
+{{- if and (eq $latestVersion $cachedVersion) (ne $cachedHash "") -}}
+  {{- $hash = $cachedHash -}}
+{{- else -}}
+  {{- $url := includeTemplate "copilot-url" . -}}
+  {{- $hash = output "sh" "-c" (printf "nix hash convert --to sri --hash-algo sha256 $(nix-prefetch-url '%s' 2>/dev/null)" $url) | trim -}}
+{{- end -}}
+{{- $hash -}}

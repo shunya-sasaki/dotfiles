@@ -1,0 +1,7 @@
+{{- $version := includeTemplate "copilot-version" . -}}
+{{- $os := .chezmoi.os -}}
+{{- $arch := .chezmoi.arch -}}
+{{- if eq $arch "amd64" -}}
+  {{- $arch = "x64" -}}
+{{- end -}}
+{{- printf "https://github.com/github/copilot-cli/releases/download/%s/copilot-%s-%s.tar.gz" $version $os $arch -}}

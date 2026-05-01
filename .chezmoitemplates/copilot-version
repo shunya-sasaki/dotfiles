@@ -1,1 +1,1 @@
-{{- output "sh" "-c" `curl -fsSL https://api.github.com/repos/github/copilot-cli/releases/latest 2>/dev/null | grep -m1 -oE '"tag_name": "[^"]+"' | cut -d'"' -f4` | trim -}}
+{{- output "sh" "-c" `curl -sI "https://github.com/github/copilot-cli/releases/latest/" | grep -oE 'tag/[^[:space:]]+' | cut -d/ -f2 | tr -d '[:space:]'` -}}
