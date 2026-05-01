@@ -1,0 +1,11 @@
+{{- $cachedVersion := index . "zedVersion" | default "" -}}
+{{- $cachedHash := index . "zedHash" | default "" -}}
+{{- $latestVersion := includeTemplate "zed-version" . | trim -}}
+{{- $hash := "" -}}
+{{- if and (eq $latestVersion $cachedVersion) (ne $cachedHash "") -}}
+  {{- $hash = $cachedHash -}}
+{{- else -}}
+  {{- $url := includeTemplate "zed-url" . -}}
+  {{- $hash = output "sh" "-c" (printf "nix hash convert --to sri --hash-algo sha256 $(nix-prefetch-url '%s' 2>/dev/null)" $url) | trim -}}
+{{- end -}}
+{{- $hash -}}

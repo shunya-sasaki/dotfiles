@@ -7,7 +7,7 @@
   {{- $arch = "aarch64" -}}
 {{- end -}}
 {{- if eq $os "darwin" -}}
-    {{- printf "https://github.com/github/zed-industires/releases/download/%s/Zed-%s.dmg" $version $arch -}}
+    {{- printf "https://github.com/zed-industries/zed/releases/download/%s/Zed-%s.dmg" $version $arch -}}
 {{- else if eq $os "linux" -}}
-    {{- printf "https://github.com/github/zed-industires/releases/download/%s/zed-linux-%s.tar.gz" $version $arch -}}
+    {{- printf "https://github.com/zed-industries/zed/releases/download/%s/zed-linux-%s.tar.gz" $version $arch -}}
 {{- end -}}
