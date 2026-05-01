@@ -43,7 +43,7 @@
               pname = "claude-code";
               version = "{{ includeTemplate `claude-version` . }}";
               src = prev.fetchurl {
-                url = "https://downloads.claude.ai/claude-code-releases/${version}/${os}-${arch}/claude";
+                url = "{{ includeTemplate `claude-url` . }}";
                 hash = "{{ includeTemplate `claude-hash` . }}";
               };
               dontUnpack = true;

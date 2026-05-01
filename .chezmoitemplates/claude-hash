@@ -5,7 +5,7 @@
 {{- if and (eq $latestVersion $cachedVersion) (ne $cachedHash "") -}}
   {{- $hash = $cachedHash -}}
 {{- else -}}
-  {{- $url := printf "https://downloads.claude.ai/claude-code-releases/%s/%s-%s/claude" $latestVersion .chezmoi.os .chezmoi.arch -}}
+  {{- $url := includeTemplate "claude-url" . | trim -}}
   {{- $hash = output "sh" "-c" (printf "nix hash convert --to sri --hash-algo sha256 $(nix-prefetch-url '%s' 2>/dev/null)" $url) | trim -}}
 {{- end -}}
 {{- $hash -}}
