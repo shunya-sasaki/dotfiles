@@ -1,0 +1,1 @@
+{{- output "sh" "-c" "curl -s https://registry.npmjs.org/@google/gemini-cli/latest | grep -o '\"version\":\"[^\"]*\"' | cut -d'\"' -f4" | trim -}}
