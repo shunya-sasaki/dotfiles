@@ -1,0 +1,13 @@
+{{- $version := includeTemplate "zed-version" . -}}
+{{- $os := .chezmoi.os -}}
+{{- $arch := .chezmoi.arch -}}
+{{- if eq $arch "amd64" -}}
+  {{- $arch = "x86_x64" -}}
+{{- else if eq $arch "arm64" -}}
+  {{- $arch = "aarch64" -}}
+{{- end -}}
+{{- if eq $os "darwin" -}}
+    {{- printf "https://github.com/github/zed-industires/releases/download/%s/Zed-%s.dmg" $version $arch -}}
+{{- else if eq $os "linux" -}}
+    {{- printf "https://github.com/github/zed-industires/releases/download/%s/zed-linux-%s.tar.gz" $version $arch -}}
+{{- end -}}
