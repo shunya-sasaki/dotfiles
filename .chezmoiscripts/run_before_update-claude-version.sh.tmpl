@@ -6,6 +6,9 @@
 {{- $cachedCopilotVersion := index . "copilotVersion" | default "" -}}
 {{- $cachedCopilotHash := index . "copilotHash" | default "" -}}
 
+{{- $cachedGeminiVersion := index . "geminiVersion" | default "" -}}
+{{- $cachedGeminiHash := index . "geminiHash" | default "" -}}
+
 #!/bin/sh
 version=$(curl -fsSL "https://downloads.claude.ai/claude-code-releases/latest" | tr -d '[:space:]')
 chezmoi_claude_version="{{ $chezmoiClaudeVersion }}"

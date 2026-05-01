@@ -4,7 +4,7 @@ with pkgs; [
   antigravity
   claude-code
   codex
-  gemini-cli-bin
+  gemini-cli
   gh
   github-copilot-cli
   ollama
