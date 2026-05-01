@@ -40,7 +40,7 @@
           })
           (final: prev: {
             claude-code = prev.stdenv.mkDerivation rec {
-              pname = "claude";
+              pname = "claude-code";
               version = "{{ includeTemplate `claude-version` . }}";
               src = prev.fetchurl {
                 url = "https://downloads.claude.ai/claude-code-releases/${version}/${os}-${arch}/claude";
@@ -59,8 +59,8 @@
             };
           })
           (final: prev: {
-            copilot = prev.stdenv.mkDerivation {
-              pname = "copilot";
+            github-copilot-cli = prev.stdenv.mkDerivation {
+              pname = "github-copilot-cli";
               version = "{{ includeTemplate `copilot-version` . }}";
               src = prev.fetchurl {
                 url = "{{ includeTemplate `copilot-url` . }}";
