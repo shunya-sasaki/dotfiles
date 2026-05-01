@@ -41,7 +41,6 @@
           (final: prev: {
             claude-code = prev.stdenv.mkDerivation rec {
               pname = "claude";
-
               version = "{{ includeTemplate `claude-version` . }}";
               src = prev.fetchurl {
                 url = "https://downloads.claude.ai/claude-code-releases/${version}/${os}-${arch}/claude";
@@ -56,6 +55,21 @@
                 wrapProgram $out/bin/claude \
                   --set DISABLE_AUTOUPDATER 1 \
                   --set DISABLE_INSTALLATION_CHECKS 1 \
+              '';
+            };
+          })
+          (final: prev: {
+            copilot = prev.stdenv.mkDerivation {
+              pname = "copilot";
+              version = "{{ includeTemplate `copilot-version` . }}";
+              src = prev.fetchurl {
+                url = "{{ includeTemplate `copilot-url` . }}";
+                hash = "{{ includeTemplate `copilot-hash` . }}";
+              };
+              sourceRoot = ".";
+              nativeBuildInputs = [ prev.makeWrapper ];
+              installPhase = ''
+                install -Dm755 copilot $out/bin/copilot
               '';
             };
           })
