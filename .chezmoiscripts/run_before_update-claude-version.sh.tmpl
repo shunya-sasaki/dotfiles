@@ -4,18 +4,25 @@
 {{- $chezmoiClaudeHash := index . "claudeHash" | default "" -}}
 
 {{- $cachedCopilotVersion := index . "copilotVersion" | default "" -}}
+{{- $cachedCopilotHash := index . "copilotHash" | default "" -}}
 
 #!/bin/sh
 version=$(curl -fsSL "https://downloads.claude.ai/claude-code-releases/latest" | tr -d '[:space:]')
 chezmoi_claude_version="{{ $chezmoiClaudeVersion }}"
 
-copilot_version="{{- includeTemplate "copilot-version" -}}"
+copilot_version="{{- includeTemplate "copilot-version" . -}}"
 
 if [ "$version" = "$chezmoi_claude_version" ]; then
     hash="{{ $chezmoiClaudeHash }}"
 else
     url=$(printf "https://downloads.claude.ai/claude-code-releases/%s/%s-%s/claude" "$version" "{{ .chezmoi.os }}" "{{ .chezmoi.arch }}")
     hash=$(nix hash convert --to sri --hash-algo sha256 $(nix-prefetch-url "$url" 2>/dev/null) | tr -d '[:space:]')
+fi
+
+if [ "$copilot_version" = "{{- $cachedCopilotVersion -}}" ]; then
+    copilot_hash="{{- $cachedCopilotHash -}}"
+else
+    copilot_hash="{{- includeTemplate "copilot-hash" . -}}"
 fi
 
 cat <<EOF > ~/.config/chezmoi/chezmoi.toml
@@ -26,6 +33,7 @@ profile = "{{ $profile }}"
 claudeVersion = "$version"
 claudeHash = "$hash"
 copilotVersion = "$copilot_version"
+copilotHash = "$copilot_hash"
 EOF
 {{- end -}}
 
