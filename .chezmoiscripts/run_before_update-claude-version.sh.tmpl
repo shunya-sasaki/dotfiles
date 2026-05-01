@@ -2,9 +2,14 @@
 {{- $profile := env "CHEZMOI_PROFILE" | default "home" -}}
 {{- $chezmoiClaudeVersion := index . "claudeVersion" | default "" -}}
 {{- $chezmoiClaudeHash := index . "claudeHash" | default "" -}}
+
+{{- $cachedCopilotVersion := index . "copilotVersion" | default "" -}}
+
 #!/bin/sh
 version=$(curl -fsSL "https://downloads.claude.ai/claude-code-releases/latest" | tr -d '[:space:]')
 chezmoi_claude_version="{{ $chezmoiClaudeVersion }}"
+
+copilot_version="{{- includeTemplate "copilot-version" -}}"
 
 if [ "$version" = "$chezmoi_claude_version" ]; then
     hash="{{ $chezmoiClaudeHash }}"
@@ -20,5 +25,7 @@ command = "nvim"
 profile = "{{ $profile }}"
 claudeVersion = "$version"
 claudeHash = "$hash"
+copilotVersion = "$copilot_version"
 EOF
 {{- end -}}
+
