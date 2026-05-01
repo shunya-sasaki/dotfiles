@@ -13,7 +13,6 @@
 version=$(curl -fsSL "https://downloads.claude.ai/claude-code-releases/latest" | tr -d '[:space:]')
 chezmoi_claude_version="{{ $chezmoiClaudeVersion }}"
 
-copilot_version="{{- includeTemplate "copilot-version" . -}}"
 
 if [ "$version" = "$chezmoi_claude_version" ]; then
     hash="{{ $chezmoiClaudeHash }}"
@@ -22,10 +21,18 @@ else
     hash=$(nix hash convert --to sri --hash-algo sha256 $(nix-prefetch-url "$url" 2>/dev/null) | tr -d '[:space:]')
 fi
 
+copilot_version="{{- includeTemplate "copilot-version" . -}}"
 if [ "$copilot_version" = "{{- $cachedCopilotVersion -}}" ]; then
     copilot_hash="{{- $cachedCopilotHash -}}"
 else
     copilot_hash="{{- includeTemplate "copilot-hash" . -}}"
+fi
+
+gemini_version="{{- includeTemplate "gemini-version" . -}}"
+if [ "$gemini_version" = "{{- $cachedGeminiVersion -}}" ]; then
+    gemini_hash="{{- $cachedGeminiHash -}}"
+else
+    gemini_hash="{{- includeTemplate "gemini-hash" . -}}"
 fi
 
 cat <<EOF > ~/.config/chezmoi/chezmoi.toml
@@ -37,6 +44,8 @@ claudeVersion = "$version"
 claudeHash = "$hash"
 copilotVersion = "$copilot_version"
 copilotHash = "$copilot_hash"
+geminiVersion = "$gemini_version"
+geminiHash = "$gemini_hash"
 EOF
 {{- end -}}
 
