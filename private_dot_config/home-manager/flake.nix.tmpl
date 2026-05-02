@@ -28,68 +28,14 @@
       archName = archMap.${arch} or arch;
       system = "${archName}-${os}";
       # pkgs = nixpkgs.legacyPackages.${system};
-      # HACK: Since direnv's tests fail on darwin, we need to disable them in the overlay.
       pkgs = import nixpkgs {
         inherit system;
         overlays = [
-          (final: prev: {
-            direnv = prev.direnv.overrideAttrs (old: {
-              doCheck = false;
-              doInstallCheck = false;
-            });
-          })
-          (final: prev: {
-            claude-code = prev.stdenv.mkDerivation rec {
-              pname = "claude-code";
-              version = "{{ includeTemplate `claude-version` . }}";
-              src = prev.fetchurl {
-                url = "{{ includeTemplate `claude-url` . }}";
-                hash = "{{ includeTemplate `claude-hash` . }}";
-              };
-              dontUnpack = true;
-              nativeBuildInputs = [ prev.makeWrapper ];
-              installPhase = ''
-                install -Dm755 $src $out/bin/claude
-              '';
-              postFixup = ''
-                wrapProgram $out/bin/claude \
-                  --set DISABLE_AUTOUPDATER 1 \
-                  --set DISABLE_INSTALLATION_CHECKS 1 \
-              '';
-            };
-          })
-          (final: prev: {
-            github-copilot-cli = prev.stdenv.mkDerivation {
-              pname = "github-copilot-cli";
-              version = "{{ includeTemplate `copilot-version` . }}";
-              src = prev.fetchurl {
-                url = "{{ includeTemplate `copilot-url` . }}";
-                hash = "{{ includeTemplate `copilot-hash` . }}";
-              };
-              sourceRoot = ".";
-              nativeBuildInputs = [ prev.makeWrapper ];
-              installPhase = ''
-                install -Dm755 copilot $out/bin/copilot
-              '';
-            };
-          })
-          (final: prev: {
-            gemini-cli = prev.stdenv.mkDerivation rec {
-              pname = "gemini-cli";
-              version = "{{ includeTemplate `gemini-version` . }}";
-              src = prev.fetchurl {
-                url = "{{ includeTemplate `gemini-url` . }}";
-                hash = "{{ includeTemplate `gemini-hash` . }}";
-              };
-              nativeBuildInputs = [ prev.makeWrapper ];
-              installPhase = ''
-                mkdir -p $out/lib/node_modules/@google/gemini-cli
-                cp -r . $out/lib/node_modules/@google/gemini-cli/
-                makeWrapper ${prev.nodejs}/bin/node $out/bin/gemini \
-                  --add-flags $out/lib/node_modules/@google/gemini-cli/bundle/gemini.js
-              '';
-            };
-          })
+          (import ./overlays/direnv.nix)
+          (import ./overlays/claude-code.nix)
+          (import ./overlays/github-copilot-cli.nix)
+          (import ./overlays/gemini-cli.nix)
+          (import ./overlays/zed-editor.nix)
         ];
       };
     in

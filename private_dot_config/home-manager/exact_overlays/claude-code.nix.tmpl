@@ -1,0 +1,20 @@
+final: prev: {
+  claude-code = prev.stdenv.mkDerivation {
+    pname = "claude-code";
+    version = "{{ includeTemplate `claude-version` . }}";
+    src = prev.fetchurl {
+      url = "{{ includeTemplate `claude-url` . }}";
+      hash = "{{ includeTemplate `claude-hash` . }}";
+    };
+    dontUnpack = true;
+    nativeBuildInputs = [ prev.makeWrapper ];
+    installPhase = ''
+      install -Dm755 $src $out/bin/claude
+    '';
+    postFixup = ''
+      wrapProgram $out/bin/claude \
+        --set DISABLE_AUTOUPDATER 1 \
+        --set DISABLE_INSTALLATION_CHECKS 1 \
+    '';
+  };
+}

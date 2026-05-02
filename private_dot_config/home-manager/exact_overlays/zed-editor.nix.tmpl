@@ -1,0 +1,49 @@
+final: prev:
+let
+  version = "{{ includeTemplate `zed-version` . }}";
+  src = prev.fetchurl {
+    url = "{{ includeTemplate `zed-url` . }}";
+    hash = "{{ includeTemplate `zed-hash` . }}";
+  };
+in
+{
+  zed-editor =
+    if prev.stdenv.isDarwin then
+      prev.stdenv.mkDerivation {
+        pname = "zed-editor";
+        inherit version src;
+        nativeBuildInputs = [ prev._7zz prev.makeWrapper ];
+        unpackPhase = ''
+          runHook preUnpack
+          7zz x -snld $src
+          runHook postUnpack
+        '';
+        sourceRoot = "Zed.app";
+        installPhase = ''
+          mkdir -p $out/Applications/Zed.app $out/bin
+          cp -R . $out/Applications/Zed.app
+          makeWrapper $out/Applications/Zed.app/Contents/MacOS/cli $out/bin/zed
+        '';
+      }
+    else
+      prev.stdenv.mkDerivation {
+        pname = "zed-editor";
+        inherit version src;
+        nativeBuildInputs = [ prev.makeWrapper prev.autoPatchelfHook ];
+        buildInputs = [
+          prev.stdenv.cc.cc.lib
+          prev.vulkan-loader
+          prev.wayland
+          prev.xorg.libxcb
+          prev.xorg.libX11
+          prev.alsa-lib
+          prev.fontconfig
+          prev.freetype
+        ];
+        installPhase = ''
+          mkdir -p $out
+          cp -R . $out/
+          ln -s $out/bin/zed-editor $out/bin/zed
+        '';
+      };
+}

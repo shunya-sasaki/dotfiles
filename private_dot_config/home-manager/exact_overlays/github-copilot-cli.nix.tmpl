@@ -1,0 +1,15 @@
+final: prev: {
+  github-copilot-cli = prev.stdenv.mkDerivation {
+    pname = "github-copilot-cli";
+    version = "{{ includeTemplate `copilot-version` . }}";
+    src = prev.fetchurl {
+      url = "{{ includeTemplate `copilot-url` . }}";
+      hash = "{{ includeTemplate `copilot-hash` . }}";
+    };
+    sourceRoot = ".";
+    nativeBuildInputs = [ prev.makeWrapper ];
+    installPhase = ''
+      install -Dm755 copilot $out/bin/copilot
+    '';
+  };
+}

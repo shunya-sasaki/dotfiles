@@ -1,0 +1,17 @@
+final: prev: {
+  gemini-cli = prev.stdenv.mkDerivation {
+    pname = "gemini-cli";
+    version = "{{ includeTemplate `gemini-version` . }}";
+    src = prev.fetchurl {
+      url = "{{ includeTemplate `gemini-url` . }}";
+      hash = "{{ includeTemplate `gemini-hash` . }}";
+    };
+    nativeBuildInputs = [ prev.makeWrapper ];
+    installPhase = ''
+      mkdir -p $out/lib/node_modules/@google/gemini-cli
+      cp -r . $out/lib/node_modules/@google/gemini-cli/
+      makeWrapper ${prev.nodejs}/bin/node $out/bin/gemini \
+        --add-flags $out/lib/node_modules/@google/gemini-cli/bundle/gemini.js
+    '';
+  };
+}
