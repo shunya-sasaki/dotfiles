@@ -1,4 +1,7 @@
-# TypeScript Style Guide
+---
+name: typescript-code-style
+description: A skill that provides guidelines for TypeScript code style
+---
 
 ## Naming Rules
 
