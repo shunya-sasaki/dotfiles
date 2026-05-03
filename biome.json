@@ -20,7 +20,8 @@
   },
   "json": {
     "parser": {
-      "allowTrailingCommas": true
+      "allowTrailingCommas": true,
+      "allowComments": true
     },
     "formatter": {
       "enabled": true,
