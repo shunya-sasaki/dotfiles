@@ -1,0 +1,24 @@
+{
+  "$schema": "zed://schemas/settings",
+  "agent": {
+    "commit_message_model": {
+      "model": "gpt-5.4",
+      "provider": "copilot_chat"
+    },
+    "default_model": {
+      "enable_thinking": true,
+      "model": "gpt-5.4",
+      "effort": "high",
+      "provider": "copilot_chat"
+    },
+    "model_parameters": []
+  },
+  "agent_servers": {
+    "gemini": {
+      "type": "registry"
+    }
+  },
+  "edit_predictions": {
+    "provider": "copilot"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "$schema": "zed://schemas/settings",
+  "edit_predictions": {
+    "provider": "none"
+  }
+}

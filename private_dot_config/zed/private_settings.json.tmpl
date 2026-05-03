@@ -1,11 +1,16 @@
 {{- $profile := dig "profile" "home" . -}}
-{{- $core := .zed.settings.core -}}
-{{- $agent := dict -}}
-{{- if eq $profile "work" -}}
-{{-   $agent = .zed.settings.work -}}
-{{- else }}
-{{-   $agent = .zed.settings.home -}}
-{{- end }}
-{{- $merged := merge $core $agent -}}
+{{- $baseConfig := include "private_dot_config/zed/settings/base.json" | mustFromJson -}}
+{{- $homeConfig := include "private_dot_config/zed/settings/home.json" | mustFromJson -}}
+{{- $workConfig := include "private_dot_config/zed/settings/work.json" | mustFromJson -}}
 
-{{- $merged | toPrettyJson "  " -}}
+{{- /* 1. Initialize the variable outside the block */ -}}
+{{- $mergedConfig := dict -}}
+
+{{- if eq $profile "home" -}}
+  {{- /* 2. Use '=' to REASSIGN the variable, not ':=' */ -}}
+  {{- $mergedConfig = mergeOverwrite (dict) $baseConfig $homeConfig -}}
+{{- else -}}
+  {{- $mergedConfig = mergeOverwrite (dict) $baseConfig $workConfig -}}
+{{- end -}}
+
+{{- $mergedConfig | toPrettyJson -}}
