@@ -22,7 +22,7 @@ in
         installPhase = ''
           mkdir -p $out/Applications/Zed.app $out/bin
           cp -R . $out/Applications/Zed.app
-          makeWrapper $out/Applications/Zed.app/Contents/MacOS/cli $out/bin/zed
+          makeWrapper $out/Applications/Zed.app/Contents/MacOS/cli $out/bin/zeditor
         '';
       }
     else
