@@ -15,6 +15,7 @@ with pkgs; [
   imagemagick
   jq
   lazydocker
+  libsecret
   mdbook
   mdbook-mermaid
   neovim
