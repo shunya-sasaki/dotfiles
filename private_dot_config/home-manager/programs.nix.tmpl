@@ -225,17 +225,8 @@ in
           owner = "yegappan";
           repo = "lsp";
           rev = "main";
-          sha256 = "sha256-CV0bvBVUmZnp0W5L0xpjeA5r54cCieSHKHgoYE9P8Ss=";
+          sha256 = "{{- includeTemplate `yegappan-lsp-hash` . -}}";
         };
-        postPatch = ''
-          substituteInPlace autoload/lsp/lspserver.vim \
-            --replace-fail \
-              'var msgs = newMsg->split("\n")' \
-              'var msgs = newMsg->split("\n")
-              if msgs->empty()
-                return
-              endif'
-          '';
       })
       (vimPlug {
         pname = "vim-polyglot";
