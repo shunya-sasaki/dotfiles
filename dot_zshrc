@@ -122,7 +122,9 @@ fi
 # - GITHUB_TOKEN
 # - GH_TOKEN
 if [ -f "$HOME/.secrets" ]; then
-    export $(grep -v '^#' "$HOME/.secrets" | xargs)
+    set -a
+    source "$HOME/.secrets"
+    set +a
 fi
 
 # alias =======================================================================
