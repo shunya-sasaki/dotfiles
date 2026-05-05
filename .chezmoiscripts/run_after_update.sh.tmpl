@@ -1,6 +1,5 @@
 #!/bin/sh
-
-if command -v bat &> /dev/null; then
+if command -v bat > /dev/null 2>&1; then
     bat ~/.config/chezmoi/chezmoi.toml
 else
     cat ~/.config/chezmoi/chezmoi.toml
