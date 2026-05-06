@@ -21,6 +21,7 @@ set laststatus=2
 set splitbelow
 set completeopt=menuone,noinsert
 set backspace=indent,eol,start
+set completeopt=menuone,noselect,noinsert
 set wildoptions+=pum,fuzzy
 set tabstop=4
 set shiftwidth=4
@@ -60,4 +61,4 @@ source ~/.config/vim/airline.vim
 source ~/.config/vim/completion.vim
 source ~/.config/vim/lsp.vim
 source ~/.config/vim/keybindings.vim
-
+source ~/.config/vim/autocmd.vim
