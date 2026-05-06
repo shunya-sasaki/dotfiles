@@ -1,7 +1,7 @@
 " yegappan/lsp (external plugin) -----------------------------------------------
 autocmd User LspSetup call LspOptionsSet(#{
         \   aleSupport: v:false,
-        \   autoComplete: v:false,
+        \   autoComplete: v:true,
         \   autoHighlight: v:false,
         \   autoHighlightDiags: v:true,
         \   autoPopulateDiags: v:false,
@@ -51,9 +51,36 @@ autocmd User LspSetup call LspOptionsSet(#{
         \   useQuickfixForLocations: v:false,
         \   vsnipSupport: v:true,
         \   bufferCompletionTimeout: 100,
-        \   customCompletionKinds: v:false,
-        \   completionKinds: {},
-        \   filterCompletionDuplicates: v:false,
+        \   customCompletionKinds: v:true,
+        \   completionKinds: #{
+        \       Text: '󰉿',
+        \       Method: '󰆧',
+        \       Function: '󰊕',
+        \       Constructor: '',
+        \       Field: '󰜢',
+        \       Variable: '󰀫',
+        \       Class: '󰠱',
+        \       Interface: '',
+        \       Module: '',
+        \       Property: '󰜢',
+        \       Unit: '󰑭',
+        \       Value: '󰎠',
+        \       Enum: '',
+        \       Keyword: '󰌋',
+        \       Snippet: '',
+        \       Color: '󰏘',
+        \       File: '󰈙',
+        \       Reference: '󰈇',
+        \       Folder: '󰉋',
+        \       EnumMember: '',
+        \       Constant: '󰏿',
+        \       Struct: '󰙅',
+        \       Event: '',
+        \       Operator: '󰆕',
+        \       TypeParameter: '󰊄',
+        \       Buffer: '󰈐'
+        \   },
+        \   filterCompletionDuplicates: v:true,
         \   condensedCompletionMenu: v:false,
         \   documentationFormat: ['markdown', 'plaintext'],
     \ })
@@ -112,23 +139,6 @@ let lspServers = [
     \    workspaceConfig: #{
     \      ty: #{ }
     \    }
-    \ },
-    \ #{
-    \    name: 'pyright',
-    \    filetype: ['python'],
-    \    path: 'pyright-langserver',
-    \    args: ['--stdio'],
-    \    workspaceConfig: #{
-    \      pyright: #{
-    \        disableOrganizeImports: v:true,
-    \      },
-    \      python: #{
-    \        venvPath: '',
-    \        venv: '.venv',
-    \        analysis: #{
-    \          ignore: ['*']
-    \        }
-    \   }}
     \ },
     \ #{
     \    name: 'biome',
