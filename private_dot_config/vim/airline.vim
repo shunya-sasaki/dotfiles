@@ -1,6 +1,6 @@
 " vim-airline (external plugin) ------------------------------------------------
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'tokyonight'
+let g:airline_theme = 'onedark'
 let g:airline_skip_empty_sections = 1
 " tabline
 let g:airline#extensions#tabline#enabled = 1
@@ -32,3 +32,4 @@ let g:airline_symbols.colnr = ''
 let g:airline_symbols.notexists = ''
 let g:airline_symbols.maxlinenr = ''
 let g:airline_symbols.dirty = ''
+
