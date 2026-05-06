@@ -36,7 +36,9 @@ extra-experimental-features = nix-command flakes
 Run following command to clone this repository and apply configuration:
 
 ```sh
-nix-shell -p git chezmoi --run "chezmoi init  https://github.com/shunya-sasaki/dotfiles.git --apply"
+nix-shell -p git chezmoi --extra-experimental-features "nix-command flakes" \
+  --run "export NIX_CONFIG='experimental-features = nix-command flakes'; \
+  chezmoi init https://github.com/shunya-sasaki/dotfiles.git --apply"
 ```
 
 ### Install home manager
