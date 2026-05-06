@@ -50,6 +50,10 @@ else
     zed_hash="{{- includeTemplate "zed-hash" . -}}"
 fi
 
+if [ ! -d ~/.config/chezmoi ]; then
+    mkdir -p ~/.config/chezmoi
+fi
+
 cat <<EOF > ~/.config/chezmoi/chezmoi.toml
 [edit]
 command = "nvim"
