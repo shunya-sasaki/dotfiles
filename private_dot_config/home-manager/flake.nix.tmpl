@@ -23,7 +23,7 @@
       arch = "{{ .chezmoi.arch }}";
       archMap = {
           "arm64" = "aarch64";
-          "amd64" = "amd64";
+          "amd64" = "x86_64";
         };
       archName = archMap.${arch} or arch;
       system = "${archName}-${os}";
