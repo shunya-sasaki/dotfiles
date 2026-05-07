@@ -20,6 +20,7 @@ set pumheight=10
 set laststatus=2
 set splitbelow
 set completeopt=menuone,noinsert
+set pumopt=opacity:80
 set backspace=indent,eol,start
 set completeopt=menuone,noselect,noinsert
 set wildoptions+=pum,fuzzy
