@@ -43,7 +43,7 @@ in
         installPhase = ''
           mkdir -p $out
           cp -R . $out/
-          ln -s $out/bin/zed-editor $out/bin/zeditor
+          ln -s $out/bin/zed $out/bin/zeditor
         '';
       };
 }
