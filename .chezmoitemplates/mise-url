@@ -1,0 +1,11 @@
+{{- $version := includeTemplate "mise-version" . -}}
+{{- $os := .chezmoi.os -}}
+{{- if eq $os "darwin" -}}
+  {{- $os = "macos" -}}
+{{- end -}}
+{{- $arch := .chezmoi.arch -}}
+{{- if eq $arch "amd64" -}}
+  {{- $arch = "x64" -}}
+{{- end -}}
+{{- printf "https://github.com/jdx/mise/releases/download/%s/mise-%s-%s-%s.tar.gz" $version $version $os $arch -}}
+

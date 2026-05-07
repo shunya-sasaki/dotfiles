@@ -13,6 +13,9 @@
 {{- $cachedZedVersion := index . "zedVersion" | default "" -}}
 {{- $cachedZedHash := index . "zedHash" | default "" -}}
 
+{{- $cachedMiseVersion := index . "miseVersion" | default "" -}}
+{{- $cachedMiseHash := index . "miseHash" | default "" -}}
+
 #!/bin/sh
 claude_version="{{- includeTemplate "claude-version" . -}}"
 if [ "$claude_version" = "{{- $cachedClaudeVersion -}}" ] \
@@ -50,6 +53,15 @@ else
     zed_hash="{{- includeTemplate "zed-hash" . -}}"
 fi
 
+mise_version="{{- includeTemplate "mise-version" . -}}"
+if [ "$mise_version" = "{{- $cachedMiseVersion -}}" ] \
+    && [ -n "{{- $cachedMiseHash -}}" ]; then
+    echo "mise is up to date, using cached hash."
+    mise_hash="{{- $cachedMiseHash -}}"
+else
+    mise_hash="{{- includeTemplate "mise-hash" . -}}"
+fi
+
 if [ ! -d ~/.config/chezmoi ]; then
     mkdir -p ~/.config/chezmoi
 fi
@@ -67,6 +79,8 @@ geminiVersion = "$gemini_version"
 geminiHash = "$gemini_hash"
 zedVersion = "$zed_version"
 zedHash = "$zed_hash"
+miseVersion = "$mise_version"
+miseHash = "$mise_hash"
 EOF
 {{- end -}}
 
