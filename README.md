@@ -46,7 +46,7 @@ nix-shell -p git chezmoi --extra-experimental-features "nix-command flakes" \
 Run following command to apply home manager configuration:
 
 ```sh
-nix run home-manager/master -- init --switch
+cd ~/.config/home-manager && nix run home-manager/master -- init --switch
 ```
 
 ### Settings for AI tools (Optional)
