@@ -1,0 +1,15 @@
+final: prev: {
+  mise = prev.stdenv.mkDerivation {
+    pname = "mise";
+    version = "{{ includeTemplate `mise-version` . }}";
+    src = prev.fetchurl {
+      url = "{{ includeTemplate `mise-url` . }}";
+      hash = "{{ includeTemplate `mise-hash` . }}";
+    };
+    sourceRoot = ".";
+    nativeBuildInputs = [ prev.makeWrapper ];
+    installPhase = ''
+      install -Dm755 mise/bin/mise $out/bin/mise
+    '';
+  };
+}
