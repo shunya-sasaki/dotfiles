@@ -78,7 +78,7 @@ set-environment -g TZ '{{ env "TZ" | default "UTC" }}'
 
 # status bar ==================================================================
 set -g status-position bottom
-set -g status-right "#(TZ='{{ env "TZ" | default "UTC" }}' date '+ %Y-%m-%d  %H:%M:%S')"
+set -g status-right "#(TZ='{{ env "TZ" | default "UTC" }}' date '+ %%Y-%%m-%%d  %%H:%%M:%%S')"
 set -g status-interval 1
 if-shell -b '[ "$(uname)" = "Darwin" ]' {
     set -g status-left "#[fg=#aeaed2,bg=#000000]░▒▓#[fg=#000000,bg=##aeaed2]  #[fg=#aeaed2,bg=#000000]#[default] #S "
