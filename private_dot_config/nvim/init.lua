@@ -74,7 +74,6 @@ vim.opt.updatetime = 500
 vim.opt.ttimeoutlen = 10
 vim.opt.timeoutlen = 500
 vim.opt.foldlevel = 99
-vim.api.nvim_set_hl(0, "WinSeparator", { fg = "fg", bg = "bg" })
 -- filetype
 vim.filetype.add({
   filename = {
