@@ -74,7 +74,7 @@ vim.opt.updatetime = 500
 vim.opt.ttimeoutlen = 10
 vim.opt.timeoutlen = 500
 vim.opt.foldlevel = 99
-
+vim.api.nvim_set_hl(0, "WinSeparator", { fg = "fg", bg = "bg" })
 -- filetype
 vim.filetype.add({
   filename = {
@@ -115,3 +115,11 @@ require("config.lazy")
 require("core.autocmds")
 require("core.commands")
 require("core.keymaps")
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = function()
+    local src = vim.api.nvim_get_hl(0, { name = "Title" })
+    vim.api.nvim_set_hl(0, "WinSeparator", { fg = src.fg, bg = "NONE" })
+  end,
+})
+vim.api.nvim_exec_autocmds("ColorScheme", {})
