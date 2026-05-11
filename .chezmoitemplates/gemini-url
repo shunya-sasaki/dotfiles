@@ -1,2 +1,4 @@
+{{- if (or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin")) -}}
 {{- $version := includeTemplate "gemini-version" . -}}
 {{- printf "https://registry.npmjs.org/@google/gemini-cli/-/gemini-cli-%s.tgz" $version -}}
+{{- end -}}

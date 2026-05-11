@@ -1,1 +1,3 @@
+{{- if (or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin")) -}}
 {{- output "sh" "-c" `curl -sI "https://github.com/zed-industries/zed/releases/latest/" | grep -oE 'tag/[^[:space:]]+' | cut -d/ -f2 | tr -d '[:space:]'` -}}
+{{- end -}}
