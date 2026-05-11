@@ -1,3 +1,4 @@
+{{- if (or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin")) -}}
 {{- $cachedVersion := index . "copilotVersion" | default "" -}}
 {{- $cachedHash := index . "copilotHash" | default "" -}}
 {{- $latestVersion := includeTemplate "copilot-version" . | trim -}}
@@ -9,3 +10,4 @@
   {{- $hash = output "sh" "-c" (printf "nix hash convert --to sri --hash-algo sha256 $(nix-prefetch-url '%s' 2>/dev/null)" $url) | trim -}}
 {{- end -}}
 {{- $hash -}}
+{{- end -}}

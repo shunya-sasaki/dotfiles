@@ -1,2 +1,4 @@
+{{- if (or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin")) -}}
 {{- $version := includeTemplate "claude-version" . | trim -}}
 {{- printf "https://downloads.claude.ai/claude-code-releases/%s/%s-%s/claude" $version .chezmoi.os .chezmoi.arch -}}
+{{- end -}}
