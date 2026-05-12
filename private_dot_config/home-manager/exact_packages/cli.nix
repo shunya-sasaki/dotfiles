@@ -11,7 +11,6 @@ with pkgs; [
   fzf
   gcc
   gnupg
-  gnupg
   hyperfine
   imagemagick
   jq
