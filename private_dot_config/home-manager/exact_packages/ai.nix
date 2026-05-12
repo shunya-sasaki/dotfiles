@@ -5,7 +5,6 @@ with pkgs; [
   claude-code
   codex
   gemini-cli
-  gh
   github-copilot-cli
   ollama
   opencode
