@@ -1,4 +1,4 @@
-{{- ne .chezmoi.os "windows" -}}
+{{- if ne .chezmoi.os "windows" -}}
 #!/bin/sh
 if command -v bat > /dev/null 2>&1; then
     bat ~/.config/chezmoi/chezmoi.toml
