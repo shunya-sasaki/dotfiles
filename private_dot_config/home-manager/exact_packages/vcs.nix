@@ -6,4 +6,5 @@ with pkgs; [
   git
   gitui
   lazygit
+  tea
 ]
