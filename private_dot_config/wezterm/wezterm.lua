@@ -5,6 +5,7 @@ local config = {}
 config.color_scheme = "Tokyo Night"
 config.window_background_opacity = 0.9
 config.max_fps = 120
+config.term = "xterm-256color"
 
 config.initial_cols = 80
 config.initial_rows = 30
