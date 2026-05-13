@@ -51,6 +51,7 @@ bind r source-file ~/.config/tmux/tmux.conf \; display "Reloaded the config file
 bind S command-prompt -p "Session name:" "new-session -s '%%'"
 
 # General settings ==============================================================
+set-option -g focus-events on
 # copy to system clipboard
 set -s set-clipboard on
 set -g allow-passthrough on
