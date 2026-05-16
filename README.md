@@ -43,7 +43,32 @@ nix-shell -p git chezmoi --extra-experimental-features "nix-command flakes" \
 
 ### Install home manager
 
-Run following command to apply home manager configuration:
+#### macOS (nix-darwin + home-manager)
+
+On macOS, `home-manager` is mounted as a `nix-darwin` module so a single
+command rebuilds both system and user state.
+
+First-time bootstrap (no `darwin-rebuild` on `PATH` yet):
+
+```sh
+cd ~/.config/home-manager
+nix run nix-darwin/master#darwin-rebuild -- switch --flake .#$(hostname -s)
+```
+
+Subsequent rebuilds:
+
+```sh
+darwin-rebuild switch --flake ~/.config/home-manager#$(hostname -s)
+```
+
+After the first switch, remove the legacy standalone home-manager profile
+once and open a new shell:
+
+```sh
+nix profile remove '.*'
+```
+
+#### Linux (standalone home-manager)
 
 ```sh
 cd ~/.config/home-manager && nix run home-manager/master -- init --switch

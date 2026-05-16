@@ -1,0 +1,44 @@
+{ pkgs, lib, ... }:
+
+let
+    name = "{{- .chezmoi.username -}}";
+    home = "{{- .chezmoi.homeDir -}}";
+in
+{
+  system.stateVersion = 6;
+  system.primaryUser = "{{ .chezmoi.username }}";
+
+  users.users.${name} = {
+      name = name;
+      home = home;
+  };
+
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    substituters = [
+      "https://cache.nixos.org"
+      "https://nix-community.cachix.org"
+    ];
+    trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+    trusted-users = [ "@admin" "{{ .chezmoi.username }}" ];
+  };
+
+  # Writes /etc/zshrc that sources the nix-daemon profile.
+  # Distinct from home-manager.users.<u>.programs.zsh.
+  programs.zsh.enable = true;
+
+  security.pam.services.sudo_local.touchIdAuth = true;
+
+  system.defaults = {
+    dock.autohide = true;
+    NSGlobalDomain.KeyRepeat = 2;
+    NSGlobalDomain.InitialKeyRepeat = 15;
+    screencapture.location = "~/Pictures/Screenshots";
+    finder.AppleShowAllExtensions = true;
+  };
+
+  networking.hostName = "{{ .chezmoi.hostname }}";
+}
