@@ -1,0 +1,6 @@
+{{- $profile := "home" -}}
+{{- if hasKey . "profile" }}
+{{- $profile = .profile }}
+{{- end -}}
+{{- $profile = env "CHEZMOI_PROFILE" | default $profile -}}
+{{- $profile -}}

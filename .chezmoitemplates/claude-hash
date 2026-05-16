@@ -1,3 +1,4 @@
+{{- if eq (includeTemplate "profile" . | trim) "home" -}}
 {{- if (or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin")) -}}
 {{- $cachedVersion := index . "claudeVersion" | default "" -}}
 {{- $cachedHash := index . "claudeHash" | default "" -}}
@@ -10,4 +11,7 @@
   {{- $hash = output "sh" "-c" (printf "nix hash convert --to sri --hash-algo sha256 $(nix-prefetch-url '%s' 2>/dev/null)" $url) | trim -}}
 {{- end -}}
 {{- $hash -}}
+{{- end -}}
+{{- else -}}
+{{- "" -}}
 {{- end -}}

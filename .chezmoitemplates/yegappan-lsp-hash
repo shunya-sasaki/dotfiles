@@ -1,5 +1,9 @@
+{{- if eq (includeTemplate "profile" . | trim) "home" -}}
 {{- if (or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin")) -}}
 {{- $url := "https://github.com/yegappan/lsp/archive/refs/heads/main.tar.gz" -}}
 {{- $hash := output "sh" "-c" (printf "nix hash convert --to sri --hash-algo sha256 $(nix-prefetch-url --unpack '%s' 2>/dev/null)" $url) | trim -}}
 {{- $hash -}}
+{{- end -}}
+{{- else -}}
+{{- "" -}}
 {{- end -}}
