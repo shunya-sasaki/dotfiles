@@ -1,5 +1,5 @@
 {{- if (or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin")) -}}
-{{- $profile := env "CHEZMOI_PROFILE" | default "home" -}}
+{{- $profile := includeTemplate "profile" . | trim -}}
 
 {{- $cachedClaudeVersion := index . "claudeVersion" | default "" -}}
 {{- $cachedClaudeHash := index . "claudeHash" | default "" -}}

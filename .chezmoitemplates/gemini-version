@@ -1,3 +1,7 @@
+{{- if eq (includeTemplate "profile" . | trim) "home" -}}
 {{- if (or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin")) -}}
 {{- output "sh" "-c" "curl -s https://registry.npmjs.org/@google/gemini-cli/latest | grep -o '\"version\":\"[^\"]*\"' | cut -d'\"' -f4" | trim -}}
+{{- end -}}
+{{- else -}}
+{{- "" -}}
 {{- end -}}

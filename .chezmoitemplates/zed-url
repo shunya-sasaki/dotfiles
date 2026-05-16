@@ -1,3 +1,4 @@
+{{- if eq (includeTemplate "profile" . | trim) "home" -}}
 {{- if (or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin")) -}}
 {{- $version := includeTemplate "zed-version" . -}}
 {{- $os := .chezmoi.os -}}
@@ -12,4 +13,7 @@
 {{- else if eq $os "linux" -}}
     {{- printf "https://github.com/zed-industries/zed/releases/download/%s/zed-linux-%s.tar.gz" $version $arch -}}
 {{- end -}}
+{{- end -}}
+{{- else -}}
+{{- "" -}}
 {{- end -}}
