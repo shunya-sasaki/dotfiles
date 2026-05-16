@@ -98,7 +98,8 @@ function hm() {
     current_dir=`pwd`
     cd ${HOME}/.config/home-manager
     nix flake update
-    home-manager switch
+    # home-manager switch
+    sudo darwin-rebuild switch --flake .#$(hostname -s)
     cd $current_dir
 }
 
