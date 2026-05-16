@@ -38,18 +38,19 @@ if os_name == "wsl" then
   }
 else
   if vim.env.SSH_CONNECTION then
-    vim.opt.clipboard = "unnamed,unnamedplus"
-    vim.g.clipboard = {
-      name = "OSC 52",
-      copy = {
-        ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-        ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-      },
-      paste = {
-        ["+"] = paste,
-        ["*"] = paste,
-      },
-    }
+    vim.opt.clipboard = ""
+    vim.g.clipboard = nil
+    local osc52 = require("vim.ui.clipboard.osc52")
+    vim.api.nvim_create_autocmd("TextYankPost", {
+      group = vim.api.nvim_create_augroup("Osc52Yank", { clear = true }),
+      callback = function()
+        if vim.v.event.operator ~= "y" then
+          return
+        end
+        osc52.copy("+")(vim.v.event.regcontents)
+        osc52.copy("*")(vim.v.event.regcontents)
+      end,
+    })
   else
     vim.opt.clipboard = "unnamedplus"
     vim.g.clipboard = nil
