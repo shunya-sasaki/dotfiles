@@ -72,7 +72,7 @@ vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.termguicolors = true
 vim.opt.updatetime = 500
-vim.opt.ttimeoutlen = 10
+vim.opt.ttimeoutlen = 50
 vim.opt.timeoutlen = 500
 vim.opt.foldlevel = 99
 -- filetype
