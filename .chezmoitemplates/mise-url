@@ -1,4 +1,4 @@
-{{- if eq (includeTemplate "profile" . | trim) "home" -}}
+{{- if (or (eq (includeTemplate "profile" . | trim) "home") (eq (includeTemplate "profile" . | trim) "work")) -}}
 {{- if (or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin")) -}}
 {{- $version := includeTemplate "mise-version" . -}}
 {{- $os := .chezmoi.os -}}
