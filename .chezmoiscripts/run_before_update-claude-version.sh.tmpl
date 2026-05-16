@@ -69,6 +69,8 @@ fi
 cat <<EOF > ~/.config/chezmoi/chezmoi.toml
 [edit]
 command = "nvim"
+[diff]
+exclude = ["scripts"]
 [data]
 profile = "{{ $profile }}"
 claudeVersion = "$claude_version"
