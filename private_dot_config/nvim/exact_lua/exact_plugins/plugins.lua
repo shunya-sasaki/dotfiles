@@ -29,7 +29,7 @@ return {
     opts = {},
     keys = {
       {
-        "s",
+        "<LEADER>s",
         mode = { "n", "x", "o" },
         function()
           require("flash").jump()
