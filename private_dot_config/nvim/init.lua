@@ -124,36 +124,33 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 })
 vim.api.nvim_exec_autocmds("ColorScheme", {})
 
-
 local function disable_markdown_heading_font_style()
-  for _, group in ipairs(
-    {
-      "@markdown.heading.1.markdown",
-      "@markdown.heading.2.markdown",
-      "@markdown.heading.3.markdown",
-      "@markdown.heading.4.markdown",
-      "@markdown.heading.5.markdown",
-      "@markdown.heading.6.markdown",
-    }
-  ) do
-  local ok, hl = pcall(vim.api.nvim_get_hl, 0, {
-    name = group,
-    link = false,
-  })
+  for _, group in ipairs({
+    "@markup.heading.1.markdown",
+    "@markup.heading.2.markdown",
+    "@markup.heading.3.markdown",
+    "@markup.heading.4.markdown",
+    "@markup.heading.5.markdown",
+    "@markup.heading.6.markdown",
+  }) do
+    local ok, hl = pcall(vim.api.nvim_get_hl, 0, {
+      name = group,
+      link = false,
+    })
 
-  if ok and hl then
-    hl.bold = false
-    hl.italic = false
-    hl.underline = false
-    hl.undercurl = false
+    if ok and hl then
+      hl.bold = false
+      hl.italic = false
+      hl.underline = false
+      hl.undercurl = false
 
-    vim.api.nvim_set_hl(0, group, hl)
-  end
+      vim.api.nvim_set_hl(0, group, hl)
+    end
   end
 end
 
-vim.api.nvim_create_autocmd({"ColorScheme", "FileType"}, {
-  pattern = {"*", "markdown"},
+vim.api.nvim_create_autocmd({ "ColorScheme", "FileType" }, {
+  pattern = { "*", "markdown" },
   callback = disable_markdown_heading_font_style,
 })
 
