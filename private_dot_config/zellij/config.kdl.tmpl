@@ -1,6 +1,13 @@
 theme "tokyo-night";
 simplified_ui false;
+{{- $shell := "bash" -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $shell = "zsh" -}}
+{{- else if eq .chezmoi.os "windows" -}}
+{{-   $shell = "pwsh" -}}
+{{- end }}
 default_layout "custom";
+default_shell "{{- $shell -}}";
 
 pane_frames false;
 ui {
