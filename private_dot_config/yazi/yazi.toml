@@ -1,5 +1,4 @@
 # yazi config file
-"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 [mgr]
 sort_by = "extension"
 show_hidden = true
@@ -11,13 +10,15 @@ edit = [
 ]
 
 [[plugin.prepend_fetchers]]
-id   = "mime"
-url  = "local://*"
-run  = "mime-ext.local"
-prio = "high"
+id    = "mime"
+group = "mime"
+url   = "local://*"
+run   = "mime-ext.local"
+prio  = "high"
 
 [[plugin.prepend_fetchers]]
-id   = "mime"
-url  = "remote://*"
-run  = "mime-ext.remote"
-prio = "high"
+id    = "mime"
+group = "mime"
+url   = "remote://*"
+run   = "mime-ext.remote"
+prio  = "high"
