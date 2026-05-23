@@ -29,7 +29,6 @@ with pkgs; [
   tldr
   tmux
   tree-sitter
-  ueberzugpp
   xh
   yazi
   zellij
