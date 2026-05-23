@@ -36,7 +36,7 @@ wezterm cli list --format json
 ### Procedure
 
 1. Run `wezterm cli list --format json`.
-2. Parse the JSON output and anlysis the status.
+2. Parse the JSON output and analyze the status.
 3. Check the position of your pane and your adjacent panes.
 
 > [!CAUTION]
@@ -85,7 +85,7 @@ EOF
 
 1. Create a message.
 2. Send the message to the specified pane with the command.
-3. If you sent the sigle line message, send the enter key.
+3. If you sent the single line message, send the enter key.
    If you run on Windows PowerShell, run literally:
 
    ```ps1
@@ -113,7 +113,7 @@ EOF
 > wezterm cli send-text --pane-id <PANE_ID> --no-paste "`r"
 > ```
 >
-> NEVER confuse the character to send a the enter key.
+> NEVER confuse the character to send the enter key.
 >
 > ✅ Correct:
 >

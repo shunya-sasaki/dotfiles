@@ -47,7 +47,7 @@ zellij action list-clients
 ### Procedure
 
 1. Run `zellij action list-panes --json --all`.
-2. Parse the JSON output and anlysis the status.
+2. Parse the JSON output and analyze the status.
 3. Check the position of your pane and your adjacent panes.
 
 > [!CAUTION]
@@ -106,7 +106,7 @@ EOF
 
 1. Create a message.
 2. Send the message to the specified pane with the command.
-3. If you sent the sigle line message, send the enter key.
+3. If you sent the single line message, send the enter key.
    If you run on Windows PowerShell, run literally:
 
    ```ps1
