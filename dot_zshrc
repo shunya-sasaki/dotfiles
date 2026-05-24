@@ -5,6 +5,19 @@ export PATH="/usr/local/bin${PATH:+:$PATH}"
 export PATH="$HOME/.local/bin${PATH:+:$PATH}"
 export PATH=$HOME/.bin:/Library/Apple/usr/bin${PATH:+:$PATH}
 
+# ~/.profile.d ================================================================
+# Source every *.sh under ~/.profile.d (works in both bash and zsh)
+function source_profile_d() {
+    local dir="$HOME/.profile.d"
+    [ -d "$dir" ] || return
+    setopt localoptions nullglob 2>/dev/null
+    shopt -s nullglob 2>/dev/null
+    for f in "$dir"/*.sh; do
+        [ -r "$f" ] && source "$f"
+    done
+}
+source_profile_d
+
 # Nix
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
   source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
@@ -46,62 +59,12 @@ export VCPKG_ROOT="$HOME/vcpkg"
 export LANGCHAIN_ENDPOINT="https://api.smith.langchain.com"
 export LANGCHAIN_TRACING_V2="true"
 
-# FZF
-export FZF_DEFAULT_OPTS="--ansi"
-export FZF_DEFAULT_COMMAND="fd --type f --color=always --hidden --exclude .git --exclude node_modules"
-export FZF_CTRL_T_COMMAND="fd --type f --color=always"
-export FZF_CTRL_T_OPTS="--preview 'bat {} --color=always --style=numbers --line-range=:500'"
-export FZF_ALT_C_COMMAND="fd --type d"
-export FZF_ALT_C_OPTS="--preview 'eza {} --color=always --icons=always s ext -h -T -F --no-user --no-time --no-filesize --no-permissions --long | head -200'"
-export FZF_COMPLETION_OPTS='--border --info=inline'
-if command -v fzf &> /dev/null; then
-    source <(fzf --zsh)
-fi
-
-# yazi
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	command yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
-	rm -f -- "$tmp"
-}
-
-# tmux/zelliji
-function set_wezterm_user_var(){
-    if [[ -n "$WEZTERM_PANE" ]]; then
-        printf "\033]1337;SetUserVar=%s=%s\007" "$1" $(echo -n "$2" | base64)
-    fi
-}
-function zellij() {
-    set_wezterm_user_var "TMUX_MODE" "1"
-    command zellij "$@"
-    set_wezterm_user_var "TMUX_MODE" "0"
-}
-# Tmux
-function tmux() {
-    set_wezterm_user_var "TMUX_MODE" "1"
-    command tmux "$@"
-    set_wezterm_user_var "TMUX_MODE" "0"
-}
-
 # Docker
 function docker-login-github-cr() {
     echo $CR_PAT | docker login ghcr.io -u ${GITHUB_USERNAME} --password-stdin
 }
 
-# Antigravity
-export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 
-# Nix Home Manager
-function hm() {
-    current_dir=`pwd`
-    cd ${HOME}/.config/home-manager
-    nix flake update
-    # home-manager switch
-    sudo darwin-rebuild switch --flake .#$(hostname -s)
-    cd $current_dir
-}
 
 # Agents ======================================================================
 # Load variables for AI agents from .env.agents
@@ -138,19 +101,6 @@ if command -v eza &> /dev/null; then
 fi
 if command -v zeditor &> /dev/null; then
     alias zed="zeditor"
-fi
-if command -v tmux &> /dev/null; then
-    alias ta="tmux a -t"
-    alias tk="tmux kill-session -t"
-    alias tl="tmux ls"
-    alias ts="tmux new -d -s"
-fi
-if command -v zellij &> /dev/null; then
-    alias za="zellij a" # attatch session
-    alias zd="zellij d" # delete session
-    alias zk="zellij k" # kill session
-    alias zl="zellij ls" # list sessions
-    alias zs="zellij -s" # start new session
 fi
 
 # shell =======================================================================
