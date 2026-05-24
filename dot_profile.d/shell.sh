@@ -1,16 +1,17 @@
+shell=${SHELL##*/}
 # starship
 if command -v starship &> /dev/null; then
-    eval "$(starship init zsh)"
+    eval "$(starship init $shell)"
 fi
 # zoxide
 if command -v zoxide &> /dev/null; then
-    eval "$(zoxide init zsh)"
+    eval "$(zoxide init $shell)"
 fi
 # direnv
 if command -v direnv &> /dev/null; then
-    eval "$(direnv hook zsh)"
+    eval "$(direnv hook $shell)"
 fi
 # mise
 if command -v mise &> /dev/null; then
-    eval "$(mise activate zsh)"
+    eval "$(mise activate $shell)"
 fi
