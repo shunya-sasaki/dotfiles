@@ -83,6 +83,7 @@ vim.filetype.add({
   pattern = {
     [".*/.flake8"] = "ini",
     ["dot_zshrc"] = "zsh",
+    ["dot_bashrc"] = "sh",
     [".*%.nix%.tmpl"] = "nix",
     [".*%.sh%.tmpl"] = "sh",
   },
