@@ -62,31 +62,5 @@ export LANGCHAIN_TRACING_V2="true"
 function docker-login-github-cr() {
     echo $CR_PAT | docker login ghcr.io -u ${GITHUB_USERNAME} --password-stdin
 }
-
-# Agents ======================================================================
-# Load variables for AI agents from .env.agents
-# Expected variables
-# - DISABLE_COPILOT: 0 | 1
-# - NVIM_AGENT: gemini | copilot
-# - AI_COMMIT_MESSAGE_PROVIDER: GEMINI | COPILOT | AZURE_OPEN_AI
-if [ -f "$HOME/.env.agents" ]; then
-    export $(grep -v '^#' "$HOME/.env.agents" | xargs)
-fi
-
-# Secrets =====================================================================
-# Load secrets from .secrets
-# Expected variables:
-# - OPENAI_API_KEY
-# - LANGCHAIN_API_KEY
-# - GEMINI_API_KEY
-# - NOTION_TOKEN
-# - GITHUB_TOKEN
-# - GH_TOKEN
-if [ -f "$HOME/.secrets" ]; then
-    set -a
-    source "$HOME/.secrets"
-    set +a
-fi
-
 # Vite+ bin (https://viteplus.dev)
 . "$HOME/.vite-plus/env"
