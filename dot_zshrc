@@ -5,6 +5,12 @@ export PATH="/usr/local/bin${PATH:+:$PATH}"
 export PATH="$HOME/.local/bin${PATH:+:$PATH}"
 export PATH=$HOME/.bin:/Library/Apple/usr/bin${PATH:+:$PATH}
 
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+export PATH="$HOME/.nix-profile/bin:$PATH"
+
 # ~/.profile.d ================================================================
 # Source every *.sh under ~/.profile.d (works in both bash and zsh)
 function source_profile_d() {
@@ -18,11 +24,6 @@ function source_profile_d() {
 }
 source_profile_d
 
-# Nix
-if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-  source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-fi
-export PATH="$HOME/.nix-profile/bin:$PATH"
 
 # C/C++
 export CXX_INCLUDE_PATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include${CXX_INCLUDE_PATH:+:$CXX_INCLUDE_PATH}
@@ -35,8 +36,6 @@ export PATH=$HOME/.dotnet/tools${PATH:+:$PATH}
 export PATH=$(dirname $(rustup which cargo)):$PATH
 export RUSTUP_HOME=$HOME/.rustup
 export CARGO_HOME=$HOME/.cargo
-
-# Python ----------------------------------------------------------------------
 
 # Node.js
 export VOLTA_HOME="$HOME/.volta"
@@ -64,8 +63,6 @@ function docker-login-github-cr() {
     echo $CR_PAT | docker login ghcr.io -u ${GITHUB_USERNAME} --password-stdin
 }
 
-
-
 # Agents ======================================================================
 # Load variables for AI agents from .env.agents
 # Expected variables
@@ -89,37 +86,6 @@ if [ -f "$HOME/.secrets" ]; then
     set -a
     source "$HOME/.secrets"
     set +a
-fi
-
-# alias =======================================================================
-alias activate="source activate.sh"
-if command -v bat &> /dev/null; then
-    alias cat='bat --color=always --style=numbers --line-range=:500'
-fi
-if command -v eza &> /dev/null; then
-    alias ls='eza --color=always --icons=always --group-directories-first -L 1 -s ext -h -T -F --long'
-fi
-if command -v zeditor &> /dev/null; then
-    alias zed="zeditor"
-fi
-
-# shell =======================================================================
-bindkey -e
-# starship
-if command -v starship &> /dev/null; then
-    eval "$(starship init zsh)"
-fi
-# zoxide
-if command -v zoxide &> /dev/null; then
-    eval "$(zoxide init zsh)"
-fi
-# direnv
-if command -v direnv &> /dev/null; then
-    eval "$(direnv hook zsh)"
-fi
-# mise
-if command -v mise &> /dev/null; then
-    eval "$(mise activate zsh)"
 fi
 
 # Vite+ bin (https://viteplus.dev)
