@@ -1,0 +1,9 @@
+{{- if eq (includeTemplate "profile" . | trim) "home" -}}
+{{- if (or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin")) -}}
+{{- $platform := printf "%s_%s" .chezmoi.os .chezmoi.arch -}}
+{{- $url := printf "https://antigravity-cli-auto-updater-974169037036.us-central1.run.app/manifests/%s.json" $platform -}}
+{{- (output "curl" "-fsSL" $url | fromJson).version -}}
+{{- end -}}
+{{- else -}}
+{{- "" -}}
+{{- end -}}
