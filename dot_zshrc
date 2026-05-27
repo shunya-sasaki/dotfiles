@@ -19,6 +19,7 @@ function source_profile_d() {
     setopt localoptions nullglob 2>/dev/null
     shopt -s nullglob 2>/dev/null
     for f in "$dir"/*.sh; do
+        [ "${f##*/}" = "shell.sh" ] && continue
         [ -r "$f" ] && source "$f"
     done
 }
