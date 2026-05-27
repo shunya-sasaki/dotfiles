@@ -1,5 +1,5 @@
 function set_wezterm_user_var(){
-    if [[ -n "$WEZTERM_PANE" ]]; then
+    if [[ -n "$WEZTERM_PANE" || -n "$SSH_CONNECTION" ]]; then
         printf "\033]1337;SetUserVar=%s=%s\007" "$1" $(echo -n "$2" | base64)
     fi
 }
