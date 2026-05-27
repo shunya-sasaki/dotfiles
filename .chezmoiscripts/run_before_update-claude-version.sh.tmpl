@@ -16,6 +16,9 @@
 {{- $cachedMiseVersion := index . "miseVersion" | default "" -}}
 {{- $cachedMiseHash := index . "miseHash" | default "" -}}
 
+{{- $cachedAntigravityVersion := index . "antigravityVersion" | default "" -}}
+{{- $cachedAntigravityHash := index . "antigravityHash" | default "" -}}
+
 #!/bin/sh
 claude_version="{{- includeTemplate "claude-version" . -}}"
 if [ "$claude_version" = "{{- $cachedClaudeVersion -}}" ] \
@@ -62,6 +65,15 @@ else
     mise_hash="{{- includeTemplate "mise-hash" . -}}"
 fi
 
+antigravity_version="{{- includeTemplate "antigravity-version" . -}}"
+if [ "$antigravity_version" = "{{- $cachedAntigravityVersion -}}" ] \
+    && [ -n "{{- $cachedAntigravityHash -}}" ]; then
+    echo "Antigravity is up to date, using cached hash."
+    antigravity_hash="{{- $cachedAntigravityHash -}}"
+else
+    antigravity_hash="{{- includeTemplate "antigravity-hash" . -}}"
+fi
+
 if [ ! -d ~/.config/chezmoi ]; then
     mkdir -p ~/.config/chezmoi
 fi
@@ -83,6 +95,8 @@ zedVersion = "$zed_version"
 zedHash = "$zed_hash"
 miseVersion = "$mise_version"
 miseHash = "$mise_hash"
+antigravityVersion = "$antigravity_version"
+antigravityHash = "$antigravity_hash"
 EOF
 {{- end -}}
 

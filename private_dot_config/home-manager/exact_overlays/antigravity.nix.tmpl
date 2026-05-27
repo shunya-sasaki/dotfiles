@@ -1,0 +1,15 @@
+final: prev: {
+  antigravity = prev.stdenv.mkDerivation {
+    pname = "antigravity";
+    version = "{{ includeTemplate `antigravity-version` . }}";
+    src = prev.fetchurl {
+      url = "{{ includeTemplate `antigravity-url` . }}";
+      hash = "{{ includeTemplate `antigravity-hash` . }}";
+    };
+    sourceRoot = ".";
+    nativeBuildInputs = [ prev.makeWrapper ];
+    installPhase = ''
+      install -Dm755 antigravity $out/bin/agy
+    '';
+  };
+}
