@@ -1,13 +1,13 @@
 function hm() {
+    local os current_dir
     os=$(uname)
-    current_dir=`pwd`
-    cd ${HOME}/.config/home-manager
+    current_dir=$(pwd)
+    cd "${HOME}/.config/home-manager" || return 1
     nix flake update
     if [[ "$os" == "Darwin" ]]; then
-        sudo darwin_rebuild switch --flake .#$(hostname -s)
-
+        sudo darwin-rebuild switch --flake ".#$(hostname -s)"
     else
-        home_manager_switch
+        home-manager switch --flake ".#$(whoami)"
     fi
-    cd $current_dir
+    cd "$current_dir"
 }
