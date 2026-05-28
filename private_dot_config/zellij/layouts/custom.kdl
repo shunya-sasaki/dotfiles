@@ -1,6 +1,6 @@
 layout {
     tab name="term" hide_floating_panes=true {
-        pane focus=true borderless=true
+        pane focus=true borderless=false name="0"
         pane size=1 borderless=true {
             plugin location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" {
 

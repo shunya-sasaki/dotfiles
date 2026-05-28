@@ -9,7 +9,7 @@ simplified_ui false;
 default_layout "custom";
 default_shell "{{- $shell -}}";
 
-pane_frames false;
+pane_frames true;
 ui {
     pane_frames {
         rounded_corners true;
@@ -38,6 +38,16 @@ keybinds clear-defaults=true {
         // Panes
         bind "Ctrl a" { Write 2; SwitchToMode "Normal"; }
         bind "~" {ToggleFloatingPanes; SwitchToMode "Normal";}
+        bind "|" { Run "{{- $shell -}}" {
+            direction "Right"
+            name ""
+            close_on_exit true
+        }; SwitchToMode "Normal"; }
+        bind "-" { Run "{{- $shell -}}" {
+            direction "Down"
+            name ""
+            close_on_exit true
+        }; SwitchToMode "Normal"; }
         bind "Left" { MoveFocus "Left"; SwitchToMode "Normal"; }
         bind "Right" { MoveFocus "Right"; SwitchToMode "Normal"; }
         bind "Down" { MoveFocus "Down"; SwitchToMode "Normal"; }
@@ -46,8 +56,6 @@ keybinds clear-defaults=true {
         bind "l" { MoveFocus "Right"; SwitchToMode "Normal"; }
         bind "j" { MoveFocus "Down"; SwitchToMode "Normal"; }
         bind "k" { MoveFocus "Up"; SwitchToMode "Normal"; }
-        bind "|" { NewPane; SwitchToMode "Normal"; }
-        bind "-" { NewPane "Down" ; SwitchToMode "Normal"; }
         bind "H" { Resize "Increase Left"; }
         bind "J" { Resize "Increase Down"; }
         bind "K" { Resize "Increase Up"; }

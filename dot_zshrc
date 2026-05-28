@@ -11,6 +11,11 @@ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
 fi
 export PATH="$HOME/.nix-profile/bin:$PATH"
 
+if [[ -n $ZELLIJ_PANE_ID ]]; then
+    zellij action rename-pane $ZELLIJ_PANE_ID
+fi
+
+
 # ~/.profile.d ================================================================
 # Source every *.sh under ~/.profile.d (works in both bash and zsh)
 function source_profile_d() {
@@ -65,3 +70,5 @@ function docker-login-github-cr() {
 }
 # Vite+ bin (https://viteplus.dev)
 . "$HOME/.vite-plus/env"
+
+source $HOME/.profile.d/shell.sh
