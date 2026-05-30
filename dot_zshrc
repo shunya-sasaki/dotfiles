@@ -5,17 +5,9 @@ export PATH="/usr/local/bin${PATH:+:$PATH}"
 export PATH="$HOME/.local/bin${PATH:+:$PATH}"
 export PATH=$HOME/.bin:/Library/Apple/usr/bin${PATH:+:$PATH}
 
-# Nix
-if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-  source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-fi
-export PATH="$HOME/.nix-profile/bin:$PATH"
-
-if [[ -n $ZELLIJ_PANE_ID ]]; then
-    zellij action rename-pane $ZELLIJ_PANE_ID
-fi
 
 
+source $HOME/.profile.d/before.sh
 # ~/.profile.d ================================================================
 # Source every *.sh under ~/.profile.d (works in both bash and zsh)
 function source_profile_d() {
@@ -23,46 +15,15 @@ function source_profile_d() {
     [ -d "$dir" ] || return
     setopt localoptions nullglob 2>/dev/null
     shopt -s nullglob 2>/dev/null
+    set +a
     for f in "$dir"/*.sh; do
-        [ "${f##*/}" = "shell.sh" ] && continue
+        [ "${f##*/}" = "before.sh" ] && continue
+        [ "${f##*/}" = "after.sh" ] && continue
         [ -r "$f" ] && source "$f"
     done
+    set -a
 }
 source_profile_d
-
-
-# C/C++
-export CXX_INCLUDE_PATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include${CXX_INCLUDE_PATH:+:$CXX_INCLUDE_PATH}
-export VCPKG_ROOT="$HOME/vcpkg"
-
-# C#
-export PATH=$HOME/.dotnet/tools${PATH:+:$PATH}
-
-# Rust
-export PATH=$(dirname $(rustup which cargo)):$PATH
-export RUSTUP_HOME=$HOME/.rustup
-export CARGO_HOME=$HOME/.cargo
-
-# Node.js
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin${PATH:+:$PATH}"
-export NODE_OPTIONS="--dns-result-order=ipv4first"
-
-# bun
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin${PATH:+:$PATH}"
-
-# Added by Windsurf
-export PATH="$HOME/.codeium/windsurf/bin:$PATH"
-
-# vcpkg
-export PATH="$HOME/vcpkg:$PATH"
-export VCPKG_ROOT="$HOME/vcpkg"
-
-# LangChain
-export LANGCHAIN_ENDPOINT="https://api.smith.langchain.com"
-export LANGCHAIN_TRACING_V2="true"
 
 # Docker
 function docker-login-github-cr() {
@@ -71,4 +32,4 @@ function docker-login-github-cr() {
 # Vite+ bin (https://viteplus.dev)
 . "$HOME/.vite-plus/env"
 
-source $HOME/.profile.d/shell.sh
+source $HOME/.profile.d/after.sh
