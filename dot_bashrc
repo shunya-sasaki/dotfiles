@@ -128,4 +128,4 @@ function source_profile_d() {
 }
 
 source_profile_d
-source ~/.profile.d/before.sh
+source ~/.profile.d/after.sh
