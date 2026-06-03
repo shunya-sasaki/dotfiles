@@ -31,6 +31,7 @@ return {
         "jsdoc",
         "json",
         "kdl",
+        "latex",
         "lua",
         "luadoc",
         "make",
