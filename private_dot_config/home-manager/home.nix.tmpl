@@ -1,8 +1,7 @@
 { pkgs, ...}:
 
 let
-  # profile {{- $profile := env "CHEZMOI_PROFILE" | default "home" }}
-  profile = "{{ $profile }}";
+  profile = "{{ includeTemplate "profile" }}";
 in
 {
   fonts.fontconfig.enable = true;
