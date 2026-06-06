@@ -1,0 +1,16 @@
+[general]
+# git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
+import = [
+    "~/.config/alacritty/themes/themes/tokyo_night.toml"
+]
+
+[font]
+normal = { family = "Moralerspace Neon HW", style = "Regular" }
+size = 14.0
+
+[window]
+opacity = 0.9
+blur = false
+
+[terminal]
+osc52 = "CopyPaste"
