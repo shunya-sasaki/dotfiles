@@ -2,6 +2,7 @@
 
 with pkgs; [
   alacritty
+  alacritty-theme
   drawio
   julia-mono
   moralerspace-hw
