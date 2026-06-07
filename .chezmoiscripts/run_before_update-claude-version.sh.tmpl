@@ -19,6 +19,9 @@
 {{- $cachedAntigravityVersion := index . "antigravityVersion" | default "" -}}
 {{- $cachedAntigravityHash := index . "antigravityHash" | default "" -}}
 
+{{- $cachedOllamaVersion := index . "ollamaVersion" | default "" -}}
+{{- $cachedOllamaHash := index . "ollamaHash" | default "" -}}
+
 #!/bin/sh
 claude_version="{{- includeTemplate "claude-version" . -}}"
 if [ "$claude_version" = "{{- $cachedClaudeVersion -}}" ] \
@@ -74,6 +77,15 @@ else
     antigravity_hash="{{- includeTemplate "antigravity-hash" . -}}"
 fi
 
+ollama_version="{{- includeTemplate "ollama-version" . -}}"
+if [ "$ollama_version" = "{{- $cachedOllamaVersion -}}" ] \
+    && [ -n "{{- $cachedOllamaHash -}}" ]; then
+    echo "Ollama is up to date, using cached hash."
+    ollama_hash="{{- $cachedOllamaHash -}}"
+else
+    ollama_hash="{{- includeTemplate "ollama-hash" . -}}"
+fi
+
 if [ ! -d ~/.config/chezmoi ]; then
     mkdir -p ~/.config/chezmoi
 fi
@@ -97,6 +109,8 @@ miseVersion = "$mise_version"
 miseHash = "$mise_hash"
 antigravityVersion = "$antigravity_version"
 antigravityHash = "$antigravity_hash"
+ollamaVersion = "$ollama_version"
+ollamaHash = "$ollama_hash"
 EOF
 {{- end -}}
 

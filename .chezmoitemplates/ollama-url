@@ -1,0 +1,13 @@
+{{- if eq (includeTemplate "profile" . | trim) "home" -}}
+{{- if (or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin")) -}}
+{{- $version := includeTemplate "ollama-version" . | trim -}}
+{{- $base := "https://github.com/ollama/ollama/releases/download" -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{- printf "%s/%s/ollama-darwin.tgz" $base $version -}}
+{{- else -}}
+{{- printf "%s/%s/ollama-linux-%s.tar.zst" $base $version .chezmoi.arch -}}
+{{- end -}}
+{{- end -}}
+{{- else -}}
+{{- "" -}}
+{{- end -}}

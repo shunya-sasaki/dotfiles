@@ -1,0 +1,27 @@
+final: prev:
+let
+  version = "{{ includeTemplate `ollama-version` . }}";
+in
+{
+  ollama =
+    if prev.stdenv.isDarwin then
+      prev.stdenv.mkDerivation {
+        pname = "ollama";
+        inherit version;
+        src = prev.fetchurl {
+          url = "{{ includeTemplate `ollama-url` . }}";
+          hash = "{{ includeTemplate `ollama-hash` . }}";
+        };
+        dontUnpack = true;
+        nativeBuildInputs = [ prev.makeWrapper ];
+        installPhase = ''
+          runHook preInstall
+          mkdir -p $out/lib/ollama $out/bin
+          tar -xzf $src -C $out/lib/ollama
+          makeWrapper $out/lib/ollama/ollama $out/bin/ollama
+          runHook postInstall
+        '';
+      }
+    else
+      prev.ollama;
+}

@@ -1,12 +1,15 @@
 { pkgs }:
 
 with pkgs; [
-  vscode
-  zed-editor
+  alacritty
+  alacritty-theme
   drawio
-  obsidian
-  wezterm
+  julia-mono
   moralerspace-hw
-  noto-fonts-color-emoji
   nerd-fonts.symbols-only
+  noto-fonts-color-emoji
+  obsidian
+  vscode
+  wezterm
+  zed-editor
 ]
