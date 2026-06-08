@@ -7,7 +7,11 @@ final: prev: {
       hash = "{{ includeTemplate `claude-hash` . }}";
     };
     dontUnpack = true;
-    nativeBuildInputs = [ prev.makeWrapper ];
+    nativeBuildInputs = [ prev.makeWrapper ]
+      ++ prev.lib.optionals prev.stdenv.isLinux [ prev.autoPatchelfHook ];
+    buildInputs = prev.lib.optionals prev.stdenv.isLinux [
+      prev.stdenv.cc.cc.lib
+    ];
     installPhase = ''
       install -Dm755 $src $out/bin/claude
     '';
