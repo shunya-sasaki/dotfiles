@@ -1,8 +1,10 @@
-{{- if eq (includeTemplate "profile" . | trim) "home" -}}
 {{- if (or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin")) -}}
 {{- $version := includeTemplate "claude-version" . | trim -}}
-{{- printf "https://downloads.claude.ai/claude-code-releases/%s/%s-%s/claude" $version .chezmoi.os .chezmoi.arch -}}
+{{- $arch := .chezmoi.arch -}}
+{{- if eq $arch "amd64" -}}
+{{- $arch = "x64" -}}
 {{- end -}}
+{{- printf "https://downloads.claude.ai/claude-code-releases/%s/%s-%s/claude" $version .chezmoi.os $arch -}}
 {{- else -}}
 {{- "" -}}
 {{- end -}}
