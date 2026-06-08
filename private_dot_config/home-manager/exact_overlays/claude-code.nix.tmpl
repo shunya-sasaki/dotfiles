@@ -7,7 +7,16 @@ final: prev: {
       hash = "{{ includeTemplate `claude-hash` . }}";
     };
     dontUnpack = true;
-    nativeBuildInputs = [ prev.makeWrapper ];
+    # Claude Code is a Bun single-file executable: the Bun runtime with the
+    # app appended as a trailer (ends with a "Bun!" marker). Stripping rewrites
+    # the ELF and discards that trailer, which makes the binary fall back to
+    # behaving like plain `bun`, so it must be disabled on Linux.
+    dontStrip = true;
+    nativeBuildInputs = [ prev.makeWrapper ]
+      ++ prev.lib.optionals prev.stdenv.isLinux [ prev.autoPatchelfHook ];
+    buildInputs = prev.lib.optionals prev.stdenv.isLinux [
+      prev.stdenv.cc.cc.lib
+    ];
     installPhase = ''
       install -Dm755 $src $out/bin/claude
     '';

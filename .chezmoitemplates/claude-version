@@ -1,7 +1,5 @@
-{{- if eq (includeTemplate "profile" . | trim) "home" -}}
 {{- if (or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin")) -}}
 {{- output "curl" "-fsSL" "https://downloads.claude.ai/claude-code-releases/latest" -}}
-{{- end -}}
 {{- else -}}
 {{- "" -}}
 {{- end -}}
