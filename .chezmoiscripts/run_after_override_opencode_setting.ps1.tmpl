@@ -1,0 +1,8 @@
+{{- if eq .chezmoi.os "windows" -}}
+cd "$env:HOMEPATH\.config\opencode"
+if (Get-Command uv -ErrorAction SilentlyContinue) {
+    uv run override.py
+} else {
+    python override.py
+}
+{{- end -}}
