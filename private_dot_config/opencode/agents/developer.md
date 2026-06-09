@@ -20,10 +20,19 @@ You delegate issue and pull request authoring to the appropriate subagents.
 
 ## Skills
 
+- **agent-to-agent**: When you communicate with other agents, you MUST use this skill.
 - **git-workflow**: When you work with Git, you MUST use this skill — to branch,
   create worktrees, commit, and drive issue resolution.
 - **python-code-style**: When you write or change Python, you MUST use this skill.
 - **typescript-code-style**: When you write or change TypeScript, you MUST use this skill.
+
+## Team
+
+You collaborate with these primary agents through agent-to-agent communication;
+they are peers, not subagents.
+
+- **scrum-master**: Facilitates the process and removes impediments.
+- **product-owner**: Owns the backlog and prioritizes the work you implement.
 
 ## Subagents
 
