@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [[ -n $ZELLIJ_PANE_ID ]]; then
+    echo "Zellij"
+elif [[ -n $TMUX_PANE ]]; then
+    echo "Tmux"
+elif [[ -n $WEZTERM_PANE ]]; then
+    echo "WezTerm"
+else
+    echo "None"
+fi
