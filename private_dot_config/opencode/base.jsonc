@@ -1,5 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "default_agent": "developer",
   "disabled_providers": [],
   "autoupdate": false,
   "permission": {
@@ -64,7 +65,10 @@
       "tail *.env*": "deny",
       "tail *.key*": "deny",
       "tail *.pem*": "deny",
-      "tail *secret*": "deny"
+      "tail *secret*": "deny",
+      "agent_sent *": "allow",
+      "register_agent *": "allow",
+      "resolve_agent *": "allow"
     },
     "edit": {
       "*": "ask",
@@ -95,5 +99,25 @@
     "webfetch": "ask",
     "websearch": "allow",
     "question": "allow"
+  },
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "gemma4:e2b-mlx": {
+          "name": "gemma4:e2b-mlx"
+        },
+        "gemma4:e4b-mlx": {
+          "name": "gemma4:e4b-mlx"
+        },
+        "gemma4:12b-mlx": {
+          "name": "gemma4:12b-mlx"
+        }
+      }
+    }
   }
 }

@@ -1,0 +1,37 @@
+#!/bin/bash
+
+session=$1
+role=$2
+name=$3
+
+is_init=false
+for arg in "$@"; do
+    if [[ $arg == "--init" || $arg == "-i" ]]; then
+        is_init=true
+        break
+    fi
+done
+
+script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+init_option=""
+if [[ $is_init == true ]]; then
+    init_option="--init"
+fi
+
+if command -v uv &> /dev/null; then
+    uv run "${script_dir}/register_agent.py" \
+        --session "$session" \
+        --role "$role" \
+        --name "$name" \
+        $init_option
+elif command -v python3 &> /dev/null; then
+    python3 "${script_dir}/register_agent.py" \
+        --session "$session" \
+        --role "$role" \
+        --name "$name" \
+        $init_option
+else
+    echo "Error: neither uv nor python3 is available." >&2
+    exit 1
+fi

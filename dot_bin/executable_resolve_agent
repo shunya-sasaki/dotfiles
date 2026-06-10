@@ -1,0 +1,14 @@
+#!/bin/sh
+
+session=$1
+
+script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+if command -v uv &> /dev/null; then
+    uv run "${script_dir}/resolve_agent.py" --session "$session" 
+elif command -v python3 &> /dev/null; then
+    python3 "${script_dir}/register_agent.py" --session "$session" 
+else
+    echo "Error: neither uv nor python3 is available." >&2
+    exit 1
+fi
