@@ -45,6 +45,17 @@ register to the session.
 - If `session_name` is not specified, use "default" as the session name.
 - If `name` is not specified, use your role as the name.
 
+## Resolve Agent to Agent Session
+
+If you're asked to resolve an `agent-to-agent` (`a2a`) session,
+THEN you MUST run `resolve_agent <session_name>` to
+reolve the your pane id, name and other agents' information from the session file.
+
+### Procedure
+
+1. Run `resolve_agent <session_name>` to resolve the session information.
+2. Get your pane id, name and other agents' information from the session file.
+
 ## Send message to other agent
 
 When you're asked to communicate to other agents, you MUST send a message
