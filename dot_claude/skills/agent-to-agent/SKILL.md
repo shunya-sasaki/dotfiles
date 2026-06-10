@@ -39,7 +39,14 @@ keep to send a message to the agents when you receive a request.
 
 1. Analyze the requested message.
 2. Create a response message.
-3. Send the message to another agent using the skill.
+3. Send the message to another agent using command:
+
+   ```
+   agent_send <pane_id> "<message>"
+   ```
+
+   - `<pane_id>` is the pane ID of the other agent you want to send the message to.
+   - `<message>` is the message you want to send to the other agent.
 
 ## Test communication
 
