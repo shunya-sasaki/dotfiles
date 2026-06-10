@@ -1,6 +1,6 @@
 ---
 name: agent-to-agent
-description: When you're asked to communicate to other agents, you MUST use this skill.
+description: When you're asked to communicate to other agents (a2a session), you MUST use this skill.
 ---
 
 # Agent to Agent
@@ -9,24 +9,41 @@ This skill is used when you're asked to communicate to other agents.
 You MUST use this skill when you need to send messages to other agents,
 and you MUST follow the format specified in the skill description.
 
-- Setup agent to agent communication
-- Send message to other agents
+## Initialize Agent to Agent Session
 
-## Setup agent to agent communication
-
-Before working on any other tasks in this skill, you MUST run this task once.
+IF you're asked to initialize an `agent-to-agent` (`a2a`) session,
+THEN you MUST run `register_agent <session_name> <role> <name> --init` to
+create a session file.
 
 ### Procedure
 
-1. Use [[detect-multiplexer]] skill to detect your session.
-2. Load the skill for the detected multiplexer.
-3. Detect your pane ID and store it in the context for later use.
-4. Detect other pane IDs in the same session and
-   store them in the context for later use.
-5. Respond to the user that the setup is complete
-   and you are ready to communicate with other agents.
-   You MUST include your pane ID
-   and the list of other pane IDs in the response.
+1. Analyze user's request and understand the session details,
+   such as session name, your role, and your name.
+2. Run `register_agent <session_name> <role> <name> --init` to
+   create a session file.
+
+### Rules
+
+- If `session_name` is not specified, use "default" as the session name.
+- If `name` is not specified, use your role as the name.
+
+## Register to Agent to Agent Session
+
+IF you're asked to register to an `agent-to-agent` (`a2a`) session,
+THEN you MUST run `register_agent <session_name> <role> <name>` to
+register to the session.
+
+### Procedure
+
+1. Analyze user's request and understand the session details,
+   such as session name, your role, and your name.
+2. Run `register_agent <session_name> <role> <name> --init` to
+   create a session file.
+
+### Rules
+
+- If `session_name` is not specified, use "default" as the session name.
+- If `name` is not specified, use your role as the name.
 
 ## Send message to other agent
 
@@ -39,14 +56,16 @@ keep to send a message to the agents when you receive a request.
 
 1. Analyze the requested message.
 2. Create a response message.
-3. Send the message to another agent using command:
+3. Send the message to another agent using following command:
 
    ```
    agent_send <pane_id> "<message>"
    ```
 
-   - `<pane_id>` is the pane ID of the other agent you want to send the message to.
-   - `<message>` is the message you want to send to the other agent.
+### Rules
+
+- `<pane_id>` is the pane ID of the other agent you want to send the message to.
+- `<message>` is the message you want to send to the other agent.
 
 ## Test communication
 
