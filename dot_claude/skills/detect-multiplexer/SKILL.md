@@ -1,7 +1,6 @@
 ---
 name: detect-multiplexer
-description: When you're asked to work on multiplexer pane,
-you MUST use this skill to detect the type of multiplexer.
+description: When you're asked to work on multiplexer pane, you MUST use this skill to detect the type of multiplexer.
 ---
 
 ## Detect multiplexer
