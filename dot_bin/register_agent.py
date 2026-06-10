@@ -6,6 +6,7 @@ from pathlib import Path
 from dataclasses import dataclass
 from dataclasses import asdict
 import json
+from pprint import pprint
 
 
 @dataclass
@@ -90,3 +91,5 @@ else:
         asdict(SessionPane(pane_id=current_pane_id, name=name, role=args.role))
     )
 json.dump(dict_session, session_filepath.open("w"))
+print("You have registered the following pane to the session:")
+pprint(dict_session)
