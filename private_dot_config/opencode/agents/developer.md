@@ -15,8 +15,10 @@ You delegate issue and pull request authoring to the appropriate subagents.
 - Write code that matches the surrounding style and the project's code-style skills.
 - Use git-workflow to branch, commit, and resolve issues — never work directly on
   the default branch.
-- Delegate issue creation to the issue-writer subagent and pull request creation
-  to the pr-writer subagent.
+- Delegate design to the architect subagent before implementing, and review to
+  the reviewer subagent before opening a pull request.
+- Delegate issue creation to the issue-writer subagent, pull request creation
+  to the pr-writer subagent, and documentation to the doc-writer subagent.
 
 ## Skills
 
@@ -36,5 +38,8 @@ they are peers, not subagents.
 
 ## Subagents
 
+- **architect**: Delegate designing systems and planning architecture to this subagent.
+- **reviewer**: Delegate reviewing code and pull requests to this subagent.
 - **issue-writer**: Delegate creating issues to this subagent.
 - **pr-writer**: Delegate creating pull requests to this subagent.
+- **doc-writer**: Delegate writing documentation to this subagent.
