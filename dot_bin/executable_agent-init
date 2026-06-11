@@ -1,0 +1,22 @@
+#!/bin/bash
+
+session=$1
+role=$2
+name=$3
+
+if command -v uv &> /dev/null; then
+    uv run "${HOME}/.bin/agent_util.py" \
+        init \
+        --session "$session" \
+        --role "$role" \
+        --name "$name" 
+elif command -v python3 &> /dev/null; then
+    python3 "${HOME}/.bin/agent_util.py" \
+        init \
+        --session "$session" \
+        --role "$role" \
+        --name "$name" 
+else
+    echo "Error: neither uv nor python3 is available." >&2
+    exit 1
+fi

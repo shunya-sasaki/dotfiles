@@ -12,14 +12,14 @@ and you MUST follow the format specified in the skill description.
 ## Initialize Agent to Agent Session
 
 IF you're asked to initialize an `agent-to-agent` (`a2a`) session,
-THEN you MUST run `register_agent <session_name> <role> <name> --init` to
+THEN you MUST run `agent-init <session_name> <role> <name>` to
 create a session file.
 
 ### Procedure
 
 1. Analyze user's request and understand the session details,
    such as session name, your role, and your name.
-2. Run `register_agent <session_name> <role> <name> --init` to
+2. Run `agent-init <session_name> <role> <name>` to
    create a session file.
 
 ### Rules
@@ -30,14 +30,14 @@ create a session file.
 ## Register to Agent to Agent Session
 
 IF you're asked to register to an `agent-to-agent` (`a2a`) session,
-THEN you MUST run `register_agent <session_name> <role> <name>` to
+THEN you MUST run `agent-register <session_name> <role> <name>` to
 register to the session.
 
 ### Procedure
 
 1. Analyze user's request and understand the session details,
    such as session name, your role, and your name.
-2. Run `register_agent <session_name> <role> <name> --init` to
+2. Run `agent-register <session_name> <role> <name> --init` to
    create a session file.
 
 ### Rules
@@ -48,12 +48,12 @@ register to the session.
 ## Resolve Agent to Agent Session
 
 If you're asked to resolve an `agent-to-agent` (`a2a`) session,
-THEN you MUST run `resolve_agent <session_name>` to
+THEN you MUST run `agent-resolve <session_name>` to
 reolve the your pane id, name and other agents' information from the session file.
 
 ### Procedure
 
-1. Run `resolve_agent <session_name>` to resolve the session information.
+1. Run `agent-resolve <session_name>` to resolve the session information.
 2. Get your pane id, name and other agents' information from the session file.
 
 ## Send message to other agent
@@ -70,7 +70,7 @@ keep to send a message to the agents when you receive a request.
 3. Send the message to another agent using following command:
 
    ```
-   agent_send <pane_id> "<message>"
+   agent-send <pane_id> "<message>"
    ```
 
 ### Rules
