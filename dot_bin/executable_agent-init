@@ -5,13 +5,13 @@ role=$2
 name=$3
 
 if command -v uv &> /dev/null; then
-    uv run "${HOME}/.bin/agent_util.py" \
+    uv run "${HOME}/.bin/agent_utils.py" \
         init \
         --session "$session" \
         --role "$role" \
         --name "$name" 
 elif command -v python3 &> /dev/null; then
-    python3 "${HOME}/.bin/agent_util.py" \
+    python3 "${HOME}/.bin/agent_utils.py" \
         init \
         --session "$session" \
         --role "$role" \
