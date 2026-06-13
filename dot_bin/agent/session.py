@@ -89,7 +89,7 @@ class SessionManager:
                 "CONTENT:",
                 message,
                 "",
-                f"RESPONSE_REAUIRED : {'YES' if require_response else 'NO'}",
+                f"RESPONSE_REQUIRED : {'YES' if require_response else 'NO'}",
             ]
         )
         self.multiplexer.send(target_pane_id=pane_id, message=f"{content}")
