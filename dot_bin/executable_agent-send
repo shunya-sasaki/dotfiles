@@ -1,25 +1,29 @@
 #!/bin/bash
 
-SLEEP_SECOND=0.1
+session=$1
+pane_id=$2
+message=$3
+shift 3
 
-multiplexer=$(detect_multiplexer)
+extra_args=()
+for arg in "$@"; do
+    case "$arg" in
+        --require_response)
+            extra_args+=(--require_response)
+            ;;
+    esac
+done
 
-pane_id=$1
-message=$2
+export PYTHONPATH=$HOME/.bin
 
-if [[ $multiplexer == "Zellij" ]]; then
-    zellij action write-chars --pane-id "${pane_id}" "${message}"
-    sleep ${SLEEP_SECOND}
-    zellij action write --pane-id "${pane_id}" 13
-elif [[ $multiplexer == "Tmux" ]]; then
-    tmux send-keys -t "${pane_id}" "$message"
-    sleep ${SLEEP_SECOND}
-    tmux send-keys -t "${pane_id}" Enter
-elif [[ $multiplexer == "WezTerm" ]]; then
-    wezterm cli send-text --pane-id "${pane_id}" "${message}"
-    sleep ${SLEEP_SECOND}
-    wezterm cli send-text --pane-id "${pane_id}" --no-paste $'\r'
+if command -v uv &> /dev/null; then
+    uv run "${HOME}/.bin/agent/main.py" \
+        send --session "$session" --pane_id "$pane_id" --message "$message" "${extra_args[@]}"
+elif command -v python3 &> /dev/null; then
+    python3 "${HOME}/.bin/agent/main.py" \
+        send --session "$session" --pane_id "$pane_id" --message "$message" "${extra_args[@]}"
 else
-  echo "Error: Unsupported multiplexer." >&2
-  exit 1
+    echo "Error: neither uv nor python3 is available." >&2
+    exit 2
 fi
+
