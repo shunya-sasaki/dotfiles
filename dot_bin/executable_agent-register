@@ -4,6 +4,8 @@ session=$1
 role=$2
 name=$3
 
+export PYTHONPATH=$HOME/.bin
+
 if command -v uv &> /dev/null; then
     uv run "${HOME}/.bin/agent_utils.py" \
         register \

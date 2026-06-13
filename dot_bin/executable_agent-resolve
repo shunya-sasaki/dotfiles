@@ -2,10 +2,12 @@
 
 session=$1
 
+export PYTHONPATH=$HOME/.bin
+
 if command -v uv &> /dev/null; then
-    uv run "${HOME}/.bin/agent_util.py" resolve --session "$session" 
+    uv run "${HOME}/.bin/agent/main.py" resolve --session "$session" 
 elif command -v python3 &> /dev/null; then
-    python3 "${HOME}/.bin/agent_util.py" resolve --session "$session" 
+    python3 "${HOME}/.bin/agent/main.py" resolve --session "$session" 
 else
     echo "Error: neither uv nor python3 is available." >&2
     exit 1
