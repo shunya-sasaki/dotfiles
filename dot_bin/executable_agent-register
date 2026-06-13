@@ -7,17 +7,17 @@ name=$3
 export PYTHONPATH=$HOME/.bin
 
 if command -v uv &> /dev/null; then
-    uv run "${HOME}/.bin/agent_utils.py" \
+    uv run "${HOME}/.bin/agent/main.py" \
         register \
         --session "$session" \
         --role "$role" \
-        --name "$name" 
+        --name "$name"
 elif command -v python3 &> /dev/null; then
-    python3 "${HOME}/.bin/agent_utils.py" \
+    python3 "${HOME}/.bin/agent/main.py" \
         register \
         --session "$session" \
         --role "$role" \
-        --name "$name" 
+        --name "$name"
 else
     echo "Error: neither uv nor python3 is available." >&2
     exit 1

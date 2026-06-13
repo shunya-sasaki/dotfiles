@@ -2,7 +2,8 @@
 name: agent-to-agent
 description: >
   This skill provide instructions for agent-to-agent communications.
-  IF you received a message that contains either of "agent-to-agent", "agent to agent", "a2a"
+  IF you received a message that contains either of "agent-to-agent", "agent to agent", "a2a",
+  or asks you to "register" / "join" / "init" / "resolve" a session or "send a message to an agent",
   or you are required to `agent-*` commands such as `agent-init`, `agent-register` and `agent-resolve`,
   you MUST use this skill.
 ---
@@ -18,8 +19,12 @@ and you MUST follow the format specified in the skill description.
 The `agent-*` commands share these arguments:
 
 - `<session>` (`<session_name>`) is the session name.
-  If it's not specified, use "default" as the session name.
+  This is specified by the user. If the user does not specify it,
+  use the literal string `default` as the session name. Never invent one.
 - `<role>` is your role in the session.
+  Use the role you were assigned as an agent (e.g. `developer`, `reviewer`,
+  `architect`) — this is the role defined in your own agent definition.
+  Do NOT ask the user for your role; you already know it.
 - `<name>` is your name in the session.
   If it's not specified, use your role as the name.
 - `<pane_id>` is the pane ID of the other agent you want to send the message to.
@@ -40,16 +45,41 @@ create a session file.
 
 ## Register to Agent to Agent Session
 
-IF you're asked to register to an `agent-to-agent` (`a2a`) session,
-THEN you MUST run `agent-register <session_name> <role> <name>` to
-register to the session.
+IF the user asks you to register or join an a2a session
+— for example "register agent", "register to a2a", "register to the session",
+or "join the a2a session" —
+THEN you MUST immediately run the `agent-register` command below.
+Do NOT ask the user for confirmation, and do NOT just describe the command:
+actually run it.
+
+### Resolving the arguments (do this without asking the user)
+
+- `<session_name>`: the session name the user gave. If the user did not give
+  one, use the literal string `default`.
+- `<role>`: your assigned agent role (e.g. `developer`, `reviewer`,
+  `architect`). You already know this from your agent definition — use it.
+- `<name>`: the name the user gave. If none, use `<role>` as the name.
+
+Only ask the user a clarifying question if they explicitly mentioned a session,
+role, or name that is genuinely ambiguous. Otherwise apply the rules above and
+run the command.
 
 ### Procedure
 
-1. Analyze user's request and understand the session details,
-   such as session name, your role, and your name.
-2. Run `agent-register <session_name> <role> <name>` to
-   create a session file.
+1. Resolve `<session_name>`, `<role>`, and `<name>` using the rules above.
+2. Run `agent-register <session_name> <role> <name>`.
+3. Confirm to the user that you registered, reporting the session, role,
+   and name you used.
+
+### Example
+
+The user (whose agent role is `reviewer`) says: "register to a2a".
+You resolve: session = `default`, role = `reviewer`, name = `reviewer`,
+then run:
+
+```
+agent-register default reviewer reviewer
+```
 
 ## Resolve Agent to Agent Session
 
