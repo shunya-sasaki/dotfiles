@@ -1,24 +1,12 @@
 import os
 from pathlib import Path
-from dataclasses import dataclass
 import json
 from pprint import pprint
 from dataclasses import asdict
 
 from agent.multiplexer import Multiplexer
-
-
-@dataclass
-class SessionPane:
-    pane_id: int
-    name: str
-    role: str
-
-
-@dataclass
-class SessionData:
-    multiplexer: str
-    panes: list[SessionPane]
+from agent.models import SessionPane
+from agent.models import SessionData
 
 
 class SessionManager:
@@ -29,18 +17,6 @@ class SessionManager:
         )
         self.multiplexer = Multiplexer()
         self.current_pane_id = self.multiplexer.pane_id
-
-    def _detect_muliplexer(self) -> tuple[str, int]:
-        if (env_current_pane_id := os.environ.get("ZELLIJ_PANE_ID", None)) is not None:
-            current_pane_id = int(env_current_pane_id)
-            multiplexer = "Zellij"
-        elif (env_current_pane_id := os.environ.get("TMUX_PANE", None)) is not None:
-            current_pane_id = int(env_current_pane_id)
-            multiplexer = "Tmux"
-        elif (env_current_pane_id := os.environ.get("WEZTERM_PANE", None)) is not None:
-            current_pane_id = int(env_current_pane_id)
-            multiplexer = "WezTerm"
-        return multiplexer, current_pane_id
 
     def init(self, name: str | None, role: str):
         if name is None:
