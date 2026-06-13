@@ -1,6 +1,10 @@
 ---
 name: agent-to-agent
-description: When you're asked to communicate to other agents (a2a session), you MUST use this skill.
+description: >
+  This skill provide instructions for agent-to-agent communications.
+  IF you received a message that contains either of "agent-to-agent", "agent to agent", "a2a"
+  or you are required to `agent-*` commands such as `agent-init`, `agent-register` and `agent-resolve`,
+  you MUST use this skill.
 ---
 
 # Agent to Agent
@@ -37,7 +41,7 @@ register to the session.
 
 1. Analyze user's request and understand the session details,
    such as session name, your role, and your name.
-2. Run `agent-register <session_name> <role> <name> --init` to
+2. Run `agent-register <session_name> <role> <name>` to
    create a session file.
 
 ### Rules
@@ -67,14 +71,34 @@ keep to send a message to the agents when you receive a request.
 
 1. Analyze the requested message.
 2. Create a response message.
-3. Send the message to another agent using following command:
-
-   ```
-   agent-send <pane_id> "<message>"
-   ```
+3. Send the message to another agent using
+   `agent-send <session> <pane_id> "<message>"`.
 
 ### Rules
 
+- `<session>` is the session name.
+- `<pane_id>` is the pane ID of the other agent you want to send the message to.
+- `<message>` is the message you want to send to the other agent.
+
+## Response to other agent
+
+IF you recieved a message that contains `REQUIRED_RESPONSE: YES` from an another agent,
+your MUST send a message to the agent.
+
+### Procedure
+
+1. Analyze the message and understand the agent intent.
+2. Do the task and create a response message.
+3. Extract session name in `SESSION` section of the message.
+4. Extract pane id in `FROM` section of the message.
+5. Send a response message to the agent using `agent-send <session> <pane_id> <message>`
+   IF you're sure you have to require response from the agent,
+   send a message to the agent using `agent-send <session> <pane_id> <message> --require_response`,
+   OTHERWISE send a message to the agent using `agent-send <session> <pane_id> <message>`
+
+### Rules
+
+- `<session>` is the session name.
 - `<pane_id>` is the pane ID of the other agent you want to send the message to.
 - `<message>` is the message you want to send to the other agent.
 
@@ -91,18 +115,27 @@ If you receive the test message, you reply with the response.
 If you're asked to send a test message to another, you are the **sender** .
 The sender's tasks are the following:
 
-1. Send a test message "ping" to another agent with the skill.
+1. Send a test message "ping" to another agent using
+   `agent-send <session> <pane_id> "ping" --require_response`.
 2. Wait for the response.
-3. If you get "pong" from another, the communication command is correct.
-   Otherwise, you have to review the command.
-   After modifying the command, retry the test.
+3. If you get a message that contains "pong" from another,
+   the communication command is correct.
 
 #### In case of the receiver
 
-If you're requested to reply to the test message, you are the **receiver** .
+If you recieved a message that contains "ping", you MUST reply with the response.
 
-1. You receive a test message "ping" from the sender.
-2. You send a test response message "pong" to the sender.
+1. Analyze a message from another agent.
+2. Extract pane id in the FROM section and session name in the SESSION section
+   of the message.
+3. You send a test response message "pong" to the sender using
+   `agent-send <session> <pane_id> "pong"`.
+
+### Rules
+
+- `<session>` is the session name.
+- `<pane_id>` is the pane ID of the other agent you want to send the message to.
+- `<message>` is the message you want to send to the other agent.
 
 ## Debate with another agent
 
