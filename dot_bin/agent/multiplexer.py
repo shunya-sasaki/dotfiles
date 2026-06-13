@@ -25,7 +25,7 @@ class Multiplexer:
             case "Zellij":
                 pane_id = int(os.environ["ZELLIJ_PANE_ID"])
             case "Tmux":
-                pane_id = int(os.environ["TMUX_PANE"])
+                pane_id = int(os.environ["TMUX_PANE"].replace("%", ""))
             case "WezTerm":
                 pane_id = int(os.environ["WEZTERM_PANE"])
         return pane_id
@@ -46,18 +46,18 @@ class Multiplexer:
                     "write-chars",
                     "--pane-id",
                     f"{target_pane_id}",
-                    f'"{message}"',
+                    f"{message}",
                 ]
                 enter_cmd = [
                     "zellij",
                     "action",
-                    "write-chars",
+                    "write",
                     "--pane-id",
                     f"{target_pane_id}",
                     "13",
                 ]
             case "Tmux":
-                cmd = ["tmux", "send-keys", "-t", f"{target_pane_id}", f'"{message}"']
+                cmd = ["tmux", "send-keys", "-t", f"{target_pane_id}", f"{message}"]
                 enter_cmd = ["tmux", "send-keys", "-t", f"{target_pane_id}", "Enter"]
             case "WezTerm":
                 cmd = [
