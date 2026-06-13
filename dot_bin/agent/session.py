@@ -1,11 +1,11 @@
-from pathlib import Path
 import json
-from pprint import pprint
 from dataclasses import asdict
+from pathlib import Path
+from pprint import pprint
 
-from agent.multiplexer import Multiplexer
-from agent.models import SessionPane
 from agent.models import SessionData
+from agent.models import SessionPane
+from agent.multiplexer import Multiplexer
 
 
 class SessionManager:

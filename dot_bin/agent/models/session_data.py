@@ -1,6 +1,7 @@
 """Data model for session data."""
 
 from dataclasses import dataclass
+
 from agent.models.session_pane import SessionPane
 
 
