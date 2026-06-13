@@ -1,14 +1,11 @@
-"""Resolve agent from a session file."""
-
-from typing import Literal
-
 import os
-from argparse import ArgumentParser
 from pathlib import Path
 from dataclasses import dataclass
 import json
 from pprint import pprint
 from dataclasses import asdict
+
+from agent.multiplexer import Multiplexer
 
 
 @dataclass
@@ -27,10 +24,11 @@ class SessionData:
 class SessionManager:
     def __init__(self, session: str):
         self.session = session
-        self.multiplexer, self.current_pane_id = self._detect_muliplexer()
         self.session_filepath = (
             Path.home() / ".tmp" / "agent-to-agent" / f"{session}.json"
         )
+        self.multiplexer = Multiplexer()
+        self.current_pane_id = self.multiplexer.pane_id
 
     def _detect_muliplexer(self) -> tuple[str, int]:
         if (env_current_pane_id := os.environ.get("ZELLIJ_PANE_ID", None)) is not None:
@@ -48,7 +46,7 @@ class SessionManager:
         if name is None:
             name = role
         session_data = SessionData(
-            multiplexer=self.multiplexer,
+            multiplexer=self.multiplexer.backend,
             panes=[SessionPane(pane_id=self.current_pane_id, name=name, role=role)],
         )
         json.dump(asdict(session_data), self.session_filepath.open("w"))
@@ -97,77 +95,26 @@ class SessionManager:
         print("Other pane information is following:")
         pprint(other_panes)
 
-
-def main():
-    parser = ArgumentParser(description="Register pane id for a session.")
-    subparsers = parser.add_subparsers(dest="command", required=True)
-
-    init_parser = subparsers.add_parser("init", help="Initialize the session registry.")
-    init_parser.add_argument(
-        "--session",
-        "-s",
-        type=str,
-        required=True,
-        help="Name of the session to register.",
-    )
-    init_parser.add_argument(
-        "--name",
-        "-n",
-        type=str,
-        help="Name of the agent.",
-    )
-    init_parser.add_argument(
-        "--role",
-        "-r",
-        type=str,
-        help="Role of the agent.",
-    )
-    register_parser = subparsers.add_parser(
-        "register", help="Initialize the session registry."
-    )
-    register_parser.add_argument(
-        "--session",
-        "-s",
-        type=str,
-        required=True,
-        help="Name of the session to register.",
-    )
-    register_parser.add_argument(
-        "--name",
-        "-n",
-        type=str,
-        help="Name of the agent.",
-    )
-    register_parser.add_argument(
-        "--role",
-        "-r",
-        type=str,
-        help="Role of the agent.",
-    )
-
-    resolve_parser = subparsers.add_parser(
-        "resolve", help="Resolve the session registry."
-    )
-    resolve_parser.add_argument(
-        "--session",
-        "-s",
-        type=str,
-        required=True,
-        help="Name of the session to register.",
-    )
-
-    args = parser.parse_args()
-    manager = SessionManager(session=args.session)
-    match args.command:
-        case "init":
-            manager.init(args.name, args.role)
-        case "register":
-            manager.register(args.name, args.role)
-        case "resolve":
-            manager.resolve()
-        case _:
-            raise RuntimeError("The command is unknown!")
-
-
-if __name__ == "__main__":
-    main()
+    def send(self, pane_id: int, message: str, require_response: bool = False):
+        session_data: SessionData = json.loads(self.session_filepath.read_text())
+        panes = session_data["panes"]
+        for pane in panes:
+            if pane["pane_id"] == self.current_pane_id:
+                my_name = pane["name"]
+                my_id = self.current_pane_id
+            elif pane["pane_id"] == pane_id:
+                target_name = pane["name"]
+                target_id = pane["pane_id"]
+        content = "\n".join(
+            [
+                f"SESSION: {self.session}",
+                f"FROM: {my_name} @ pane {my_id}",
+                f"TO: {target_name} @ pane {target_id}",
+                "",
+                "CONTENT:",
+                message,
+                "",
+                f"RESPONSE_REAUIRED : {'YES' if require_response else 'NO'}",
+            ]
+        )
+        self.multiplexer.send(target_pane_id=pane_id, message=f"{content}")
