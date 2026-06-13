@@ -4,14 +4,16 @@ session=$1
 role=$2
 name=$3
 
+export PYTHONPATH=$HOME/.bin
+
 if command -v uv &> /dev/null; then
-    uv run "${HOME}/.bin/agent_utils.py" \
+    uv run "${HOME}/.bin/agent/main.py" \
         init \
         --session "$session" \
         --role "$role" \
         --name "$name" 
 elif command -v python3 &> /dev/null; then
-    python3 "${HOME}/.bin/agent_utils.py" \
+    python3 "${HOME}/.bin/agent/main.py" \
         init \
         --session "$session" \
         --role "$role" \
