@@ -16,6 +16,7 @@
     "*": "ask",
     "bash": {
       "*": "ask",
+      "agent-*": "allow",
       "echo *": "allow",
       "cat *": "allow",
       "head *": "allow",
@@ -41,8 +42,8 @@
       "git *worktree*": "allow",
       "npm run lint": "allow",
       "npm run test *": "allow",
-      "rm */tmp/**": "allow",
-      "rm */AppData/Local/Temp/**": "allow",
+      "rm **/tmp/**": "allow",
+      "rm **\\AppData\\Local\\Temp\\**": "allow",
       "tmux *": "allow",
       "wezterm *": "allow",
       "zellij *": "allow",
@@ -75,7 +76,7 @@
       "doc/**": "allow",
       "docs/**": "allow",
       "src/**": "allow",
-      "/tmp/**": "allow",
+      "**/tmp/**": "allow",
       "**/AppData/Local/Temp/**": "allow"
     },
     "read": {
