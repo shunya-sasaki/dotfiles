@@ -232,6 +232,54 @@ class GitForge:
                 cmds = ["tea", "label", "list"]
         self._run(cmds)
 
+    def _repo_name(self, remote_name: str = "origin") -> str:
+        """Get the repository name from the remote URL."""
+        proc = subprocess.run(
+            ["git", "remote", "get-url", remote_name], capture_output=True
+        )
+        remote_url = proc.stdout.decode("utf-8").strip().rstrip("/")
+        # Handle both "git@host:owner/repo.git" and "https://host/owner/repo.git".
+        name = remote_url.rsplit("/", 1)[-1].rsplit(":", 1)[-1]
+        if name.endswith(".git"):
+            name = name[:-4]
+        return name
+
+    def _worktree_path(self, branch_name: str) -> Path:
+        """Build the worktree path as ~/.tmp/<repo-name>_<branch-name>."""
+        safe_branch = branch_name.replace("/", "-")
+        dir_name = f"{self._repo_name()}_{safe_branch}"
+        return Path.home() / ".tmp" / dir_name
+
+    def _branch_exists(self, branch_name: str) -> bool:
+        """Check whether a local branch already exists."""
+        proc = subprocess.run(
+            ["git", "show-ref", "--verify", "--quiet", f"refs/heads/{branch_name}"]
+        )
+        return proc.returncode == 0
+
+    def worktree_create(self, branch_name: str):
+        """Create a worktree for a branch under ~/.tmp/."""
+        path = self._worktree_path(branch_name)
+        if path.exists():
+            print(f"Worktree already exists: {path}")
+            return
+        path.parent.mkdir(parents=True, exist_ok=True)
+        cmds = ["git", "worktree", "add", str(path)]
+        if self._branch_exists(branch_name):
+            cmds.append(branch_name)
+        else:
+            cmds.extend(["-b", branch_name])
+        self._run(cmds)
+        print(path)
+
+    def worktree_delete(self, branch_name: str):
+        """Remove the worktree for a branch."""
+        path = self._worktree_path(branch_name)
+        if not path.exists():
+            print(f"Worktree does not exist: {path}")
+            return
+        self._run(["git", "worktree", "remove", str(path)])
+
 
 def main():
     parser = ArgumentParser(
@@ -296,6 +344,24 @@ def main():
     # list
     label_subparsers.add_parser("list", help="List labels in a repository")
 
+    # worktree ----------------------------------------------------------------
+    worktree_parser = subparsers.add_parser("worktree", help="Manage worktrees")
+    worktree_subparsers = worktree_parser.add_subparsers(dest="sub_command")
+    # create
+    worktree_create_parser = worktree_subparsers.add_parser(
+        "create", help="Create a worktree under ~/.tmp/"
+    )
+    worktree_create_parser.add_argument(
+        "--branch_name", "-b", type=str, help="The branch name"
+    )
+    # delete
+    worktree_delete_parser = worktree_subparsers.add_parser(
+        "delete", help="Delete a worktree under ~/.tmp/"
+    )
+    worktree_delete_parser.add_argument(
+        "--branch_name", "-b", type=str, help="The branch name"
+    )
+
     forge = GitForge()
     args = parser.parse_args()
     match args.command:
@@ -330,6 +396,12 @@ def main():
             match args.sub_command:
                 case "list":
                     forge.label_list()
+        case "worktree":
+            match args.sub_command:
+                case "create":
+                    forge.worktree_create(branch_name=args.branch_name)
+                case "delete":
+                    forge.worktree_delete(branch_name=args.branch_name)
 
 
 if __name__ == "__main__":
