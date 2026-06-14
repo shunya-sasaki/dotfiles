@@ -39,6 +39,24 @@ The following are tasks described in this skill:
   - `ci`: Changes to CI configuration files and scripts (GitHub Actions, GitLab CI, etc)
 - Output ONLY the raw commit message with no code blocks, explanations, or fillers.
 
+## Create issue
+
+IF you're asked to create a issue,
+THEN you MUST work on task.
+
+### Procedure
+
+1. Understand the user's request, problem report, or improvement idea.
+2. If the repository context is needed, inspect relevant files in the repository
+   to understand the current implementation, configuration, documentation,
+   or behavior.
+3. Create the issue title using the **Conventional Commit** style.
+4. Get a label list using `gf label list` and select a label from the list.
+   If the list is empty, label is None.
+5. Get a body template using `gf issue template --label <label>`.
+6. Create a body of the issue with following the template.
+7. Run `gf issue create --title <title> --body <body> --label <label>`.
+
 ## Create Worktree
 
 When you're required to create a worktree or something to edit files,
