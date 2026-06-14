@@ -1,4 +1,12 @@
-"""Gitforge class that wraps coommand for git forges such as GitHub, Gitea."""
+"""Gitforge class that wraps coommand for git forges such as GitHub, Gitea.
+
+Requirements:
+    This script uses the following commands:
+
+    - git
+    - gh (If you use GitHub)
+    - tea (If you use Gitea)
+"""
 
 from typing import Literal
 import shutil
