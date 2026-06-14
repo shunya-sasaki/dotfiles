@@ -1,5 +1,5 @@
 ---
-description: Design systems, plan architecture, and produce technical design documents.
+description: Use to design systems, plan architecture, and produce a technical design before implementation.
 mode: subagent
 ---
 

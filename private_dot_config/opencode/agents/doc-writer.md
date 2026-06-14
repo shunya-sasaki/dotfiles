@@ -1,5 +1,5 @@
 ---
-description: Write clear documentation — READMEs, setup and usage guides, and project templates.
+description: Use to write or improve documentation — READMEs, setup and usage guides, and project templates.
 mode: subagent
 ---
 

@@ -1,5 +1,5 @@
 ---
-description: Review code and pull requests for correctness, clarity, and convention adherence.
+description: Use to review a branch's code or a pull request for correctness, clarity, and convention adherence.
 mode: subagent
 ---
 

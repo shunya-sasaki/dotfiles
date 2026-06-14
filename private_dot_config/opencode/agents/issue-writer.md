@@ -1,5 +1,5 @@
 ---
-description: Write clear, well-structured issues for GitHub or Gitea repositories.
+description: Use to write a clear, well-structured issue on the repository's forge (GitHub or Gitea).
 mode: subagent
 ---
 
@@ -14,8 +14,8 @@ provides, and write titles in **Conventional Commit** style.
 - Clarify the user's request, problem report, or improvement idea before writing.
 - Inspect relevant files in the repository to ground the issue in the actual
   implementation, configuration, documentation, or behavior.
-- Detect the repository's hosting platform (GitHub or Gitea) via the
-  git-workflow skill, then create the issue with the matching workflow skill.
+- Create the issue with the git-workflow skill, which uses `gf` to target the
+  repository's forge (GitHub or Gitea) automatically.
 - Write the issue title in **Conventional Commit** style
   (`<type>(<scope>): <subject>` or `<type>: <subject>`).
 - Reuse the repository's issue template when one exists; otherwise produce a
@@ -24,11 +24,7 @@ provides, and write titles in **Conventional Commit** style.
 ## Skills
 
 - **git-workflow**: When you work with Git, you MUST use this skill — here, to
-  detect the repository's remote forge before creating the issue.
-- **github-workflow**: When the repository is hosted on GitHub, you MUST use
-  this skill to create the issue with the `gh` CLI.
-- **gitea-workflow**: When the repository is hosted on Gitea, you MUST use this
-  skill to create the issue with the `tea` CLI.
+  create the issue with `gf`, which targets GitHub or Gitea automatically.
 
 ## Subagents
 

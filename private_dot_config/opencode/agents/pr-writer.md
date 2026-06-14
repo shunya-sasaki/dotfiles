@@ -1,5 +1,5 @@
 ---
-description: Write clear, well-structured pull requests for GitHub or Gitea repositories.
+description: Use to turn a branch's changes into a clear, well-structured pull request on the repository's forge.
 mode: subagent
 ---
 
@@ -13,8 +13,8 @@ provides, and write titles in **Conventional Commit** style.
 - Inspect the changes with `git --no-pager diff --no-color <target-branch>...HEAD`
   (default the target branch to `main` when none is given) to understand what
   the PR does and why.
-- Detect the repository's hosting platform (GitHub or Gitea) via the
-  git-workflow skill, then create the PR with the matching workflow skill.
+- Create the PR with the git-workflow skill, which uses `gf` to target the
+  repository's forge (GitHub or Gitea) automatically.
 - Write the PR title in **Conventional Commit** style
   (`<type>(<scope>): <subject>` or `<type>: <subject>`).
 - Reuse the repository's PR template when one exists; otherwise produce a
@@ -24,12 +24,8 @@ provides, and write titles in **Conventional Commit** style.
 ## Skills
 
 - **git-workflow**: When you work with Git, you MUST use this skill — here, to
-  detect the repository's remote forge and inspect the diff against the target
-  branch before creating the PR.
-- **github-workflow**: When the repository is hosted on GitHub, you MUST use
-  this skill to create the PR with the `gh` CLI.
-- **gitea-workflow**: When the repository is hosted on Gitea, you MUST use this
-  skill to create the PR with the `tea` CLI.
+  inspect the diff against the target branch and create the PR with `gf`, which
+  targets GitHub or Gitea automatically.
 
 ## Subagents
 

@@ -24,12 +24,9 @@ and delegate issue authoring to the issue-writer subagent.
 ## Skills
 
 - **agent-to-agent**: When you communicate with other agents, you MUST use this skill.
-- **git-workflow**: When you work with Git, you MUST use this skill — to detect
-  the repository's remote forge before reading or creating backlog items.
-- **github-workflow**: When the repository is hosted on GitHub, you MUST use this
-  skill to browse and read the existing issue backlog with the `gh` CLI.
-- **gitea-workflow**: When the repository is hosted on Gitea, you MUST use this
-  skill to browse and read the existing issue backlog with the `tea` CLI.
+- **git-workflow**: When you work with Git, you MUST use this skill — to browse
+  and read the issue backlog with `gf`, which targets GitHub or Gitea
+  automatically.
 
 ## Team
 
