@@ -11,7 +11,7 @@ param(
 
 $env:PYTHONPATH = "$HOME/.bin"
 
-$ScriptArgs = @("register", "--session", $Session)
+$ScriptArgs = @("init", "--session", $Session)
 if ($Role) { $ScriptArgs += @("--role", $Role) }
 if ($Name) { $ScriptArgs += @("--name", $Name) }
 

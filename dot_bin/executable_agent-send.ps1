@@ -1,29 +1,27 @@
 #!/usr/bin/env pwsh
 
 param(
-    [Parameter(Mandatory = $true, Position = 0)]
+    [Parameter(Position = 0, Mandatory = $true)]
+    [string]$Session,
+    [Parameter(Position = 1, Mandatory = $true)]
     [string]$PaneId,
-    [Parameter(Mandatory = $true, Position = 1)]
-    [string]$Message
+    [Parameter(Position = 2, Mandatory = $true)]
+    [string]$Message,
+    [switch]$RequireResponse
 )
 
-$SleepSecond = 0.1
+$env:PYTHONPATH = "$HOME/.bin"
 
-$multiplexer = detect_multiplexer.ps1
+$ScriptArgs = @("send", "--session", $Session, "--pane_id", $PaneId, "--message", $Message)
+if ($RequireResponse) { $ScriptArgs += "--require_response" }
 
-if ($multiplexer -eq "Zellij") {
-    zellij action write-chars --pane-id $PaneId $Message
-    Start-Sleep -Seconds $SleepSecond
-    zellij action write --pane-id $PaneId 13
-} elseif ($multiplexer -eq "Tmux") {
-    tmux send-keys -t $PaneId $Message
-    Start-Sleep -Seconds $SleepSecond
-    tmux send-keys -t $PaneId Enter
-} elseif ($multiplexer -eq "WezTerm") {
-    wezterm cli send-text --pane-id $PaneId $Message
-    Start-Sleep -Seconds $SleepSecond
-    wezterm cli send-text --pane-id $PaneId --no-paste "`r"
-} else {
-    Write-Error "Error: Unsupported multiplexer."
-    exit 1
+if (Get-Command uv -ErrorAction SilentlyContinue) {
+    uv run "$HOME/.bin/agent/main.py" @ScriptArgs
+}
+elseif (Get-Command python3 -ErrorAction SilentlyContinue) {
+    python3 "$HOME/.bin/agent/main.py" @ScriptArgs
+}
+else {
+    Write-Error "Error: neither uv nor python3 is available."
+    exit 2
 }
