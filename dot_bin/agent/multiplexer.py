@@ -85,6 +85,32 @@ class Multiplexer:
             time.sleep(sleep_seconds)
             subprocess.run(enter_cmd, shell=False)
 
+    def read(self, target_pane_id: int) -> str:
+        """Read buffer of the target pane."""
+        match self.backend:
+            case "Zellij":
+                cmd = [
+                    "zellij",
+                    "action",
+                    "dump-screen",
+                    "--pane-id",
+                    f"{target_pane_id}",
+                ]
+            case "Tmux":
+                cmd = ["tmux", "capture-pane", "-p", "-t", f"{target_pane_id}"]
+            case "WezTerm":
+                cmd = [
+                    "wezterm",
+                    "cli",
+                    "get-text",
+                    "--pane-id",
+                    f"{target_pane_id}",
+                ]
+            case _:
+                cmd = []
+        result = subprocess.run(cmd, shell=False, capture_output=True, text=True)
+        return result.stdout
+
 
 def main():
     parser = ArgumentParser(
@@ -112,9 +138,11 @@ def main():
             mp.send(
                 args.pane_id, message=args.message, with_enter=not args.without_enter
             )
+        case "read":
+            print(mp.read(args.pane_id))
         case _:
             raise ValueError(
-                "The command is invalid! It should be either of 'send', 'receive'!"
+                "The command is invalid! It should be either of 'send', 'read'!"
             )
 
 
