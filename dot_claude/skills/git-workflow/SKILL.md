@@ -13,6 +13,20 @@ The following are tasks described in this skill:
 - Remove Worktree
 - Resolve the issue
 
+## Common arguments
+
+The `gh` commands share these rules for arguments:
+
+- `<title>` is the title of a issue or a pull request.
+  The title must be concise (max 50 characters) and follow:
+  `<type>(scope): <description>`
+  e.g. `feat(doc): add issue creation procedure`
+- `<type>` must be one of: `feat`, `fix`, `docs`, `style`, `refactor`,
+  `perf`, `test`, `build`, `ci`.
+- `scope`
+- `<body>` is the body of a issue or a pull request.
+- `<label>`
+
 ## Generate Commit Message
 
 ### Procedure
@@ -41,8 +55,7 @@ The following are tasks described in this skill:
 
 ## Create issue
 
-IF you're asked to create a issue,
-THEN you MUST work on task.
+IF you're asked to create a issue, THEN you MUST work on this task.
 
 ### Procedure
 
@@ -56,6 +69,38 @@ THEN you MUST work on task.
 5. Get a body template using `gf issue template --label <label>`.
 6. Create a body of the issue with following the template.
 7. Run `gf issue create --title <title> --body <body> --label <label>`.
+
+### Strict Rules
+
+- The title and body MUST NOT contain any ANSI escape sequences,
+  terminal control codes, or other non-printable characters.
+  This includes, but is not limited to:
+  - SGR / color codes such as `\x1b[31m`, `\033[0m`, `\u001b[1;32m`
+  - Cursor and screen codes such as `\x1b[2k`, `x1b[?25l`, `x1b[H`
+  - Any byte in the ranges `\x00`-`\x08`, `\x0B`-`\x1F`, or `\x7F`
+- If any tool or command output you read contains such sequences,
+  **strip them before** including the content in the issue body.
+- After composing the body, scan it once more and remove any remaining bytes
+  that match `\x1B\[`, `\x1B\]`, or other C0/C1 control characters.
+- The title must be concise (max 50 characters) and follow:
+  `<type>(scope): <description>`
+- `<type>` must be one of: `feat`, `fix`, `docs`, `style`, `refactor`,
+  `perf`, `test`, `build`, `ci`.
+
+## Create Pull Request
+
+IF you're asked to create a pull request (PR), THEN you MUST work on this task.
+
+### Procedure
+
+1. Run `git --no-pager diff --no-color <target_branch>...HEAD` to get the
+   detailed changes between the current branch and the target branch.
+   If `<target-branch>` is not specified, use `main` as the default.
+2. Create the PR title using the **Conventional Commit** style.
+3. Get a body template using `gf pr template`.
+4. Create a pull request with following the template.
+5. Run `gf pr create --title <title> --body <body> -B <target_branch>`
+   to create a pull request on the remote server.
 
 ## Create Worktree
 
