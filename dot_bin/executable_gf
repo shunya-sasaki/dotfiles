@@ -1,0 +1,14 @@
+#!/bin/bash
+
+export PYTHONPATH="$HOME/.bin"
+
+args=$@
+
+if command -v uv &> /dev/null; then
+    uv run "${HOME}/.bin/agent/gitforge.py" "${args[@]}" 
+elif command -v python3 &> /dev/null; then
+    python3 "${HOME}/.bin/agent/gitforge.py" "${args[@]}" 
+else
+    echo "Error: neither uv nor python3 is available." >&2
+    exit 1
+fi
