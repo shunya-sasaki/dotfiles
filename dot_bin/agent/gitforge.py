@@ -6,6 +6,8 @@ import subprocess
 from dataclasses import dataclass
 import json
 
+from argparse import ArgumentParser
+
 
 @dataclass()
 class ForgeUrl:
@@ -19,7 +21,6 @@ class GitForge:
         self.is_gh_available = self.is_installed("gh")
         self.is_tea_available = self.is_installed("tea")
         self.backend = self._detect_backend(remote_name)
-        print(f"Git forge backend: {self.backend}")
 
     def is_installed(self, cmd: Literal["git", "gh", "tea"]) -> bool:
         ret = shutil.which(cmd=cmd)
@@ -66,9 +67,97 @@ class GitForge:
                     return "Gitea"
         return None
 
+    def issue_list(self):
+        """List issue in a repository."""
+        match self.backend:
+            case "GitHub":
+                proc = subprocess.run(["gh", "issue", "list"], capture_output=True)
+            case "Gitea":
+                proc = subprocess.run(["tea", "issue", "list"], capture_output=True)
+        print(proc.stdout.decode("utf-8"))
+
+    def issue_create(self, title: str, body: str, label: str | None):
+        """Create a new issue."""
+        body = body.replace("\\n", "\n").replace("\\t", "\t")
+        match self.backend:
+            case "GitHub":
+                cmds = [
+                    "gh",
+                    "issue",
+                    "create",
+                    "--title",
+                    title,
+                    "--body",
+                    body,
+                ]
+                if label is not None:
+                    cmds.extend(["--label", label])
+
+            case "Gitea":
+                cmds = [
+                    "tea",
+                    "issue",
+                    "create",
+                    "--title",
+                    title,
+                    "--description",
+                    body,
+                ]
+                if label is not None:
+                    cmds.extend(["--labels", label])
+        proc = subprocess.run(cmds, capture_output=True)
+        print(proc.stdout.decode("utf-8"))
+
+    def issue_view(self, number: int):
+        """View an issue."""
+        match self.backend:
+            case "GitHub":
+                cmds = ["gh", "issue", "view", f"{number}"]
+
+            case "Gitea":
+                cmds = ["tea", "issue", f"{number}"]
+        proc = subprocess.run(cmds, capture_output=True)
+        print(proc.stdout.decode("utf-8"))
+
 
 def main():
+    parser = ArgumentParser(
+        prog="gf",
+        description="Wrapper command for git forges such as GitHub and Gitea.",
+    )
+    subparsers = parser.add_subparsers(dest="command", help="Command")
+
+    # issue -------------------------------------------------------------------
+    issue_parser = subparsers.add_parser("issue", help="Manage issues")
+    issue_subparsers = issue_parser.add_subparsers(dest="sub_command")
+    # list
+    issue_subparsers.add_parser("list", help="List issue in a repository")
+    # create
+    issue_create_parser = issue_subparsers.add_parser(
+        "create", help="Crate a new issue"
+    )
+    issue_create_parser.add_argument("--title", "-t", type=str, help="Supply a title")
+    issue_create_parser.add_argument("--body", "-b", type=str, help="Supply a body")
+    issue_create_parser.add_argument(
+        "--label", "-l", type=str, default=None, help="Add labels by name"
+    )
+    # view
+    issue_view_parser = issue_subparsers.add_parser("view", help="View an issue")
+    issue_view_parser.add_argument("number", type=int, help="Issue number")
+
     forge = GitForge()
+    args = parser.parse_args()
+    match args.command:
+        case "issue":
+            match args.sub_command:
+                case "list":
+                    forge.issue_list()
+                case "create":
+                    forge.issue_create(
+                        title=args.title, body=args.body, label=args.label
+                    )
+                case "view":
+                    forge.issue_view(number=args.number)
 
 
 if __name__ == "__main__":
