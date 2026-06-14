@@ -1,0 +1,12 @@
+#!/bin/bash
+
+export PYTHONPATH="$HOME/.bin"
+
+if command -v uv &> /dev/null; then
+    uv run "${HOME}/.bin/agent/multiplexer.py" "$@"
+elif command -v python3 &> /dev/null; then
+    python3 "${HOME}/.bin/agent/multiplexer.py" "$@"
+else
+    echo "Error: neither uv nor python3 is available." >&2
+    exit 1
+fi
