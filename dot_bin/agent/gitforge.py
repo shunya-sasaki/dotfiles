@@ -5,6 +5,7 @@ import shutil
 import subprocess
 from dataclasses import dataclass
 import json
+from pathlib import Path
 
 from argparse import ArgumentParser
 
@@ -121,6 +122,30 @@ class GitForge:
                 cmds = ["tea", "issue", f"{number}"]
         self._run(cmds)
 
+    def issue_template(self, label: str | None):
+        """View a template for an issue."""
+        match label:
+            case "bug":
+                template_file = "bug_report.md"
+            case "enhancement":
+                template_file = "feature_request.md"
+            case _:
+                template_file = "default.md"
+        match self.backend:
+            case "GitHub":
+                pj_forge_dirpath = Path(".github")
+            case "Gitea":
+                pj_forge_dirpath = Path(".gitea")
+        pj_template_filepath = pj_forge_dirpath / "ISSUE_TEMPLATE" / template_file
+        if pj_template_filepath.exists():
+            content = pj_template_filepath.read_text()
+        else:
+            template_filepath = (
+                Path(__file__).parent / "assets" / "ISSUE_TEMPLATE" / template_file
+            )
+            content = template_filepath.read_text()
+        print(content)
+
     def pr_list(self):
         """List pull requests in a repository."""
         match self.backend:
@@ -209,6 +234,11 @@ def main():
     # view
     issue_view_parser = issue_subparsers.add_parser("view", help="View an issue")
     issue_view_parser.add_argument("number", type=int, help="Issue number")
+    # template
+    issue_template_parser = issue_subparsers.add_parser(
+        "template", help="View a template"
+    )
+    issue_template_parser.add_argument("--label", "-l", type=str, help="Supply a label")
 
     # pr ----------------------------------------------------------------------
     pr_parser = subparsers.add_parser("pr", help="Manage pull requests")
@@ -250,6 +280,8 @@ def main():
                     )
                 case "view":
                     forge.issue_view(number=args.number)
+                case "template":
+                    forge.issue_template(args.label)
         case "pr":
             match args.sub_command:
                 case "list":
