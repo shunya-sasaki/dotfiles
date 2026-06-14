@@ -67,14 +67,18 @@ class GitForge:
                     return "Gitea"
         return None
 
+    def _run(self, cmds: list[str]):
+        """Run a forge command, streaming its output to the terminal."""
+        subprocess.run(cmds)
+
     def issue_list(self):
         """List issue in a repository."""
         match self.backend:
             case "GitHub":
-                proc = subprocess.run(["gh", "issue", "list"], capture_output=True)
+                cmds = ["gh", "issue", "list"]
             case "Gitea":
-                proc = subprocess.run(["tea", "issue", "list"], capture_output=True)
-        print(proc.stdout.decode("utf-8"))
+                cmds = ["tea", "issue", "list"]
+        self._run(cmds)
 
     def issue_create(self, title: str, body: str, label: str | None):
         """Create a new issue."""
@@ -105,8 +109,7 @@ class GitForge:
                 ]
                 if label is not None:
                     cmds.extend(["--labels", label])
-        proc = subprocess.run(cmds, capture_output=True)
-        print(proc.stdout.decode("utf-8"))
+        self._run(cmds)
 
     def issue_view(self, number: int):
         """View an issue."""
@@ -116,17 +119,16 @@ class GitForge:
 
             case "Gitea":
                 cmds = ["tea", "issue", f"{number}"]
-        proc = subprocess.run(cmds, capture_output=True)
-        print(proc.stdout.decode("utf-8"))
+        self._run(cmds)
 
     def pr_list(self):
         """List pull requests in a repository."""
         match self.backend:
             case "GitHub":
-                proc = subprocess.run(["gh", "pr", "list"], capture_output=True)
+                cmds = ["gh", "pr", "list"]
             case "Gitea":
-                proc = subprocess.run(["tea", "pr", "list"], capture_output=True)
-        print(proc.stdout.decode("utf-8"))
+                cmds = ["tea", "pr", "list"]
+        self._run(cmds)
 
     def pr_create(self, title: str, body: str, base: str | None, label: str | None):
         """Create a new pull request."""
@@ -161,8 +163,7 @@ class GitForge:
                     cmds.extend(["--base", base])
                 if label is not None:
                     cmds.extend(["--labels", label])
-        proc = subprocess.run(cmds, capture_output=True)
-        print(proc.stdout.decode("utf-8"))
+        self._run(cmds)
 
     def pr_view(self, number: int):
         """View a pull request."""
@@ -172,8 +173,16 @@ class GitForge:
 
             case "Gitea":
                 cmds = ["tea", "pr", f"{number}"]
-        proc = subprocess.run(cmds, capture_output=True)
-        print(proc.stdout.decode("utf-8"))
+        self._run(cmds)
+
+    def label_list(self):
+        """List labels in a repository."""
+        match self.backend:
+            case "GitHub":
+                cmds = ["gh", "label", "list"]
+            case "Gitea":
+                cmds = ["tea", "label", "list"]
+        self._run(cmds)
 
 
 def main():
@@ -222,6 +231,12 @@ def main():
     pr_view_parser = pr_subparsers.add_parser("view", help="View a pull request")
     pr_view_parser.add_argument("number", type=int, help="Pull request number")
 
+    # label -------------------------------------------------------------------
+    label_parser = subparsers.add_parser("label", help="Manage labels")
+    label_subparsers = label_parser.add_subparsers(dest="sub_command")
+    # list
+    label_subparsers.add_parser("list", help="List labels in a repository")
+
     forge = GitForge()
     args = parser.parse_args()
     match args.command:
@@ -248,6 +263,10 @@ def main():
                     )
                 case "view":
                     forge.pr_view(number=args.number)
+        case "label":
+            match args.sub_command:
+                case "list":
+                    forge.label_list()
 
 
 if __name__ == "__main__":
