@@ -7,8 +7,8 @@ description: When you're asked to work with Git, you MUST use this skill.
 
 This skill provides instructions for working with Git repositories and their
 forges. Use `git` for local operations and `gf` for forge operations (issues,
-pull requests, labels). `gf` auto-detects the forge (GitHub or Gitea), so the
-same commands work regardless of the remote.
+pull requests, labels) and worktree management. `gf` auto-detects the forge
+(GitHub or Gitea), so the same commands work regardless of the remote.
 
 Tasks described in this skill:
 
@@ -44,6 +44,8 @@ Tasks described in this skill:
 - `<label>`: Label name. Get the available labels with `gf label list`.
 - `<target_branch>`: Base branch of a pull request. Defaults to `main`.
 - `<number>`: Issue or pull request number.
+- `<branch_name>`: Name of the branch to work on, following the **Conventional
+  Commit** style or the issue tag, e.g. `feat/add-login`.
 
 ### Strict Rules
 
@@ -98,44 +100,22 @@ IF you're asked to create a pull request (PR), THEN you MUST work on this task.
 
 ## Create Worktree
 
-When you're required to create a worktree or something to edit files,
-create a worktree for your task using the `git worktree add` command.
+When you're required to create a worktree or an isolated copy to edit files,
+create one with `gf worktree create`.
 
 ### Procedure
 
 1. Analyze the user request to understand your task.
-2. To get repository name, run `git remote get-url origin` command.
-   If you run on Windows PowerShell, run:
+2. Determine the `<branch_name>`. Use the tag the user specified; otherwise
+   derive it from the request.
+3. Run `gf worktree create -b <branch_name>`. It creates the worktree at
+   `~/.tmp/<repository-name>_<branch-name>` (the repository name is detected
+   from the remote) and prints the path. Work in that directory.
 
-   ```ps1
-   [System.IO.Path]::GetFileNameWithoutExtension((git remote get-url origin))
-   ```
+### Notes
 
-   If you run on Linux or macOS (Bash or Zsh), run:
-
-   ```sh
-   basename $(git remote get-url origin) .git
-   ```
-
-3. Based on the user request, determine the branch name.
-   The branch name MUST follow the conventional commit style
-   or the issue tag. If user specified the tag, use the tag.
-   Otherwise you determine the tag based on the user request contents.
-
-4. Determine the worktree directory name. The worktree directory name
-   MUST follow the style `<repository-name>_<branch-name>`.
-   For example, if the repository name is `some-repo` and the branch name
-   is `feature/auth-api`, the worktree directory name MUST be
-   `some-repo_feature-auth-api`.
-
-5. Create a worktree in the temporary directory using
-   `git worktree add <temp_dir>/<worktree-directory-name> -b <branch/name>`.
-
-### Strict Rules
-
-- **Do NOT** create a temporary file in the project directory.
-  If you run on Linux or macOS, use `/tmp/**`.
-  If you run on Windows, use `~/AppData/Local/Temp/**`.
+- `gf` reuses the branch if it already exists; otherwise it creates a new one.
+- `gf` places the worktree under `~/.tmp/`, never in the project directory.
 
 ## Remove Worktree
 
@@ -143,8 +123,11 @@ When you're requested to remove a worktree, use this skill.
 
 ### Procedure
 
-1. Run `git worktree remove <temp_dir>/<worktree-directory-name>`
-   command to remove the worktree directory.
+1. Run `gf worktree delete -b <branch_name>` to remove the worktree.
+
+### Notes
+
+- This removes only the worktree directory; the branch is kept.
 
 ## Resolve the Issue
 
