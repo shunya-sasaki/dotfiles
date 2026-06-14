@@ -208,6 +208,21 @@ class GitForge:
                 cmds = ["tea", "pr", f"{number}"]
         self._run(cmds)
 
+    def pr_template(self, create: bool = False):
+        template_file = "pull_request_template.md"
+        match self.backend:
+            case "GitHub":
+                pj_forge_dirpath = Path(".github")
+            case "Gitea":
+                pj_forge_dirpath = Path(".gitea")
+        pj_template_filepath = pj_forge_dirpath / template_file
+        if pj_template_filepath.exists():
+            content = pj_template_filepath.read_text()
+        else:
+            template_filepath = Path(__file__).parent / "assets" / template_file
+            content = template_filepath.read_text()
+        print(content)
+
     def label_list(self):
         """List labels in a repository."""
         match self.backend:
@@ -269,6 +284,12 @@ def main():
     pr_view_parser = pr_subparsers.add_parser("view", help="View a pull request")
     pr_view_parser.add_argument("number", type=int, help="Pull request number")
 
+    # template
+    pr_template_parser = pr_subparsers.add_parser("template", help="View a template")
+    pr_template_parser.add_argument(
+        "--create", action="store_true", help="Create a template"
+    )
+
     # label -------------------------------------------------------------------
     label_parser = subparsers.add_parser("label", help="Manage labels")
     label_subparsers = label_parser.add_subparsers(dest="sub_command")
@@ -303,6 +324,8 @@ def main():
                     )
                 case "view":
                     forge.pr_view(number=args.number)
+                case "template":
+                    forge.pr_template(args.create)
         case "label":
             match args.sub_command:
                 case "list":
