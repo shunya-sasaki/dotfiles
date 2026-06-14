@@ -10,9 +10,28 @@ assignees: ''
 
 <!-- A clear and concise description of what the bug is. -->
 
-## Describe the solution you'd like
+## Motivation Issue
 
-<!-- A clear and concise description of what you want to happen. -->
+<!-- Why is this issue to resolved? -->
+
+## Proposed Solution
+
+<!-- Describe your preferred solution. -->
+
+## Scope
+
+<!-- Check or describe the expected scope. -->
+
+- [ ] UI / frontend
+- [ ] API / backend
+- [ ] Database
+- [ ] Infrastructure
+- [ ] Documentation
+- [ ] Other:
+
+## Acceptance Criteria
+
+<!-- Define what should be true when this issue is completed. -->
 
 ## Additional context
 
