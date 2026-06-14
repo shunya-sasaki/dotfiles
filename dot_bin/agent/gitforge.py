@@ -119,6 +119,62 @@ class GitForge:
         proc = subprocess.run(cmds, capture_output=True)
         print(proc.stdout.decode("utf-8"))
 
+    def pr_list(self):
+        """List pull requests in a repository."""
+        match self.backend:
+            case "GitHub":
+                proc = subprocess.run(["gh", "pr", "list"], capture_output=True)
+            case "Gitea":
+                proc = subprocess.run(["tea", "pr", "list"], capture_output=True)
+        print(proc.stdout.decode("utf-8"))
+
+    def pr_create(self, title: str, body: str, base: str | None, label: str | None):
+        """Create a new pull request."""
+        body = body.replace("\\n", "\n").replace("\\t", "\t")
+        match self.backend:
+            case "GitHub":
+                cmds = [
+                    "gh",
+                    "pr",
+                    "create",
+                    "--title",
+                    title,
+                    "--body",
+                    body,
+                ]
+                if base is not None:
+                    cmds.extend(["--base", base])
+                if label is not None:
+                    cmds.extend(["--label", label])
+
+            case "Gitea":
+                cmds = [
+                    "tea",
+                    "pr",
+                    "create",
+                    "--title",
+                    title,
+                    "--description",
+                    body,
+                ]
+                if base is not None:
+                    cmds.extend(["--base", base])
+                if label is not None:
+                    cmds.extend(["--labels", label])
+        proc = subprocess.run(cmds, capture_output=True)
+        print(proc.stdout.decode("utf-8"))
+
+    def pr_view(self, number: int):
+        """View a pull request."""
+        match self.backend:
+            case "GitHub":
+                cmds = ["gh", "pr", "view", f"{number}"]
+
+            case "Gitea":
+                cmds = ["tea", "pr", f"{number}"]
+        proc = subprocess.run(cmds, capture_output=True)
+        print(proc.stdout.decode("utf-8"))
+
 
 def main():
     parser = ArgumentParser(
@@ -145,6 +201,27 @@ def main():
     issue_view_parser = issue_subparsers.add_parser("view", help="View an issue")
     issue_view_parser.add_argument("number", type=int, help="Issue number")
 
+    # pr ----------------------------------------------------------------------
+    pr_parser = subparsers.add_parser("pr", help="Manage pull requests")
+    pr_subparsers = pr_parser.add_subparsers(dest="sub_command")
+    # list
+    pr_subparsers.add_parser("list", help="List pull requests in a repository")
+    # create
+    pr_create_parser = pr_subparsers.add_parser(
+        "create", help="Create a new pull request"
+    )
+    pr_create_parser.add_argument("--title", "-t", type=str, help="Supply a title")
+    pr_create_parser.add_argument("--body", "-b", type=str, help="Supply a body")
+    pr_create_parser.add_argument(
+        "--base", "-B", type=str, default=None, help="The target branch"
+    )
+    pr_create_parser.add_argument(
+        "--label", "-l", type=str, default=None, help="Add labels by name"
+    )
+    # view
+    pr_view_parser = pr_subparsers.add_parser("view", help="View a pull request")
+    pr_view_parser.add_argument("number", type=int, help="Pull request number")
+
     forge = GitForge()
     args = parser.parse_args()
     match args.command:
@@ -158,6 +235,19 @@ def main():
                     )
                 case "view":
                     forge.issue_view(number=args.number)
+        case "pr":
+            match args.sub_command:
+                case "list":
+                    forge.pr_list()
+                case "create":
+                    forge.pr_create(
+                        title=args.title,
+                        body=args.body,
+                        base=args.base,
+                        label=args.label,
+                    )
+                case "view":
+                    forge.pr_view(number=args.number)
 
 
 if __name__ == "__main__":
