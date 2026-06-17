@@ -136,6 +136,9 @@ let lspServers = [
     \    filetype: ['python'],
     \    path: 'ty',
     \    args: ['server'],
+    \    features: #{
+    \      codeAction: v:false
+    \    },
     \    workspaceConfig: #{
     \      ty: #{ }
     \    }

@@ -38,12 +38,19 @@ M.call_code_action_synchronously = function(lsp_name, code_action)
     return
   end
 
+  -- The request is already constrained via `context.only`, so the server only
+  -- returns actions of the requested kind. Prefer an exact kind match, then
+  -- fall back to the first returned action. (Source actions such as
+  -- `source.organizeImports.ruff` are not marked `isPreferred`.)
   local action = nil
   for _, res in ipairs(response.result or {}) do
-    if res.isPreferred then
+    if res.kind == code_action then
       action = res
       break
     end
+  end
+  if not action then
+    action = (response.result or {})[1]
   end
   if not action then
     return
