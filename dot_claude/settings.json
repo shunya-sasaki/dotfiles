@@ -14,6 +14,7 @@
       "Bash(echo $TMUX_PANE)",
       "Bash(echo $WEZTERM_PANE)",
       "Bash(echo $ZELLIJ_PANE_ID)",
+      "Bash(gf *)",
       "Bash(gh *issue*)",
       "Bash(gh *label*)",
       "Bash(gh *pr*)",
