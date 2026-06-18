@@ -25,6 +25,7 @@
       "biome lint *": "allow",
       "dprint check *": "allow",
       "dprint fmt*": "allow",
+      "gf *": "allow",
       "gh *issue*": "allow",
       "gh *label*": "allow",
       "gh *pr*": "allow",
