@@ -3,14 +3,4 @@
 target_pane_id=$1
 message=$2
 
-export PYTHONPATH="$HOME/.bin"
-
-if command -v uv &> /dev/null; then
-    uv run "${HOME}/.bin/agent/multiplexer.py" send "$target_pane_id" "$message"
-elif command -v python3 &> /dev/null; then
-    python3 "${HOME}/.bin/agent/multiplexer.py" send "$target_pane_id" "$message"
-
-else
-    echo "Error: neither uv nor python3 is available." >&2
-    exit 1
-fi
+mux send "$target_pane_id" "$message"
