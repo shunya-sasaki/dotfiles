@@ -1,6 +1,10 @@
 ---
 name: git-workflow
-description: When you're asked to work with Git, you MUST use this skill.
+description: >
+  Use this skill for any Git or forge task. IF you are asked to create an
+  issue, create or update a pull request, create a branch, create or remove a
+  worktree, write a commit message, or resolve an issue, you MUST use this
+  skill.
 ---
 
 # Git Workflow
