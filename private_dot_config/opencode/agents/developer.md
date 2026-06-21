@@ -13,18 +13,21 @@ You delegate issue and pull request authoring to the appropriate subagents.
 - Understand the request, then inspect the codebase to ground your work in the
   current implementation, configuration, and conventions.
 - Write code that matches the surrounding style and the project's code-style skills.
-- Use git-workflow to branch, commit, and resolve issues — never work directly on
-  the default branch.
+- Use the git-workflow skill yourself for branches, worktrees, and commits —
+  never work directly on the default branch.
 - Delegate design to the architect subagent before implementing, and review to
   the reviewer subagent before opening a pull request.
-- Delegate issue creation to the issue-writer subagent, pull request creation
-  to the pr-writer subagent, and documentation to the doc-writer subagent.
+- Delegate issue authoring to the issue-writer subagent and pull request
+  authoring to the pr-writer subagent (they invoke git-workflow themselves); do
+  not create issues or pull requests inline. Delegate documentation to the
+  doc-writer subagent.
 
 ## Skills
 
 - **agent-to-agent**: When you communicate with other agents, you MUST use this skill.
 - **git-workflow**: When you work with Git, you MUST use this skill — to branch,
-  create worktrees, commit, and drive issue resolution.
+  create worktrees, and commit. (Issue and pull request authoring goes to the
+  issue-writer and pr-writer subagents, which invoke this skill themselves.)
 - **python-code-style**: When you write or change Python, you MUST use this skill.
 - **typescript-code-style**: When you write or change TypeScript, you MUST use this skill.
 
