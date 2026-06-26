@@ -112,7 +112,7 @@ create one with `gf worktree create`.
 1. Analyze the user request to understand your task.
 2. Determine the `<branch_name>`. Use the tag the user specified; otherwise
    derive it from the request.
-3. Run `gf worktree create -b <branch_name>`. It creates the worktree at
+3. Run `gf worktree add <branch_name>`. It creates the worktree at
    `~/.tmp/<repository-name>_<branch-name>` (the repository name is detected
    from the remote) and prints the path. Work in that directory.
 
@@ -127,7 +127,7 @@ When you're requested to remove a worktree, use this skill.
 
 ### Procedure
 
-1. Run `gf worktree delete -b <branch_name>` to remove the worktree.
+1. Run `gf worktree delete <branch_name>` to remove the worktree.
 
 ### Notes
 
