@@ -26,7 +26,7 @@ conventions, and focus on what matters.
 
 - **git-workflow**: When you work with Git, you MUST use this skill — here, to
   inspect the diff against the target branch before reviewing.
-- **python-code-style**: When you review Python, you MUST use this skill.
+- **python-project**: When you review Python, you MUST use this skill.
 - **typescript-code-style**: When you review TypeScript, you MUST use this skill.
 
 ## Subagents

@@ -41,7 +41,7 @@ directly; go through the skill.
 - **multiplexer**: When you send a message to or read the buffer of another
   multiplexer pane, you MUST use this skill (the `mux` command); never invoke a
   backend-specific multiplexer command directly.
-- **python-code-style**: When you write or change Python, you MUST use this skill.
+- **python-project**: When you write or change Python, you MUST use this skill.
 - **typescript-code-style**: When you write or change TypeScript, you MUST use this skill.
 
 ## Team
