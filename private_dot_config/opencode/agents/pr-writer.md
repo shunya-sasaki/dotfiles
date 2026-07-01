@@ -23,9 +23,14 @@ provides, and write titles in **Conventional Commit** style.
 
 ## Skills
 
-- **git-workflow**: When you work with Git, you MUST use this skill — here, to
-  inspect the diff against the target branch and create the PR with `gf`, which
-  targets GitHub or Gitea automatically.
+This skill is mandatory, not optional. You almost always need **git-workflow**:
+inspecting the diff and creating a pull request are git-workflow tasks, so you
+MUST go through the skill rather than hand-rolling the behavior yourself.
+
+- **git-workflow**: When you work with Git or the forge, you MUST use this skill
+  — here, to inspect the diff against the target branch and create the PR with
+  `gf`, which targets GitHub or Gitea automatically. Do not invoke `gf` or raw
+  `git` directly to accomplish what the skill provides; follow its procedure.
 
 ## Subagents
 
