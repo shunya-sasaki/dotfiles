@@ -21,14 +21,16 @@ flake8, mypy, unittest) unless the project already uses them or there is a
 specific reason (argparse, click, poetry, black, isort, flake8, mypy,
 unittest).
 
-| Tool       | Role                                         |
-| ---------- | -------------------------------------------- |
-| `uv`       | Dependency and project management            |
-| `ruff`     | Linting, formatting, and import sorting      |
-| `ty`       | Static type checking                         |
-| `pytest`   | Testing                                      |
-| `pydantic` | Data models and validation (`BaseModel`)     |
-| `typer`    | Command-line interfaces and argument parsing |
+| Tool                | Role                                         |
+| ------------------- | -------------------------------------------- |
+| `uv`                | Dependency and project management            |
+| `ruff`              | Linting, formatting, and import sorting      |
+| `ty`                | Static type checking                         |
+| `pytest`            | Testing                                      |
+| `pydantic`          | Data models and validation (`BaseModel`)     |
+| `typer`             | Command-line interfaces and argument parsing |
+| `sqlmodel`          | Database models and queries                  |
+| `pydantic-settings` | App settings and environment configuration   |
 
 ## Project Layout
 
@@ -78,6 +80,24 @@ Use `ruff` to lint, format, and organize imports. Use absolute imports.
   library functions so the logic stays testable without the CLI.
 - Register the entry point via `pyproject.toml` `[project.scripts]` and run it
   with `uv run`.
+
+## Database (sqlmodel)
+
+- Use `sqlmodel` for database models and queries; it builds on pydantic and
+  SQLAlchemy, so models double as validated data types.
+- Define table models as `SQLModel` subclasses with `table=True`; keep
+  non-table `SQLModel`/pydantic models for request/response schemas.
+- Query through a `Session` using `select()` statements; do NOT drop to raw SQL
+  strings or the plain SQLAlchemy ORM unless sqlmodel cannot express the query.
+
+## Settings (pydantic-settings)
+
+- Use `pydantic-settings` `BaseSettings` to define application settings and to
+  read configuration from environment variables and `.env` files.
+- Keep settings in a dedicated module (e.g. `[package]/settings.py`); type every
+  field, with defaults where sensible and required fields otherwise.
+- Load settings once and inject the instance where needed rather than reading
+  `os.environ` directly throughout the code.
 
 ## Naming
 
