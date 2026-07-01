@@ -127,7 +127,7 @@ When you're requested to remove a worktree, use this skill.
 
 ### Procedure
 
-1. Run `gf worktree delete <branch_name>` to remove the worktree.
+1. Run `gf worktree remove <branch_name>` to remove the worktree.
 
 ### Notes
 
