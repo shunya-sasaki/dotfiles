@@ -12,7 +12,7 @@
       "dynamic = [\"version\"]",
       "",
       "[dependency-groups]",
-      "dev = [\"pytest\"]",
+      "dev = [\"pytest\", \"zensical\", \"markdown-gfm-admonition\"]",
       "",
       "[project.scripts]",
       "",
