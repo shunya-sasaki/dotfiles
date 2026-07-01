@@ -96,11 +96,19 @@ IF you're asked to create a pull request (PR), THEN you MUST work on this task.
 ### Procedure
 
 1. Run `git --no-pager diff --no-color <target_branch>...HEAD` to get the
-   changes between the current branch and the target branch.
-2. Create the `<title>` using the **Conventional Commit** style.
+   changes between the current branch and the target branch. Read the ENTIRE
+   diff and identify every meaningful change; this diff is the single source of
+   truth for the `<title>` and `<body>`.
+2. Create the `<title>` using the **Conventional Commit** style, derived from
+   the changes you read in the diff.
 3. Get the body template with `gf pr template`.
-4. Compose the `<body>` following the template.
-5. Run `gf pr create --title <title> --body <body> -B <target_branch> --label <label>`.
+4. Compose the `<body>` by filling the template with the actual changes from the
+   diff in step 1. Every claim in the body MUST correspond to a change present
+   in the diff; do NOT invent, omit, or generalize changes, and do NOT describe
+   work that is not in the diff.
+5. Before creating the PR, verify the `<body>` against the diff: confirm each
+   described change appears in the diff and no significant change is missing.
+6. Run `gf pr create --title <title> --body <body> -B <target_branch> --label <label>`.
 
 ## Create Worktree
 
