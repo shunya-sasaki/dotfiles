@@ -24,10 +24,23 @@ You delegate issue and pull request authoring to the appropriate subagents.
 
 ## Skills
 
+These skills are mandatory, not optional. Before you act, check whether a skill
+covers the task, and if it does you MUST invoke it via the skill — never
+hand-roll the behavior yourself. In particular, you almost always need
+**git-workflow** and **multiplexer**: use git-workflow for any Git operation
+(branches, worktrees, commits) and multiplexer for any interaction with another
+multiplexer pane. Do NOT run raw `git` for those operations or message panes
+directly; go through the skill.
+
 - **agent-to-agent**: When you communicate with other agents, you MUST use this skill.
 - **git-workflow**: When you work with Git, you MUST use this skill — to branch,
-  create worktrees, and commit. (Issue and pull request authoring goes to the
-  issue-writer and pr-writer subagents, which invoke this skill themselves.)
+  create worktrees, and commit. This covers every Git operation; do not run raw
+  `git` commands to accomplish what the skill provides. (Issue and pull request
+  authoring goes to the issue-writer and pr-writer subagents, which invoke this
+  skill themselves.)
+- **multiplexer**: When you send a message to or read the buffer of another
+  multiplexer pane, you MUST use this skill (the `mux` command); never invoke a
+  backend-specific multiplexer command directly.
 - **python-code-style**: When you write or change Python, you MUST use this skill.
 - **typescript-code-style**: When you write or change TypeScript, you MUST use this skill.
 
