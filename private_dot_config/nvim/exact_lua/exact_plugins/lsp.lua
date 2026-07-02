@@ -4,7 +4,7 @@ return {
     dependencies = { "saghen/blink.cmp" },
     config = function()
       -- Markdown
-      vim.lsp.enable("dprint")
+      vim.lsp.enable("oxfmt")
       vim.lsp.enable("markdown_oxide")
       -- C/C++
       vim.lsp.enable("clangd")

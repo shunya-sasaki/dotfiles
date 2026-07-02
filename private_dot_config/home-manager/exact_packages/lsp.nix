@@ -14,6 +14,8 @@ with pkgs; [
   nginx-language-server
   nil
   nixd
+  oxfmt
+  oxlint
   pyright
   ruff
   stylua
