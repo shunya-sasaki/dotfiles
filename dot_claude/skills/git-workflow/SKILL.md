@@ -95,8 +95,9 @@ IF you're asked to read an issue, THEN you MUST work on this task.
 
 ### Procedure
 
-1. Run `gf issue view <number>` to get the contents of the issue.
-2. Understand the contents of the issue.
+1. Run `gf issue view <number>` to fetch the issue.
+2. Read the issue and understand what it asks for: the problem it reports, the
+   change it requests, and any acceptance criteria or context it provides.
 
 ## Create Pull Request
 
