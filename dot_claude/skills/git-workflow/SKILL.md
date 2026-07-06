@@ -89,6 +89,15 @@ IF you're asked to create an issue, THEN you MUST work on this task.
 6. Compose the `<body>` following the template.
 7. Run `gf issue create --title <title> --body <body> --label <label>`.
 
+## Read Issue
+
+IF you're asked to read an issue, THEN you MUST work on this task.
+
+### Procedure
+
+1. Run `gf issue view <number>` to get the contents of the issue.
+2. Understand the contents of the issue.
+
 ## Create Pull Request
 
 IF you're asked to create a pull request (PR), THEN you MUST work on this task.
