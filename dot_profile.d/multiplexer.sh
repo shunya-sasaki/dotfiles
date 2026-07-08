@@ -15,6 +15,12 @@ function tmux() {
     command tmux "$@"
     set_wezterm_user_var "TMUX_MODE" "0"
 }
+# Herdr
+function herdr() {
+    set_wezterm_user_var "TMUX_MODE" "1"
+    command herdr "$@"
+    set_wezterm_user_var "TMUX_MODE" "0"
+}
 
 if command -v zellij &> /dev/null; then
     function za() {
