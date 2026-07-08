@@ -1,10 +1,10 @@
 ---
 name: git-workflow
 description: >
-  Use this skill for any Git or forge task. IF you are asked to create an
-  issue, create or update a pull request, create a branch, create or remove a
-  worktree, write a commit message, or resolve an issue, you MUST use this
-  skill.
+  Use this skill for any Git or forge task. IF you are asked to create a commit,
+  create an issue, create or update a pull request, create a branch, create or
+  remove a worktree, write a commit message, or resolve an issue,
+  you MUST use this skill.
 ---
 
 # Git Workflow
@@ -72,6 +72,15 @@ Tasks described in this skill:
    **Conventional Commit** style (see [Common arguments](#common-arguments)).
 3. Output ONLY the raw commit message with no code blocks, explanations,
    or fillers.
+
+## Create Commit
+
+IF you're asked to create a commit, THEN you MUST work on this task.
+
+### Procedure
+
+1. Create commit title and body (see [Generate Commit Message](#generate-commit-message)).
+2. Run `gf commit --title <title> --body <body>` to create a commit.
 
 ## Create Issue
 
