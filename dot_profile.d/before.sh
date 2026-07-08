@@ -19,3 +19,8 @@ export PATH="$HOME/.nix-profile/bin:$PATH"
 if [[ -n $ZELLIJ_PANE_ID ]]; then
     zellij action rename-pane "[$ZELLIJ_PANE_ID]"
 fi
+
+# Herdr
+if [[ -n $HERDR_PANE_ID ]]; then
+    herdr pane rename "$HERDR_PANE_ID" "$HERDR_PANE_ID" >/dev/null
+fi
