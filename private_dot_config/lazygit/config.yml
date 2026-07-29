@@ -27,6 +27,11 @@ customCommands:
     loadingText: "Committing with clipboard message..."
     output: popup
     outputTitle: "Commit"
+  - key: "<c-y>"
+    context: "files"
+    command: "gitforge diff -p"
+    description: "Copy diff to previous commit"
+    output: log
   - description: "Undo last commit"
     context: "files"
     command: "git reset --soft HEAD~1"
