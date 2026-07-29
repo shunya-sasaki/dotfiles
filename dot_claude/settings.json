@@ -45,9 +45,6 @@
       "Edit(doc/**)",
       "Edit(docs/**)",
       "Edit(src/**)",
-      "Glob(doc/**)",
-      "Glob(docs/**)",
-      "Glob(src/**)",
       "Read(**/AppData/Local/Temp/**)",
       "Read(/tmp/**)",
       "Read(doc/**)",
@@ -56,12 +53,7 @@
       "Read(~/.zshrc)",
       "Skill",
       "WebFetch(domain:anthropic.com)",
-      "WebFetch(domain:github.com)",
-      "Write(**/AppData/Local/Temp/**)",
-      "Write(/tmp/**)",
-      "Write(doc/**)",
-      "Write(docs/**)",
-      "Write(src/**)"
+      "WebFetch(domain:github.com)"
     ],
     "deny": [
       "Bash(cat *.crt*)",
@@ -79,14 +71,14 @@
       "Bash(tail *.key*)",
       "Bash(tail *.pem*)",
       "Bash(tail *secret*)",
-      "Glob(**secrets/**)",
       "Read(**/*.key)",
       "Read(**/*.pem)",
       "Read(**/.aws/**)",
       "Read(**/.env*)",
       "Read(**/.npmrc)",
       "Read(**/.ssh/**)",
-      "Read(**/secrets/**)"
+      "Read(**/secrets/**)",
+      "Read(**secrets/**)"
     ],
     "ask": [
       "Bash(curl *)"
