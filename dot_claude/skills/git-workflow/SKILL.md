@@ -10,9 +10,9 @@ description: >
 # Git Workflow
 
 This skill provides instructions for working with Git repositories and their
-forges. Use `git` for local operations and `gf` for forge operations (issues,
-pull requests, labels) and worktree management. `gf` auto-detects the forge
-(GitHub or Gitea), so the same commands work regardless of the remote.
+forges. Use `git` for local operations and `gitforge` for forge operations
+(issues, pull requests, labels) and worktree management. `gitforge` auto-detects
+the forge (GitHub or Gitea), so the same commands work regardless of the remote.
 
 Tasks described in this skill:
 
@@ -25,7 +25,7 @@ Tasks described in this skill:
 
 ## Common arguments
 
-`gf` commands share these arguments:
+`gitforge` commands share these arguments:
 
 - `<title>`: Title of an issue or pull request. Must be concise (max 50
   characters) and follow the **Conventional Commit** style,
@@ -45,7 +45,7 @@ Tasks described in this skill:
   - `ci`: Changes to CI configuration files and scripts
 - `<scope>`: Optional area of the change, e.g. `doc`, `api`, `workflow`.
 - `<body>`: Body of an issue or pull request, composed from its template.
-- `<label>`: Label name. Get the available labels with `gf label list`.
+- `<label>`: Label name. Get the available labels with `gitforge label list`.
 - `<target_branch>`: Base branch of a pull request. Defaults to `main`.
 - `<number>`: Issue or pull request number.
 - `<branch_name>`: Name of the branch to work on, following the **Conventional
@@ -80,7 +80,7 @@ IF you're asked to create a commit, THEN you MUST work on this task.
 ### Procedure
 
 1. Create commit title and body (see [Generate Commit Message](#generate-commit-message)).
-2. Run `gf commit --title <title> --body <body>` to create a commit.
+2. Run `gitforge commit --title <title> --body <body>` to create a commit.
 
 ## Create Issue
 
@@ -92,11 +92,11 @@ IF you're asked to create an issue, THEN you MUST work on this task.
 2. If the repository context is needed, inspect relevant files to understand the
    current implementation, configuration, documentation, or behavior.
 3. Create the `<title>` using the **Conventional Commit** style.
-4. Get the labels with `gf label list` and select a `<label>` from the list.
-   If the list is empty, there is no label.
-5. Get the body template with `gf issue template --label <label>`.
+4. Get the labels with `gitforge label list` and select a `<label>` from the
+   list. If the list is empty, there is no label.
+5. Get the body template with `gitforge issue template --label <label>`.
 6. Compose the `<body>` following the template.
-7. Run `gf issue create --title <title> --body <body> --label <label>`.
+7. Run `gitforge issue create --title <title> --body <body> --label <label>`.
 
 ## Read Issue
 
@@ -104,7 +104,7 @@ IF you're asked to read an issue, THEN you MUST work on this task.
 
 ### Procedure
 
-1. Run `gf issue view <number>` to fetch the issue.
+1. Run `gitforge issue view <number>` to fetch the issue.
 2. Read the issue and understand what it asks for: the problem it reports, the
    change it requests, and any acceptance criteria or context it provides.
 
@@ -120,33 +120,35 @@ IF you're asked to create a pull request (PR), THEN you MUST work on this task.
    truth for the `<title>` and `<body>`.
 2. Create the `<title>` using the **Conventional Commit** style, derived from
    the changes you read in the diff.
-3. Get the body template with `gf pr template`.
+3. Get the body template with `gitforge pr template`.
 4. Compose the `<body>` by filling the template with the actual changes from the
    diff in step 1. Every claim in the body MUST correspond to a change present
    in the diff; do NOT invent, omit, or generalize changes, and do NOT describe
    work that is not in the diff.
 5. Before creating the PR, verify the `<body>` against the diff: confirm each
    described change appears in the diff and no significant change is missing.
-6. Run `gf pr create --title <title> --body <body> -B <target_branch> --label <label>`.
+6. Run `gitforge pr create --title <title> --body <body> -B <target_branch> --label <label>`.
 
 ## Create Worktree
 
 When you're required to create a worktree or an isolated copy to edit files,
-create one with `gf worktree create`.
+create one with `gitforge worktree create`.
 
 ### Procedure
 
 1. Analyze the user request to understand your task.
 2. Determine the `<branch_name>`. Use the tag the user specified; otherwise
    derive it from the request.
-3. Run `gf worktree add <branch_name>`. It creates the worktree at
+3. Run `gitforge worktree add <branch_name>`. It creates the worktree at
    `~/.tmp/<repository-name>_<branch-name>` (the repository name is detected
    from the remote) and prints the path. Work in that directory.
 
 ### Notes
 
-- `gf` reuses the branch if it already exists; otherwise it creates a new one.
-- `gf` places the worktree under `~/.tmp/`, never in the project directory.
+- `gitforge` reuses the branch if it already exists; otherwise it creates a new
+  one.
+- `gitforge` places the worktree under `~/.tmp/`, never in the project
+  directory.
 
 ## Remove Worktree
 
@@ -154,7 +156,7 @@ When you're requested to remove a worktree, use this skill.
 
 ### Procedure
 
-1. Run `gf worktree remove <branch_name>` to remove the worktree.
+1. Run `gitforge worktree remove <branch_name>` to remove the worktree.
 
 ### Notes
 
@@ -168,8 +170,9 @@ project, use this skill and follow the instructed procedure.
 ### Procedure
 
 1. Analyze the user request.
-2. If the issue number is specified, view it with `gf issue view <number>`.
-   Otherwise list issues with `gf issue list` and ask the user which to resolve.
+2. If the issue number is specified, view it with
+   `gitforge issue view <number>`. Otherwise list issues with
+   `gitforge issue list` and ask the user which to resolve.
 3. If no issue matches the user request, create a new issue
    (see [Create Issue](#create-issue)).
 4. Create a worktree and branch for the issue
