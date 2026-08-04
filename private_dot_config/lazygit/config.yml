@@ -29,8 +29,8 @@ customCommands:
     outputTitle: "Commit"
   - key: "<c-y>"
     context: "files"
-    command: "gitforge diff -p"
-    description: "Copy diff to previous commit"
+    command: "gitforge diff -u"
+    description: "Copy diff with untracked files to the clipboard"
     output: log
   - description: "Undo last commit"
     context: "files"
