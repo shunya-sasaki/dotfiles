@@ -175,18 +175,12 @@ project, use this skill and follow the instructed procedure.
    `gitforge issue list` and ask the user which to resolve.
 3. If no issue matches the user request, create a new issue
    (see [Create Issue](#create-issue)).
-4. Create a worktree and branch for the issue
-   (see [Create Worktree](#create-worktree)).
-5. Edit files in the worktree to resolve the issue.
-6. Commit your changes (see [Generate Commit Message](#generate-commit-message))
+4. Edit files in the worktree to resolve the issue.
+5. Commit your changes (see [Generate Commit Message](#generate-commit-message))
    and push the branch to the remote repository.
-7. Create a pull request linked to the issue
+6. Create a pull request linked to the issue
    (see [Create Pull Request](#create-pull-request)).
-8. Remove the worktree (see [Remove Worktree](#remove-worktree)).
 
 ### Strict Rules
 
-- Do NOT work on the current branch directly.
-  Always create a new branch for your work
-  and create a pull request to merge it into the current branch
-  or the user specified branch.
+- Do NOT work on the `main` branch directly.
