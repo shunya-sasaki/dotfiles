@@ -13,7 +13,7 @@ provides, and write titles in **Conventional Commit** style.
 - Inspect the changes with `git --no-pager diff --no-color <target-branch>...HEAD`
   (default the target branch to `main` when none is given) to understand what
   the PR does and why.
-- Create the PR with the git-workflow skill, which uses `gf` to target the
+- Create the PR with the git-workflow skill, which uses `gitforge` to target the
   repository's forge (GitHub or Gitea) automatically.
 - Write the PR title in **Conventional Commit** style
   (`<type>(<scope>): <subject>` or `<type>: <subject>`).
@@ -29,8 +29,9 @@ MUST go through the skill rather than hand-rolling the behavior yourself.
 
 - **git-workflow**: When you work with Git or the forge, you MUST use this skill
   — here, to inspect the diff against the target branch and create the PR with
-  `gf`, which targets GitHub or Gitea automatically. Do not invoke `gf` or raw
-  `git` directly to accomplish what the skill provides; follow its procedure.
+  `gitforge`, which targets GitHub or Gitea automatically. Do not invoke
+  `gitforge` or raw `git` directly to accomplish what the skill provides; follow
+  its procedure.
 
 ## Subagents
 

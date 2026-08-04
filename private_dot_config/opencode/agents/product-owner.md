@@ -25,7 +25,7 @@ and delegate issue authoring to the issue-writer subagent.
 
 - **agent-to-agent**: When you communicate with other agents, you MUST use this skill.
 - **git-workflow**: When you work with Git, you MUST use this skill — to browse
-  and read the issue backlog with `gf`, which targets GitHub or Gitea
+  and read the issue backlog with `gitforge`, which targets GitHub or Gitea
   automatically.
 
 ## Team

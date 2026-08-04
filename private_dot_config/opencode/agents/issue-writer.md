@@ -14,8 +14,8 @@ provides, and write titles in **Conventional Commit** style.
 - Clarify the user's request, problem report, or improvement idea before writing.
 - Inspect relevant files in the repository to ground the issue in the actual
   implementation, configuration, documentation, or behavior.
-- Create the issue with the git-workflow skill, which uses `gf` to target the
-  repository's forge (GitHub or Gitea) automatically.
+- Create the issue with the git-workflow skill, which uses `gitforge` to target
+  the repository's forge (GitHub or Gitea) automatically.
 - Write the issue title in **Conventional Commit** style
   (`<type>(<scope>): <subject>` or `<type>: <subject>`).
 - Reuse the repository's issue template when one exists; otherwise produce a
@@ -28,9 +28,9 @@ creating an issue is a git-workflow task, so you MUST go through the skill rathe
 than hand-rolling the behavior yourself.
 
 - **git-workflow**: When you work with Git or the forge, you MUST use this skill
-  — here, to create the issue with `gf`, which targets GitHub or Gitea
-  automatically. Do not invoke `gf` or raw `git` directly to accomplish what the
-  skill provides; follow its procedure.
+  — here, to create the issue with `gitforge`, which targets GitHub or Gitea
+  automatically. Do not invoke `gitforge` or raw `git` directly to accomplish
+  what the skill provides; follow its procedure.
 
 ## Subagents
 
