@@ -66,7 +66,7 @@ wezterm.on("update-right-status", function(window, pane)
   window:set_right_status(name or "")
 end)
 
-local custom_leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
+local custom_leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
 local custom_keys = {
   {
     key = "i",
@@ -194,7 +194,7 @@ local custom_key_tables = {
   },
 }
 
-local tmux_leader = { key = "\\", mods = "CTRL", timeout_milliseconds = 1000 }
+local tmux_leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
 
 config.disable_default_key_bindings = true
 config.leader = custom_leader
