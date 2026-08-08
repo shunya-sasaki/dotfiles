@@ -56,6 +56,7 @@
       "tmux *": "allow",
       "wezterm *": "allow",
       "zellij *": "allow",
+      "uv run python*": "allow",
       "uv run pytest*": "allow",
       "uv run ruff*": "allow",
       "uv run ty*": "allow",
@@ -79,6 +80,8 @@
       "tail *.key*": "deny",
       "tail *.pem*": "deny",
       "tail *secret*": "deny",
+      "wc *": "allow",
+      "sha256sum *": "allow",
       "agent_sent *": "allow",
       "register_agent *": "allow",
       "resolve_agent *": "allow"
