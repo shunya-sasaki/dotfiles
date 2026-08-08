@@ -1,0 +1,7 @@
+{{- if eq (includeTemplate "profile" . | trim) "home" -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{- output "sh" "-c" `curl -sI "https://github.com/obsidianmd/obsidian-releases/releases/latest/" | grep -oE 'tag/[^[:space:]]+' | cut -d/ -f2 | tr -d '[:space:]' | sed 's/^v//'` -}}
+{{- end -}}
+{{- else -}}
+{{- "" -}}
+{{- end -}}

@@ -1,0 +1,29 @@
+final: prev:
+let
+  version = "{{ includeTemplate `obsidian-version` . }}";
+in
+{
+  obsidian =
+    if prev.stdenv.isDarwin then
+      prev.stdenv.mkDerivation {
+        pname = "obsidian";
+        inherit version;
+        src = prev.fetchurl {
+          url = "{{ includeTemplate `obsidian-url` . }}";
+          hash = "{{ includeTemplate `obsidian-hash` . }}";
+        };
+        dontUnpack = true;
+        nativeBuildInputs = [ prev._7zz prev.makeWrapper ];
+        installPhase = ''
+          runHook preInstall
+          7zz x -snld $src -o$TMPDIR/dmg
+          mkdir -p $out/Applications $out/bin
+          cp -R "$TMPDIR"/dmg/*/Obsidian.app $out/Applications/
+          makeWrapper $out/Applications/Obsidian.app/Contents/MacOS/Obsidian \
+            $out/bin/obsidian
+          runHook postInstall
+        '';
+      }
+    else
+      prev.obsidian;
+}

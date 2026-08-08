@@ -1,0 +1,9 @@
+{{- if eq (includeTemplate "profile" . | trim) "home" -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{- $version := includeTemplate "obsidian-version" . | trim -}}
+{{- $base := "https://github.com/obsidianmd/obsidian-releases/releases/download" -}}
+{{- printf "%s/v%s/Obsidian-%s.dmg" $base $version $version -}}
+{{- end -}}
+{{- else -}}
+{{- "" -}}
+{{- end -}}

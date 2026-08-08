@@ -1,0 +1,17 @@
+{{- if eq (includeTemplate "profile" . | trim) "home" -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{- $cachedVersion := index . "obsidianVersion" | default "" -}}
+{{- $cachedHash := index . "obsidianHash" | default "" -}}
+{{- $latestVersion := includeTemplate "obsidian-version" . | trim -}}
+{{- $hash := "" -}}
+{{- if and (eq $latestVersion $cachedVersion) (ne $cachedHash "") -}}
+  {{- $hash = $cachedHash -}}
+{{- else -}}
+  {{- $url := includeTemplate "obsidian-url" . | trim -}}
+  {{- $hash = output "sh" "-c" (printf "nix hash convert --to sri --hash-algo sha256 $(nix-prefetch-url '%s' 2>/dev/null)" $url) | trim -}}
+{{- end -}}
+{{- $hash -}}
+{{- end -}}
+{{- else -}}
+{{- "" -}}
+{{- end -}}
