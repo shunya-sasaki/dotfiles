@@ -98,13 +98,10 @@ EOF
 
 prompt="${sys_prompt}$diff"
 
-provider=${AI_COMMIT_MESSAGE_PROVIDER:-gemini}
+provider=${AI_COMMIT_MESSAGE_PROVIDER:-claude}
 copilot_model=${AI_COMMIT_MESSAGE_COPILOT_MODEL:-"claude-sonnet-4.5"}
 
 case "$provider" in
-    GEMINI|gemini)
-        message=$(gemini -p "$prompt" -m gemini-3-flash-preview)
-        ;;
     COPILOT|copilot)
         message=$(copilot -p "$prompt" --model "$copilot_model")
         ;;
@@ -115,7 +112,7 @@ case "$provider" in
         message=$(azure_openai_commit_message "$sys_prompt" "$diff")
         ;;
     *)
-        message=$(gemini -p "$prompt" -m gemini-3-flash-preview)
+        message=$(claude -p "$prompt" --model "sonnet")
         ;;
 esac
 
