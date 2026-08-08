@@ -29,72 +29,80 @@
 claude_version="{{- includeTemplate "claude-version" . -}}"
 if [ "$claude_version" = "{{- $cachedClaudeVersion -}}" ] \
     && [ -n "{{- $cachedClaudeHash -}}" ]; then
-    echo "Claude Code is up to date, using cached hash."
+    echo "Claude Code: up to date ($claude_version), using cached hash."
     claude_hash="{{- $cachedClaudeHash -}}"
 else
+    echo "Claude Code: new version $claude_version, hash updated."
     claude_hash="{{- includeTemplate "claude-hash" . -}}"
 fi
 
 copilot_version="{{- includeTemplate "copilot-version" . -}}"
 if [ "$copilot_version" = "{{- $cachedCopilotVersion -}}" ] \
     && [ -n "{{- $cachedCopilotHash -}}" ]; then
-    echo "GitHub Copilot is up to date, using cached hash."
+    echo "GitHub Copilot: up to date ($copilot_version), using cached hash."
     copilot_hash="{{- $cachedCopilotHash -}}"
 else
+    echo "GitHub Copilot: new version $copilot_version, hash updated."
     copilot_hash="{{- includeTemplate "copilot-hash" . -}}"
 fi
 
 codex_version="{{- includeTemplate "codex-version" . -}}"
 if [ "$codex_version" = "{{- $cachedCodexVersion -}}" ] \
     && [ -n "{{- $cachedCodexHash -}}" ]; then
-    echo "Codex is up to date, using cached hash."
+    echo "Codex: up to date ($codex_version), using cached hash."
     codex_hash="{{- $cachedCodexHash -}}"
 else
+    echo "Codex: new version $codex_version, hash updated."
     codex_hash="{{- includeTemplate "codex-hash" . -}}"
 fi
 
 zed_version="{{- includeTemplate "zed-version" . -}}"
 if [ "$zed_version" = "{{- $cachedZedVersion -}}" ] \
     && [ -n "{{- $cachedZedHash -}}" ]; then
-    echo "Zed is up to date, using cached hash."
+    echo "Zed: up to date ($zed_version), using cached hash."
     zed_hash="{{- $cachedZedHash -}}"
 else
+    echo "Zed: new version $zed_version, hash updated."
     zed_hash="{{- includeTemplate "zed-hash" . -}}"
 fi
 
 mise_version="{{- includeTemplate "mise-version" . -}}"
 if [ "$mise_version" = "{{- $cachedMiseVersion -}}" ] \
     && [ -n "{{- $cachedMiseHash -}}" ]; then
-    echo "mise is up to date, using cached hash."
+    echo "mise: up to date ($mise_version), using cached hash."
     mise_hash="{{- $cachedMiseHash -}}"
 else
+    echo "mise: new version $mise_version, hash updated."
     mise_hash="{{- includeTemplate "mise-hash" . -}}"
 fi
 
 antigravity_version="{{- includeTemplate "antigravity-version" . -}}"
 if [ "$antigravity_version" = "{{- $cachedAntigravityVersion -}}" ] \
     && [ -n "{{- $cachedAntigravityHash -}}" ]; then
-    echo "Antigravity is up to date, using cached hash."
+    echo "Antigravity: up to date ($antigravity_version), using cached hash."
     antigravity_hash="{{- $cachedAntigravityHash -}}"
 else
+    echo "Antigravity: new version $antigravity_version, hash updated."
     antigravity_hash="{{- includeTemplate "antigravity-hash" . -}}"
 fi
 
 ollama_version="{{- includeTemplate "ollama-version" . -}}"
 if [ "$ollama_version" = "{{- $cachedOllamaVersion -}}" ] \
     && [ -n "{{- $cachedOllamaHash -}}" ]; then
-    echo "Ollama is up to date, using cached hash."
+    echo "Ollama: up to date ($ollama_version), using cached hash."
     ollama_hash="{{- $cachedOllamaHash -}}"
 else
+    echo "Ollama: new version $ollama_version, hash updated."
     ollama_hash="{{- includeTemplate "ollama-hash" . -}}"
 fi
 
 obsidian_version="{{- includeTemplate "obsidian-version" . -}}"
 if [ "$obsidian_version" = "{{- $cachedObsidianVersion -}}" ] \
     && [ -n "{{- $cachedObsidianHash -}}" ]; then
-    echo "Obsidian is up to date, using cached hash."
+    echo "Obsidian: up to date ($obsidian_version), using cached hash."
     obsidian_hash="{{- $cachedObsidianHash -}}"
 else
+    echo "Obsidian: new version $obsidian_version, hash updated."
     obsidian_hash="{{- includeTemplate "obsidian-hash" . -}}"
 fi
 
