@@ -25,25 +25,12 @@ return {
         count = 2,
       })
 
-      local agent = Terminal:new({
-        cmd = require("utils").get_nvim_agent(),
-        hidden = true,
-        direction = "float",
-        count = 3,
-      })
-
       function Lazygit_toggle()
         lazygit:toggle()
       end
 
-      function Agent_toggle()
-        agent:toggle()
-      end
-
       vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua Lazygit_toggle()<CR>", { noremap = true, silent = true })
 
-      vim.api.nvim_set_keymap("n", "<leader>i", "<cmd>lua Agent_toggle()<CR>", { noremap = true, silent = true })
-      -- vim.api.nvim_set_keymap("n", "<leader>t", ": ToggleTerm<CR>", { silent = true, noremap = true })
       vim.api.nvim_set_keymap("n", "<C-t>", ": ToggleTerm<CR>", { silent = true, noremap = true })
     end,
   },

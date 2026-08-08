@@ -87,12 +87,4 @@ M.get_os_name = function()
   end
 end
 
-M.get_nvim_agent = function()
-  local agent = os.getenv("NVIM_AGENT")
-  if not agent or agent == "" then
-    return "claude"
-  end
-  return agent
-end
-
 return M

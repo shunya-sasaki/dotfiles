@@ -74,32 +74,41 @@ nix profile remove '.*'
 cd ~/.config/home-manager && nix run home-manager/master -- init --switch
 ```
 
-### Settings for AI tools (Optional)
+### Settings for environment variables (Optional)
 
-Create `~/.env.agents` and add variables for AI tools.
+Both `~/.zshrc` and `~/.bashrc` source every `*.sh` file under `~/.profile.d/`
+in alphabetical order, with `before.sh` first and `after.sh` last.
+Files that this repository does not manage are left untouched by
+`chezmoi apply`, so `~/.profile.d/` is the place for machine local settings
+and secrets.
+
+Variables have to be exported explicitly, since the files are sourced with
+auto exporting disabled.
+
+#### Settings for AI tools
+
+Create `~/.profile.d/agents.sh` and add variables for AI tools.
 Expected variables are as follows:
 
-| Variable Name               | Value Type                       | Explain                                                        |
-| --------------------------- | -------------------------------- | -------------------------------------------------------------- |
-| DISABLE_COPILOT             | {0, 1}                           | `1` to dispable GitHub Copilot predictions in Neovim and Zed.  |
-| NVIM_AGENT                  | {claude, copilot}                | AI tool command that is called from Neovim                     |
-| AI_COMMMIT_MESSAGE_PROVIDER | {CLAUDE, COPILOT, AZURE_OPEN_AI} | AI service name that is called from `ai-commit-message` cmmand |
+| Variable Name              | Value Type                      | Explain                                                         |
+| -------------------------- | ------------------------------- | --------------------------------------------------------------- |
+| DISABLE_COPILOT            | {0, 1}                          | `1` to disable GitHub Copilot completion in Neovim              |
+| AI_COMMIT_MESSAGE_PROVIDER | {CLAUDE, COPILOT, AZURE_OPENAI} | AI service name that is called from `ai-commit-message` command |
 
-Example content of `~/.env.agents`:
+Example content of `~/.profile.d/agents.sh`:
 
-```env
-DISABLE_COPILOT=0
-NVIM_AGENT=claude
-AI_COMMMIT_MESSAGE_PROVIDER=CLAUDE
+```sh
+export DISABLE_COPILOT=0
+export AI_COMMIT_MESSAGE_PROVIDER=CLAUDE
 ```
 
-### Settings for secrets (Optional)
+#### Settings for secrets
 
-Create `~/.env.secrets` and add your secret environment variables.
-Example content of `~/.env.secrets`:
+Create `~/.profile.d/secrets.sh` and add your secret environment variables.
+Example content of `~/.profile.d/secrets.sh`:
 
-```env
-SOME_API_KEY="*******"
+```sh
+export SOME_API_KEY="*******"
 ```
 
 ## 🚀 Usage
@@ -150,9 +159,7 @@ chezmoi apply
 | `<Leader>tb`        | Normal         | Git           | Toggle current line blame              |
 | `<Leader>tw`        | Normal         | Git           | Toggle word diff                       |
 | `<Leader>g`         | Normal         | Terminal      | Toggle lazygit                         |
-| `<Leader>i`         | Normal         | Terminal      | Toggle agent terminal                  |
 | `<C-t>`             | Normal         | Terminal      | Toggle terminal                        |
-| `<C-A-i>`           | Normal         | Terminal      | Open terminal with agent               |
 | `<Leader>xx`        | Normal         | Diagnostics   | Toggle diagnostics (Trouble)           |
 | `<Leader>xX`        | Normal         | Diagnostics   | Toggle buffer diagnostics (Trouble)    |
 | `<Leader>xL`        | Normal         | Diagnostics   | Location list (Trouble)                |
