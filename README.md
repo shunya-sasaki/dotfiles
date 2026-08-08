@@ -82,15 +82,15 @@ Expected variables are as follows:
 | Variable Name               | Value Type                       | Explain                                                        |
 | --------------------------- | -------------------------------- | -------------------------------------------------------------- |
 | DISABLE_COPILOT             | {0, 1}                           | `1` to dispable GitHub Copilot predictions in Neovim and Zed.  |
-| NVIM_AGENT                  | {gemini, copilot}                | AI tool command that is called from Neovim                     |
-| AI_COMMMIT_MESSAGE_PROVIDER | {GEMINI, COPILOT, AZURE_OPEN_AI} | AI service name that is called from `ai-commit-message` cmmand |
+| NVIM_AGENT                  | {claude, copilot}                | AI tool command that is called from Neovim                     |
+| AI_COMMMIT_MESSAGE_PROVIDER | {CLAUDE, COPILOT, AZURE_OPEN_AI} | AI service name that is called from `ai-commit-message` cmmand |
 
 Example content of `~/.env.agents`:
 
 ```env
 DISABLE_COPILOT=0
-NVIM_AGENT=gemini
-AI_COMMMIT_MESSAGE_PROVIDER=GEMINI
+NVIM_AGENT=claude
+AI_COMMMIT_MESSAGE_PROVIDER=CLAUDE
 ```
 
 ### Settings for secrets (Optional)
