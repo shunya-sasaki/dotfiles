@@ -1,0 +1,20 @@
+{{- if eq (includeTemplate "profile" . | trim) "home" -}}
+{{- if (or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin")) -}}
+{{- $version := includeTemplate "codex-version" . | trim -}}
+{{- $arch := .chezmoi.arch -}}
+{{- if eq $arch "amd64" -}}
+  {{- $arch = "x86_64" -}}
+{{- else if eq $arch "arm64" -}}
+  {{- $arch = "aarch64" -}}
+{{- end -}}
+{{- $target := "" -}}
+{{- if eq .chezmoi.os "darwin" -}}
+  {{- $target = printf "%s-apple-darwin" $arch -}}
+{{- else -}}
+  {{- $target = printf "%s-unknown-linux-musl" $arch -}}
+{{- end -}}
+{{- printf "https://github.com/openai/codex/releases/download/%s/codex-package-%s.tar.gz" $version $target -}}
+{{- end -}}
+{{- else -}}
+{{- "" -}}
+{{- end -}}

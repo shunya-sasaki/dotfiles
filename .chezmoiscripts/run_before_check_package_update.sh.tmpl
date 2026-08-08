@@ -7,6 +7,9 @@
 {{- $cachedCopilotVersion := index . "copilotVersion" | default "" -}}
 {{- $cachedCopilotHash := index . "copilotHash" | default "" -}}
 
+{{- $cachedCodexVersion := index . "codexVersion" | default "" -}}
+{{- $cachedCodexHash := index . "codexHash" | default "" -}}
+
 {{- $cachedZedVersion := index . "zedVersion" | default "" -}}
 {{- $cachedZedHash := index . "zedHash" | default "" -}}
 
@@ -39,6 +42,15 @@ if [ "$copilot_version" = "{{- $cachedCopilotVersion -}}" ] \
     copilot_hash="{{- $cachedCopilotHash -}}"
 else
     copilot_hash="{{- includeTemplate "copilot-hash" . -}}"
+fi
+
+codex_version="{{- includeTemplate "codex-version" . -}}"
+if [ "$codex_version" = "{{- $cachedCodexVersion -}}" ] \
+    && [ -n "{{- $cachedCodexHash -}}" ]; then
+    echo "Codex is up to date, using cached hash."
+    codex_hash="{{- $cachedCodexHash -}}"
+else
+    codex_hash="{{- includeTemplate "codex-hash" . -}}"
 fi
 
 zed_version="{{- includeTemplate "zed-version" . -}}"
@@ -101,6 +113,8 @@ claudeVersion = "$claude_version"
 claudeHash = "$claude_hash"
 copilotVersion = "$copilot_version"
 copilotHash = "$copilot_hash"
+codexVersion = "$codex_version"
+codexHash = "$codex_hash"
 zedVersion = "$zed_version"
 zedHash = "$zed_hash"
 miseVersion = "$mise_version"

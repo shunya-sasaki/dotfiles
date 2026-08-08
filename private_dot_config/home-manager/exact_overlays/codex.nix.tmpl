@@ -1,0 +1,28 @@
+final: prev: {
+  codex = prev.stdenv.mkDerivation {
+    pname = "codex";
+    version = "{{ includeTemplate `codex-version` . | trim | trimPrefix `rust-v` }}";
+    src = prev.fetchurl {
+      url = "{{ includeTemplate `codex-url` . }}";
+      hash = "{{ includeTemplate `codex-hash` . }}";
+    };
+    # The tarball unpacks to a bare bin/, codex-path/, codex-resources/ layout,
+    # so it is extracted straight into place instead of through unpackPhase.
+    dontUnpack = true;
+    nativeBuildInputs = [ prev.makeWrapper ];
+    # Prebuilt binaries: the Linux build is statically linked against musl and
+    # the Darwin build is ad-hoc signed, so stripping only risks breaking them.
+    dontStrip = true;
+    installPhase = ''
+      runHook preInstall
+      mkdir -p $out/lib/codex $out/bin
+      tar -xzf $src -C $out/lib/codex
+      # `codex` resolves its vendored `rg` (codex-path) and shell
+      # (codex-resources) relative to the real path of the executable, so the
+      # entrypoints are wrapped rather than copied out of the package layout.
+      makeWrapper $out/lib/codex/bin/codex $out/bin/codex
+      makeWrapper $out/lib/codex/bin/codex-code-mode-host $out/bin/codex-code-mode-host
+      runHook postInstall
+    '';
+  };
+}
