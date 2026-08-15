@@ -4,8 +4,8 @@ gui:
   showFileIcons: true
 
 git:
-  pagers:
-    - pager: delta --dark --paging=never
+  diffRenderers:
+    - command: delta --dark --paging=never
   log:
     showWholeGraph: true
 
