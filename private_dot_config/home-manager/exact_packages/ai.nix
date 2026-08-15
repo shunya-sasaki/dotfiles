@@ -7,4 +7,5 @@ with pkgs; [
   github-copilot-cli
   ollama
   opencode
+  pi-coding-agent
 ]
