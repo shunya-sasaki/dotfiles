@@ -113,10 +113,10 @@ on-mode-changed = []
     alt-comma = 'layout accordion horizontal vertical'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-    alt-h = 'focus left'
-    alt-j = 'focus down'
-    alt-k = 'focus up'
-    alt-l = 'focus right'
+    # alt-h = 'focus left'
+    # alt-j = 'focus down'
+    # alt-k = 'focus up'
+    # alt-l = 'focus right'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move
     alt-shift-h = 'move left'
@@ -139,14 +139,18 @@ on-mode-changed = []
     alt-7 = 'workspace 7'
     alt-8 = 'workspace 8'
     alt-9 = 'workspace 9'
-    alt-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
+    alt-a = 'workspace A'
     alt-b = 'workspace B'
     alt-c = 'workspace C'
     alt-d = 'workspace D'
     alt-e = 'workspace E'
     alt-f = 'workspace F'
     alt-g = 'workspace G'
+    alt-h = 'workspace H'
     alt-i = 'workspace I'
+    alt-j = 'workspace J'
+    alt-k = 'workspace K'
+    alt-l = 'workspace L'
     alt-m = 'workspace M'
     alt-n = 'workspace N'
     alt-o = 'workspace O'
@@ -256,6 +260,10 @@ on-mode-changed = []
 [[on-window-detected]]
     if.app-id = "com.apple.Safari"
     run = 'move-node-to-workspace W' # Web browser: Safari
+
+[[on-window-detected]]
+    if.app-id = "com.openai.codex"
+    run = 'move-node-to-workspace C'
 
 [[on-window-detected]]
     if.app-id = "com.apple.mail"
