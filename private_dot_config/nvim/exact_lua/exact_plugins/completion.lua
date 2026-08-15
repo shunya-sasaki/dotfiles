@@ -1,57 +1,4 @@
-function is_copilot_enable()
-  local disable_copilot = os.getenv("DISABLE_COPILOT")
-  if not disable_copilot or disable_copilot == "0" then
-    return true
-  else
-    return false
-  end
-end
-
-function default()
-  if is_copilot_enable() then
-    return { "lsp", "path", "snippets", "buffer", "copilot" }
-  else
-    return { "lsp", "path", "snippets", "buffer" }
-  end
-end
-
-function providers()
-  if is_copilot_enable() then
-    return {
-      copilot = {
-        name = "copilot",
-        module = "blink-cmp-copilot",
-        score_offset = 100,
-        async = true,
-      },
-    }
-  else
-    return {}
-  end
-end
-
 return {
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    dependencies = {
-      "zbirenbaum/copilot-cmp",
-    },
-    enabled = is_copilot_enable(),
-    config = function()
-      require("copilot").setup({
-        suggestion = { enabled = false },
-        filetypes = {
-          yaml = true,
-          markdown = true,
-          help = true,
-          ["."] = true,
-        },
-        panel = { enabled = false },
-      })
-    end,
-  },
   {
     "L3MON4D3/LuaSnip",
     version = "2.*",
@@ -71,12 +18,7 @@ return {
   },
   {
     "saghen/blink.cmp",
-    dependencies = {
-      {
-        "giuxtaposition/blink-cmp-copilot",
-        enabled = is_copilot_enable(),
-      },
-    },
+    dependencies = {},
     version = "1.*",
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
@@ -90,8 +32,8 @@ return {
         preset = "luasnip",
       },
       sources = {
-        default = default(),
-        providers = providers(),
+        default = { "lsp", "path", "snippets", "buffer" },
+        providers = {},
       },
       fuzzy = { implementation = "prefer_rust_with_warning" },
     },
