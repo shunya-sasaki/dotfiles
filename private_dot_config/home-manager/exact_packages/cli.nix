@@ -22,6 +22,7 @@ with pkgs; [
   neovim
   ollama
   opencode
+  pi-coding-agent
   poppler
   powershell
   procs
