@@ -51,6 +51,15 @@ Use `uv` for everything; do NOT call `pip` directly.
 
 Commit `uv.lock` to the repository.
 
+If a project contains a `uv.lock`, run every command through `uv run` instead of
+calling the tool directly, so it resolves inside the project environment.
+
+- Use `uv run python ...` instead of `python ...` (and instead of `python3`).
+- Use `uv run <tool>` for project tools, e.g. `uv run pytest`, `uv run ruff
+check`, `uv run ty check`.
+- A bare `python` may pick up a different interpreter without the project
+  dependencies, so do NOT use it in a `uv.lock` project.
+
 ## Lint / Format / Imports
 
 Use `ruff` to lint, format, and organize imports. Use absolute imports.
