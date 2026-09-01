@@ -7,5 +7,10 @@
   "hideThinkingBlock": true,
   "defaultThinkingLevel": "xhigh",
   "editorPaddingX": 1,
-  "skills": ["~/.claude/skills"]
+  "skills": ["~/.claude/skills"],
+  "retry": {
+    "enabled": true,
+    "maxRetries": 5,
+    "baseDelayMs": 15000
+  }
 }
