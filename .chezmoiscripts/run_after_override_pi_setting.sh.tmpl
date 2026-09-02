@@ -1,4 +1,4 @@
 {{- if (or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin")) -}}
 #!/bin/sh
-cd $HOME/.pi/agents && python3 override.py
+cd $HOME/.pi/agent && python3 override.py
 {{- end -}}

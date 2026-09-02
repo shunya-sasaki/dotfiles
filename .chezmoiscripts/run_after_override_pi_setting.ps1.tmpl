@@ -1,5 +1,5 @@
 {{- if eq .chezmoi.os "windows" -}}
-cd "$env:HOMEPATH\.pi\agents"
+cd "$env:HOMEPATH\.pi\agent"
 if (Get-Command uv -ErrorAction SilentlyContinue) {
     uv run override.py
 } else {
