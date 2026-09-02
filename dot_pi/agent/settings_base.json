@@ -5,7 +5,7 @@
   "defaultModel": "gpt-5.6-terra",
   "tuiMode": "regular",
   "hideThinkingBlock": true,
-  "defaultThinkingLevel": "xhigh",
+  "defaultThinkingLevel": "high",
   "editorPaddingX": 1,
   "skills": ["~/.claude/skills"],
   "retry": {
