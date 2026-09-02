@@ -20,9 +20,6 @@ with pkgs; [
   mdbook
   mdbook-mermaid
   neovim
-  ollama
-  opencode
-  pi-coding-agent
   poppler
   powershell
   procs

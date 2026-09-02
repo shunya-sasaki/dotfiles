@@ -15,7 +15,8 @@ in
       ++ import ./packages/vcs.nix { inherit pkgs; }
       ++ import ./packages/lang.nix { inherit pkgs; }
       ++ import ./packages/lsp.nix { inherit pkgs; }
-      ++ import ./packages/ai.nix { inherit pkgs; }
+      ++ import ./packages/public-ai.nix { inherit pkgs; }
+      ++ import ./packages/local-ai.nix { inherit pkgs; }
       ++ import ./packages/container.nix { inherit pkgs; }
       ++ import ./packages/gui.nix { inherit pkgs; }
       ++ import ./packages/fun.nix { inherit pkgs; }
@@ -26,6 +27,7 @@ in
       ++ import ./packages/vcs.nix { inherit pkgs; }
       ++ import ./packages/lang.nix { inherit pkgs; }
       ++ import ./packages/lsp.nix { inherit pkgs; }
+      ++ import ./packages/local-ai.nix { inherit pkgs; }
       ++ import ./packages/fun.nix { inherit pkgs; });
   programs = import ./programs.nix { inherit pkgs; };
 }
