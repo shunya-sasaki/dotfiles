@@ -13,8 +13,8 @@ final: prev: {
     # behaving like plain `bun`, so it must be disabled on Linux.
     dontStrip = true;
     nativeBuildInputs = [ prev.makeWrapper ]
-      ++ prev.lib.optionals prev.stdenv.isLinux [ prev.autoPatchelfHook ];
-    buildInputs = prev.lib.optionals prev.stdenv.isLinux [
+      ++ prev.lib.optionals prev.stdenv.hostPlatform.isLinux [ prev.autoPatchelfHook ];
+    buildInputs = prev.lib.optionals prev.stdenv.hostPlatform.isLinux [
       prev.stdenv.cc.cc.lib
     ];
     installPhase = ''

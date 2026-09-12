@@ -20,7 +20,7 @@ in
       ++ import ./packages/container.nix { inherit pkgs; }
       ++ import ./packages/gui.nix { inherit pkgs; }
       ++ import ./packages/fun.nix { inherit pkgs; }
-      ++ pkgs.lib.optionals pkgs.stdenv.isDarwin
+      ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isDarwin
         (import ./packages/mac.nix { inherit pkgs; })
     else
       (import ./packages/cli.nix { inherit pkgs; })
