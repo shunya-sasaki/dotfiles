@@ -22,9 +22,6 @@
 {{- $cachedOllamaVersion := index . "ollamaVersion" | default "" -}}
 {{- $cachedOllamaHash := index . "ollamaHash" | default "" -}}
 
-{{- $cachedObsidianVersion := index . "obsidianVersion" | default "" -}}
-{{- $cachedObsidianHash := index . "obsidianHash" | default "" -}}
-
 #!/bin/sh
 claude_version="{{- includeTemplate "claude-version" . -}}"
 if [ "$claude_version" = "{{- $cachedClaudeVersion -}}" ] \
@@ -96,16 +93,6 @@ else
     ollama_hash="{{- includeTemplate "ollama-hash" . -}}"
 fi
 
-obsidian_version="{{- includeTemplate "obsidian-version" . -}}"
-if [ "$obsidian_version" = "{{- $cachedObsidianVersion -}}" ] \
-    && [ -n "{{- $cachedObsidianHash -}}" ]; then
-    echo "Obsidian: up to date ($obsidian_version), using cached hash."
-    obsidian_hash="{{- $cachedObsidianHash -}}"
-else
-    echo "Obsidian: new version $obsidian_version, hash updated."
-    obsidian_hash="{{- includeTemplate "obsidian-hash" . -}}"
-fi
-
 if [ ! -d ~/.config/chezmoi ]; then
     mkdir -p ~/.config/chezmoi
 fi
@@ -131,8 +118,6 @@ antigravityVersion = "$antigravity_version"
 antigravityHash = "$antigravity_hash"
 ollamaVersion = "$ollama_version"
 ollamaHash = "$ollama_hash"
-obsidianVersion = "$obsidian_version"
-obsidianHash = "$obsidian_hash"
 EOF
 {{- end -}}
 
