@@ -35,7 +35,7 @@
       "import re",
       "import shutil",
       "import subprocess",
-      "from importlib.metadata import version as prodcut_version",
+      "from importlib import import_module",
       "from importlib.resources import as_file",
       "from importlib.resources import files",
       "from pathlib import Path",
@@ -227,10 +227,17 @@
       "    def _version_from_metadata(cls) -> str:",
       "        \"\"\"Get the version from the package metadata.\"\"\"",
       "        package_name = cls.package_name()",
+      "        version_module_name = f\"{package_name}._version\"",
       "        try:",
-      "            version = prodcut_version(package_name)",
-      "        except Exception as e:",
-      "            version = \"unknown\"",
+      "            version_module = import_module(version_module_name)",
+      "        except ModuleNotFound as error:",
+      "            if error.name != version_module_name:",
+      "                raise",
+      "            return \"unknown\"",
+      "",
+      "        package_version = getattr(version_module, \"version\", None)",
+      "        if not isinstance(package_version, str):",
+      "            return \"unknown\"",
       "        return version"
     ]
   },
@@ -693,4 +700,3 @@
     ]
   }
 }
-
