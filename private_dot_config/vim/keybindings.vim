@@ -1,8 +1,8 @@
 " vim-floaterm (external program) -----------------------------------------------
 " lazygit
-nnoremap <silent> <Leader>g :FloatermNew --autoclose=2 --height=0.95 --width=0.95 lazygit<CR>
+nnoremap <silent> <Leader>g :FloatermNew --autoclose=always --height=0.95 --width=0.95 lazygit<CR>
 " yazi
-nnoremap <silent> <leader>e :FloatermNew --autoclose=2 --opener=edit --height=0.95 --width=0.95 yazi<CR>
+nnoremap <silent> <leader>e :FloatermNew --autoclose=always --opener=edit --height=0.95 --width=0.95 yazi<CR>
 
 " easy motion (external plugin)-----------------------------------------------
 map <Leader>f <Plug>(easymotion-f)
