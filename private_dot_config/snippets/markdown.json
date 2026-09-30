@@ -777,7 +777,15 @@
     "description": "Image shape",
     "body": "${1:var}@{img: \"\", label: \"\", pos \"${2|t,b|}\", w: ${3: width}, h: ${4: height}, constraint: \"${5|on,off|}\"}"
   },
-  "Mermaid Sequence Diagrams Block": {
+  "Mermaid Swimlanes Diagram": {
+    "prefix": "mmd-swimlanes",
+    "body": ["```mermaid", "swimelane-beta ${1|TD,LR|}", "```"]
+  },
+  "Mermaid Swimlanes Subgraph": {
+    "prefix": "mmd-swimlanes-subgraph",
+    "body": ["subgraph", "${1: ownership}[\"${2: label}\"]", "end"]
+  },
+  "Mermaid Sequence Diagram Block": {
     "prefix": "mmd-sequence",
     "body": ["```mermaid", "sequenceDiagram", "```"]
   },
