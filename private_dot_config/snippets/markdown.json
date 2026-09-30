@@ -770,7 +770,7 @@
   "Flowchart Icon (Icon Shape)": {
     "prefix": "mmd-flowchart-node-icon",
     "description": "Text block",
-    "body": "${1:var}@{icon: \"fa:${2: icon}\", from: \"${3|square,circle,rounded|}\", label: \"\", pos \"t\", h: ${4: height}}"
+    "body": "${1:var}@{icon: \"${2: icon}\", from: \"${3|square,circle,rounded|}\", label: \"\", pos \"t\", h: 48}"
   },
   "Flowchart Image (Image Shape)": {
     "prefix": "mmd-flowchart-node-image",
