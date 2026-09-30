@@ -80,11 +80,8 @@
       "Read(**/secrets/**)",
       "Read(**secrets/**)"
     ],
-    "ask": [
-      "Bash(curl *)"
-    ]
+    "ask": ["Bash(curl *)"]
   },
-  "model": "opus",
   "enabledPlugins": {
     "pyright-lsp@claude-plugins-official": true
   }
