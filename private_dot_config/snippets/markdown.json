@@ -881,11 +881,51 @@
   "Mermaid architecture service in group": {
     "prefix": "mmd-architecture-service-in-group",
     "description": "Inner group service in Mermaid architecture diagram",
-    "body": ["service ${1:val}(${2:iconClass}:${3:iconName})[${4:label}] in ${5:group}"]
+    "body": [
+      "service ${1:val}(${2:iconClass}:${3:iconName})[${4:label}] in ${5:group}"
+    ]
   },
   "Mermaid architecture junction": {
     "prefix": "mmd-architecture-junction",
     "description": "Junction in Mermaid architecture diagram",
     "body": "junction ${1:val}"
+  },
+  "Mermaid treeView": {
+    "prefix": "mmd-treeview",
+    "description": "Mermaid tree view diagram",
+    "body": [
+      "```mermaid",
+      "treeView-beta",
+      "---",
+      "config:",
+      "  treeView:",
+      "    showIcons: true",
+      "    defaultIconPack: material-icon-theme",
+      "    filenameIcons:",
+      "      Dockerfile: docker",
+      "      LICENSE: license",
+      "      Makefile: makefile",
+      "      package.json: npm",
+      "      pnpm-lock.yaml: pnpm",
+      "      pnpm-workspace.yaml: pnpm",
+      "    extensionIcons:",
+      "      .gitignore: git",
+      "      .html: html",
+      "      .lock: lock",
+      "      .log: log",
+      "      .md: markdown",
+      "      .ps1: powershell",
+      "      .py: python",
+      "      .sh: console",
+      "      .toml: toml",
+      "      .ts: typescript",
+      "      .tsx: react-ts",
+      "      .txt: document",
+      "      .vue: vue",
+      "      .yaml: yaml",
+      "      .yml: yaml",
+      "---",
+      "```"
+    ]
   }
 }
