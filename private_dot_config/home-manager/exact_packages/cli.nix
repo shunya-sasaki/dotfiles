@@ -31,6 +31,5 @@ with pkgs; [
   trivy
   xh
   yazi
-  zellij
   zoxide
 ]
