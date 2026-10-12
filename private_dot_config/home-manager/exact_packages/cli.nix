@@ -28,6 +28,7 @@ with pkgs; [
   tldr
   tmux
   tree-sitter
+  trivy
   xh
   yazi
   zellij
