@@ -8,7 +8,7 @@ let
 in
 {
   zed-editor =
-    if prev.stdenv.isDarwin then
+    if prev.stdenv.hostPlatform.isDarwin then
       prev.stdenv.mkDerivation {
         pname = "zed-editor";
         inherit version src;

@@ -4,7 +4,7 @@ let
 in
 {
   ollama =
-    if prev.stdenv.isDarwin then
+    if prev.stdenv.hostPlatform.isDarwin then
       prev.stdenv.mkDerivation {
         pname = "ollama";
         inherit version;
