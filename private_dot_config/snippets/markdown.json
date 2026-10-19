@@ -903,7 +903,6 @@
     "description": "Mermaid tree view diagram",
     "body": [
       "```mermaid",
-      "treeView-beta",
       "---",
       "config:",
       "  treeView:",
@@ -933,6 +932,7 @@
       "      .yaml: yaml",
       "      .yml: yaml",
       "---",
+      "treeView-beta",
       "```"
     ]
   }
