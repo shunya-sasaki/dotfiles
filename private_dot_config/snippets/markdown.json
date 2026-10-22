@@ -442,7 +442,7 @@
     "prefix": "md-readme",
     "description": "Template of README.md",
     "body": [
-      "# ${1: Project Title}",
+      "# ${1:Project Title}",
       "",
       "## 📦 Requirements",
       "",
@@ -770,12 +770,12 @@
   "Flowchart Icon (Icon Shape)": {
     "prefix": "mmd-flowchart-node-icon",
     "description": "Text block",
-    "body": "${1:var}@{icon: \"${2: icon}\", from: \"${3|square,circle,rounded|}\", label: \"\", pos \"t\", h: 48}"
+    "body": "${1:var}@{icon: \"${2:icon}\", from: \"${3|square,circle,rounded|}\", label: \"\", pos \"t\", h: 48}"
   },
   "Flowchart Image (Image Shape)": {
     "prefix": "mmd-flowchart-node-image",
     "description": "Image shape",
-    "body": "${1:var}@{img: \"\", label: \"\", pos \"${2|t,b|}\", w: ${3: width}, h: ${4: height}, constraint: \"${5|on,off|}\"}"
+    "body": "${1:var}@{img: \"\", label: \"\", pos \"${2|t,b|}\", w: ${3:width}, h: ${4:height}, constraint: \"${5|on,off|}\"}"
   },
   "Mermaid Swimlanes Diagram": {
     "prefix": "mmd-swimlanes",
@@ -783,7 +783,7 @@
   },
   "Mermaid Swimlanes Subgraph": {
     "prefix": "mmd-swimlanes-subgraph",
-    "body": ["subgraph", "${1: ownership}[\"${2: label}\"]", "end"]
+    "body": ["subgraph", "${1:ownership}[\"${2:label}\"]", "end"]
   },
   "Mermaid Sequence Diagram Block": {
     "prefix": "mmd-sequence",
@@ -791,23 +791,23 @@
   },
   "Mermaid Sequence Participant": {
     "prefix": "mmd-sequence-participant",
-    "body": "participant ${1: var} as ${2: name}"
+    "body": "participant ${1:var} as ${2:name}"
   },
   "Mermaid Sequence Actor": {
     "prefix": "mmd-sequence-group",
-    "body": ["box ${1: group_name}", "", "end"]
+    "body": ["box ${1:group_name}", "", "end"]
   },
   "Mermaid Sequence Create": {
     "prefix": "mmd-sequence-create-participant",
-    "body": "create ${1|participant,actor|} ${2: var} as ${3: name}"
+    "body": "create ${1|participant,actor|} ${2:var} as ${3:name}"
   },
   "Mermaid Sequence Destroy": {
     "prefix": "mmd-sequence-create-participant",
-    "body": "create ${1: var}"
+    "body": "create ${1:var}"
   },
   "Mermaid Sequence Group": {
     "prefix": "mmd-sequence-create-participant",
-    "body": "create ${1: var}"
+    "body": "create ${1:var}"
   },
   "Mermaid Sequence Message": {
     "prefix": "mmd-sequence-message",
@@ -817,46 +817,40 @@
   "Mermaid Sequence Activate": {
     "prefix": "mmd-sequence-activate",
     "description": "Activate a pariticipant or an actor",
-    "body": "activate ${1: var}"
+    "body": "activate ${1:var}"
   },
   "Mermaid Sequence Deactivate": {
     "prefix": "mmd-sequence-deactivate",
     "description": "Deactivate a pariticipant or an actor",
-    "body": "deactivate ${1: var}"
+    "body": "deactivate ${1:var}"
   },
   "Mermaid Sequence Note": {
     "prefix": "mmd-sequence-note",
     "description": "Add a note to a sequence diagram",
-    "body": "Note ${1|right of,left of,over|} ${2: var}: ${3: text}"
+    "body": "Note ${1|right of,left of,over|} ${2:var}: ${3:text}"
   },
   "Mermaid Sequence Loop": {
     "prefix": "mmd-sequence-loop",
     "description": "Add a loop block to a sequence diagram",
-    "body": ["loop ${1: block_name}", "", "end"]
+    "body": ["loop ${1:block_name}", "", "end"]
   },
   "Mermaid Sequence Alt": {
     "prefix": "mmd-sequence-alt",
     "description": "Add a alt block to a sequence diagram",
-    "body": [
-      "alt ${1: block_name}",
-      "",
-      "else ${2: else block_name}",
-      "",
-      "end"
-    ]
+    "body": ["alt ${1:block_name}", "", "else ${2:else block_name}", "", "end"]
   },
   "Mermaid Sequence Parallel": {
     "prefix": "mmd-sequence-parllel",
     "description": "Add a parallel block to a sequence diagram",
-    "body": ["par ${1: block_name}", "", "and ${2: else block_name}", "", "end"]
+    "body": ["par ${1:block_name}", "", "and ${2:else block_name}", "", "end"]
   },
   "Mermaid Sequence Critical": {
     "prefix": "mmd-sequence-parllel",
     "description": "Add a critical block to a sequence diagram",
     "body": [
-      "critical ${1: block_name}",
+      "critical ${1:block_name}",
       "",
-      "option ${2: else block_name}",
+      "option ${2:else block_name}",
       "",
       "end"
     ]
@@ -864,12 +858,12 @@
   "Mermaid Sequence Break": {
     "prefix": "mmd-sequence-parllel",
     "description": "Add a break block to a sequence diagram",
-    "body": ["break ${1: block_name}", "", "end"]
+    "body": ["break ${1:block_name}", "", "end"]
   },
   "Mermaid Sequence Background Highlighting": {
     "prefix": "mmd-sequence-parllel",
     "description": "Hightlight flows by providing colored background rect",
-    "body": ["rect ${1: color}", "", "end"]
+    "body": ["rect ${1:color}", "", "end"]
   },
   "Mermaid Architecture Diagram": {
     "prefix": "mmd-architecture",
@@ -890,7 +884,7 @@
     "prefix": "mmd-architecture-service-in-group",
     "description": "Inner group service in Mermaid architecture diagram",
     "body": [
-      "service ${1:val}(${2:iconClass}:${3:iconName})[${4:label}] in ${5:group}"
+      "service ${1:val}(${2:iconClass}:${3:iconName})[\"${4:label}\"] in ${5:group}"
     ]
   },
   "Mermaid architecture junction": {
