@@ -14,6 +14,8 @@ in
       set runtimepath+=~/.config/vim/after
       '';
     plugins = [
+      pkgs.vimPlugins.everforest
+      pkgs.vimPlugins.gruvbox
       pkgs.vimPlugins.vim-commentary
       pkgs.vimPlugins.vim-surround
       pkgs.vimPlugins.vim-easymotion

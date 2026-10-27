@@ -24,6 +24,7 @@ with pkgs; [
   powershell
   procs
   ripgrep
+  rustlings
   starship
   tldr
   tmux
