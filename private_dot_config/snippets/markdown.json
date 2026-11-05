@@ -779,11 +779,11 @@
   },
   "Mermaid Swimlanes Diagram": {
     "prefix": "mmd-swimlanes",
-    "body": ["```mermaid", "swimelane-beta ${1|TD,LR|}", "```"]
+    "body": ["```mermaid", "swimlane-beta ${1|TD,LR|}", "```"]
   },
   "Mermaid Swimlanes Subgraph": {
     "prefix": "mmd-swimlanes-subgraph",
-    "body": ["subgraph", "${1:ownership}[\"${2:label}\"]", "end"]
+    "body": ["subgraph ${1:ownership}[\"${2:label}\"]", "end"]
   },
   "Mermaid Sequence Diagram Block": {
     "prefix": "mmd-sequence",
