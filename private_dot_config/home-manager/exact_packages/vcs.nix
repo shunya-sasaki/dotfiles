@@ -1,9 +1,10 @@
 { pkgs }:
 
 with pkgs; [
-  gh
   chezmoi
   delta
+  dvc
+  gh
   git
   gitui
   lazygit
