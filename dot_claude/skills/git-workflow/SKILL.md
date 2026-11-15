@@ -161,6 +161,92 @@ Do not include the `(Optional)` tag in the final output.
 <!-- Links or references to related issues, PRs, or discussions (e.g., #123). Omit if none. -->
 ```
 
+## Create Phase Closing Comment
+
+IF all tasks of a Phase are completed (or you're asked to close a phase), THEN you MUST create a phase closing comment on the issue.
+
+### Procedure
+
+1. Review the completed work for the current phase:
+   - Check recent commits and changes (`git --no-pager log` / `git --no-pager diff`) to gather accurate commit hashes, changed files, and validation results.
+   - Review the phase plan and any decisions made during the phase.
+2. Compose the `<comment_body>` following the **Template** below. Ensure that the reasoning behind decisions and file changes is clear for anyone reviewing the history later.
+3. Post the comment to the target issue using `gitforge` (or output the comment if posting is handled manually).
+
+### Phase Closing Comment Template
+
+```md
+## Phase N Closing: <phase title>
+
+<!-- 1-3 sentences summarizing the completion of this phase. -->
+
+### Phase History
+
+| Phase | Title | Difficulty | Accepted Commit or Evidence | Status    |
+| ----- | ----- | ---------- | --------------------------- | --------- |
+| 1     | ...   | High       | `<hash>` / link             | Completed |
+| 2     | ...   | Medium     | -                           | Planned   |
+
+### Objective
+
+<!-- State the goal of this phase. -->
+
+### Result
+
+<!-- Summarize what was achieved, implemented, or investigated in this phase. -->
+
+### Key Decisions
+
+<!-- Document developer judgments, architectural choices, trade-offs, and why specific approaches were selected. -->
+
+-
+
+### Plan Revision (Optional)
+
+<!-- Document any updates, newly added sub-phases (e.g., Phase 2.1), or adjustments to subsequent phases. Omit if no changes to the plan. -->
+
+### Changed Files
+
+<!-- List modified/added/deleted files with a brief explanation of what changed and why. -->
+
+- `path/to/file`:
+
+### Validation
+
+<!-- Concrete commands run and their outcomes (e.g., pytest results, linter checks, manual verification). -->
+
+-
+
+### Deviations
+
+<!-- Any departures from the phase plan and the reason why. Write "None" if executed strictly as planned. -->
+
+### Compatibility Impact
+
+<!-- Breaking changes, config updates, or migration steps required. Write "None" if fully backward-compatible. -->
+
+### Remaining Constraints
+
+<!-- Known limitations, technical debt, or edge cases deferred to later phases. Write "None" if none. -->
+
+### Next Action
+
+<!-- Clear, actionable summary of what will be tackled in the next phase. -->
+```
+
+> [!NOTE]
+>
+> - **Difficulty Tier**: Use the standard difficulty tiers (`Low`, `Medium`, `High`, `Xhigh`)
+>   in the `Phase History` table.
+> - **Clarity for Reviewers**: Write Key Decisions and Changed Files clearly
+>   so that less experienced developers can easily understand
+>   why a decision was made and how the code changed.
+> - **Optional & Empty Sections**: Omit sections marked `(Optional)`
+>   if not applicable. For `Deviations`, `Compatibility Impact`,
+>   and `Remaining Constraints`, explicitly write `None` when not applicable
+>   rather than leaving them blank.
+>   Never include the `(Optional)` label or HTML comments in the final output.
+
 ## Read Issue
 
 IF you're asked to read an issue, THEN you MUST work on this task.
