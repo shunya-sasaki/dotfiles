@@ -84,5 +84,9 @@
   },
   "enabledPlugins": {
     "pyright-lsp@claude-plugins-official": true
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
   }
 }
