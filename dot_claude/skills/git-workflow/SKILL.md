@@ -177,20 +177,58 @@ IF you're asked to create a pull request (PR), THEN you MUST work on this task.
 
 ### Procedure
 
-1. Run `git --no-pager diff --no-color <target_branch>...HEAD` to get the
-   changes between the current branch and the target branch. Read the ENTIRE
-   diff and identify every meaningful change; this diff is the single source of
-   truth for the `<title>` and `<body>`.
-2. Create the `<title>` using the **Conventional Commit** style, derived from
-   the changes you read in the diff.
-3. Get the body template with `gitforge pr template`.
-4. Compose the `<body>` by filling the template with the actual changes from the
-   diff in step 1. Every claim in the body MUST correspond to a change present
-   in the diff; do NOT invent, omit, or generalize changes, and do NOT describe
+1. Determine the `<target_branch>` (default to `main` if not specified).
+   - Run `git --no-pager diff --no-color <target_branch>...HEAD` to inspect all
+     changes. Read the ENTIRE diff and identify every meaningful change; this
+     diff is the single source of truth for the `<title>` and `<body>`.
+   - Run `git --no-pager log --no-color --format="%s : %h" <target_branch>..HEAD`
+     to retrieve the commit titles and hashes for the template.
+2. Create the `<title>` using the **Conventional Commits** style, derived strictly
+   from the changes in the diff.
+3. Get the available labels with `gitforge label list` and select appropriate
+   `<labels>` from the list. If the list is empty or none match, proceed without
+   labels.
+4. Compose the `<body>` by filling the **Template** below with the actual changes
+   from step 1. Every claim in the body MUST correspond to a change present in
+   the diff; do NOT invent, omit, or generalize changes, and do NOT describe
    work that is not in the diff.
 5. Before creating the PR, verify the `<body>` against the diff: confirm each
    described change appears in the diff and no significant change is missing.
-6. Run `gitforge pr create --title <title> --body <body> -B <target_branch> --label <label>`.
+   Ensure the current branch is pushed to the remote repository.
+6. Run `gitforge pr create --title "<title>" --body "<body>" -B "<target_branch>" --label "<labels>"`
+   (omit `--label` if no labels were selected).
+
+### Template
+
+```md
+## Summary
+
+<!-- High-level overview (1-3 sentences) of what this PR accomplishes and why. -->
+
+## Changes
+
+<!-- Detailed bullet points of all meaningful changes present in the diff. -->
+
+-
+
+## Related Issues (Optional)
+
+<!-- e.g., Closes #N, Refs #N. Omit if no related issue exists. -->
+
+Closes #N
+
+## Related Commits
+
+<!-- List of commits from `<target_branch>..HEAD` in `<commit title> : <hash>` format. -->
+
+- <commit title> : <hash>
+
+## Testing
+
+<!-- Describe how these changes were verified (e.g., pytest, manual verification, CI checks). -->
+
+-
+```
 
 ## Create Worktree
 
