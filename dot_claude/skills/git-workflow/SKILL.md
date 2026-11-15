@@ -43,6 +43,7 @@ Tasks described in this skill:
   - `chore`: Auxiliary tools, e.g. documentation generation
   - `build`: Changes to the build system or external dependencies
   - `ci`: Changes to CI configuration files and scripts
+  - `revert`: Reverts a previous commit
 - `<scope>`: Optional area of the change, e.g. `doc`, `api`, `workflow`.
 - `<body>`: Body of an issue or pull request, composed from its template.
 - `<label>`: Label name. Get the available labels with `gitforge label list`.
@@ -91,12 +92,74 @@ IF you're asked to create an issue, THEN you MUST work on this task.
 1. Understand the user's request, problem report, or improvement idea.
 2. If the repository context is needed, inspect relevant files to understand the
    current implementation, configuration, documentation, or behavior.
-3. Create the `<title>` using the **Conventional Commit** style.
-4. Get the labels with `gitforge label list` and select a `<label>` from the
-   list. If the list is empty, there is no label.
-5. Get the body template with `gitforge issue template --label <label>`.
-6. Compose the `<body>` following the template.
-7. Run `gitforge issue create --title <title> --body <body> --label <label>`.
+3. Create the `<title>` using the **Conventional Commits** style.
+4. Get the available labels with `gitforge label list` and select appropriate
+   `<labels>` from the list. If the list is empty or none match, proceed without
+   labels.
+5. Compose the `<body>` following the **Template** below.
+6. Run `gitforge issue create --title "<title>" --body "<body>" --label "<labels>"`
+   (pass multiple labels as comma-separated values or repeated `--label` flags;
+   omit `--label` if no labels were selected).
+
+### Issue Template
+
+Compose the `<body>` using the following structure.
+Note: Sections marked as `(Optional)` MUST be omitted entirely (or marked as `N/A`) if not applicable.
+Do not include the `(Optional)` tag in the final output.
+
+```md
+## Summary
+
+<!-- 1-3 sentences summarizing the issue, problem, or feature request. -->
+
+## Description
+
+<!-- Detailed explanation of the background, problem statement, reproduction steps (if bug), or proposed specifications. -->
+
+## Objective
+
+<!-- State the goal and expected outcome of resolving this issue. -->
+
+## Investigation / Context (Optional)
+
+<!-- Preliminary findings from Step 2 (relevant files, current behavior, root cause, constraints).
+     Omit this section if no preliminary investigation was conducted. -->
+
+## Included Scope
+
+<!-- Bullet points of specific changes, components, or tasks included in this issue. -->
+
+-
+
+## Excluded Scope
+
+<!-- Bullet points of items explicitly out of scope to prevent scope creep (write "None" if nothing specific). -->
+
+-
+
+## Acceptance Criteria
+
+<!-- Concrete, verifiable conditions that must be met to close this issue. -->
+
+- [ ]
+
+## Phase Plan
+
+<!-- Omit for simple issues that do not require phased execution. -->
+
+<!-- Break down into sequential implementation phases if the task requires multiple steps.
+     Omit this section for simple, single-step fixes or tasks. -->
+
+### Phase 1: Investigation & Detailed Planning
+
+### Phase 2: ...
+
+### Phase N: Final Validation
+
+## Related Issues (Optional)
+
+<!-- Links or references to related issues, PRs, or discussions (e.g., #123). Omit if none. -->
+```
 
 ## Read Issue
 
