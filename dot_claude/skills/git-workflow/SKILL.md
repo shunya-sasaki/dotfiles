@@ -46,7 +46,7 @@ Tasks described in this skill:
   - `revert`: Reverts a previous commit
 - `<scope>`: Optional area of the change, e.g. `doc`, `api`, `workflow`.
 - `<body>`: Body of an issue or pull request, composed from its template.
-- `<label>`: Label name. Get the available labels with `gitforge label list`.
+- `<labels>`: Label names. Get the available labels with `gitforge label list`.
 - `<target_branch>`: Base branch of a pull request. Defaults to `main`.
 - `<number>`: Issue or pull request number.
 - `<branch_name>`: Name of the branch to work on, following the **Conventional
