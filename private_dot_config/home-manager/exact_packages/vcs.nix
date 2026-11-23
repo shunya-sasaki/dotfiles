@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  betterleaks
   chezmoi
   delta
   dvc
@@ -8,5 +9,6 @@ with pkgs; [
   git
   gitui
   lazygit
+  lefthook
   tea
 ]
