@@ -5,6 +5,7 @@ with pkgs; [
   bash-language-server
   biome
   clang-tools
+  clippy
   cmake-language-server
   docker-language-server
   dprint
@@ -18,6 +19,8 @@ with pkgs; [
   oxlint
   pyright
   ruff
+  rust-analyzer
+  rustfmt
   stylua
   tailwindcss-language-server
   taplo
