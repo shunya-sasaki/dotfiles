@@ -15,19 +15,12 @@ return {
       vim.lsp.enable("fortls")
       -- Rust
       vim.lsp.enable("rust_analyzer")
-      -- Json
-      vim.lsp.enable("biome")
-      -- HTML/CSS
-      vim.lsp.enable("html")
-      vim.lsp.enable("cssls")
       -- TypeScript
       vim.lsp.enable("vtsls")
       vim.lsp.enable("tailwindcss")
       -- Python
       vim.lsp.enable("ruff")
       vim.lsp.enable("ty")
-      -- TOML
-      vim.lsp.enable("taplo")
       -- NGINX
       vim.lsp.enable("nginx")
       -- Lua
