@@ -2,27 +2,6 @@ local utils = require("utils")
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = {
-    "javascript",
-    "javascriptreact",
-    "json",
-    "jsonc",
-    "typescript",
-    "typescriptreact",
-  },
-  callback = function(args)
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = args.buf,
-      callback = function()
-        utils.call_code_action_synchronously("biome", "source.fixAll.biome")
-        utils.call_code_action_synchronously("biome", "source.organizeImports.biome")
-        utils.call_format_synchronously("biome")
-      end,
-    })
-  end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = {
     "python",
   },
   callback = function(args)
@@ -51,6 +30,13 @@ vim.api.nvim_create_autocmd("FileType", {
     "markdown",
     "nix",
     "rust",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "jsonc",
+    "json5",
+    "typescript",
+    "typescriptreact",
   },
   callback = function(args)
     vim.api.nvim_create_autocmd("BufWritePre", {
